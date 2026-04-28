@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Nav } from "./components/nav";
 import { FooterCorner } from "./components/footer-corner";
 import { Hero } from "./sections/hero";
@@ -22,7 +23,16 @@ export default function Home() {
       </main>
       <footer className="px-6 md:px-32 lg:px-64 py-8 border-t border-rule text-[14px] tracking-[0.14em] text-mute flex flex-col md:flex-row items-center justify-between gap-3">
         <span>© {new Date().getFullYear()} MAXENCE CAILLEAU · ANGERS, FR</span>
-        <span>SITE DESIGNÉ &amp; CODÉ EN INTERNE.</span>
+        <span className="inline-flex items-center gap-2">
+          CODÉ PAR
+          <Image
+            src="/signature.png"
+            alt="Maxence Cailleau"
+            width={120}
+            height={40}
+            className="h-5 w-auto"
+          />
+        </span>
       </footer>
     </>
   );
