@@ -28,9 +28,9 @@ export default function Home() {
           <Image
             src="/signature.png"
             alt="Maxence Cailleau"
-            width={120}
-            height={40}
-            className="h-5 w-auto"
+            width={240}
+            height={80}
+            className="h-9 w-auto"
           />
         </span>
       </footer>
