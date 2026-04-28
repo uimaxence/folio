@@ -1,0 +1,79 @@
+export type Project = {
+  slug: string;
+  name: string;
+  tagline: string;
+  cible: string;
+  technos: string[];
+  duree: string;
+  annee: string;
+  url: string;
+  highlights: string[];
+};
+
+export const projects: Project[] = [
+  {
+    slug: "fenetres-sur-loir",
+    name: "Fenêtres-sur-Loir",
+    tagline:
+      "Site vitrine pour une menuiserie installée près d'Angers depuis plus de 20 ans. Captation de leads locaux et présentation du catalogue sur-mesure.",
+    cible:
+      "Particuliers et professionnels du Maine-et-Loire cherchant fenêtres, portes et volets sur-mesure",
+    technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
+    duree: "2 semaines",
+    annee: "2025",
+    url: "https://www.fenetres-sur-loir.fr/",
+    highlights: [
+      "SEO local Maine-et-Loire (pages villes, fiche Google Business)",
+      "Catalogue produits structuré, formulaire de devis fluide",
+      "Mise en ligne, hébergement et suivi inclus",
+    ],
+  },
+  {
+    slug: "mamie-vege",
+    name: "Et si mamie était végé ?",
+    tagline:
+      "Plateforme de recettes végétariennes riches en protéines pour sportifs. Articles, plannings repas et conseils nutritionnels.",
+    cible:
+      "Sportifs végétariens et végétaliens cherchant des repas protéinés et faciles à préparer",
+    technos: ["Next.js", "MDX", "SEO contenu", "Vercel"],
+    duree: "3 semaines",
+    annee: "2025",
+    url: "https://www.mamie-vege.fr/",
+    highlights: [
+      "Architecture éditoriale optimisée SEO et lisibilité mobile",
+      "Système d'articles MDX rapide à mettre à jour",
+      "Identité visuelle chaleureuse, ton accessible",
+    ],
+  },
+  {
+    slug: "mamie-seo",
+    name: "Mamie SEO",
+    tagline:
+      "Outil d'analyse SEO en 60 secondes pour indépendants et petites entreprises. Rapport concret, sans jargon.",
+    cible:
+      "Freelances, artisans et TPE qui veulent comprendre où ils en sont en référencement",
+    technos: ["Next.js", "API SEO", "Tailwind CSS", "Vercel"],
+    duree: "2 semaines",
+    annee: "2025",
+    url: "https://www.mamie-seo.fr/",
+    highlights: [
+      "Audit technique + copy + design en un seul rapport",
+      "Interface volontairement simple, pédagogique",
+      "Conversion en appel découverte intégrée",
+    ],
+  },
+];
+
+export function projectShot(url: string): string {
+  // Microlink public screenshot API — free tier, no auth required.
+  // The `embed` param returns the image URL directly via a 302 redirect.
+  const params = new URLSearchParams({
+    url,
+    screenshot: "true",
+    meta: "false",
+    embed: "screenshot.url",
+    "viewport.width": "1280",
+    "viewport.height": "800",
+  });
+  return `https://api.microlink.io/?${params.toString()}`;
+}
