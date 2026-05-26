@@ -62,6 +62,40 @@ export const projects: Project[] = [
       "Conversion en appel découverte intégrée",
     ],
   },
+  {
+    slug: "joinboost",
+    name: "Boost",
+    tagline:
+      "Site de communauté pour une accélération dédiée aux jeunes entrepreneurs. Présentation du programme, du collectif et inscription en ligne.",
+    cible:
+      "Porteurs de projets et jeunes fondateurs cherchant un écosystème pour lancer et accélérer leur boîte",
+    technos: ["Next.js", "Tailwind CSS", "Vercel"],
+    duree: "2 semaines",
+    annee: "2025",
+    url: "https://www.joinboost.fr/",
+    highlights: [
+      "Page de vente claire, orientée conversion vers la candidature",
+      "Identité dynamique alignée avec un positionnement « nouvelle génération »",
+      "Architecture pensée pour évoluer avec la communauté",
+    ],
+  },
+  {
+    slug: "petit-tonnerre",
+    name: "Petit Tonnerre",
+    tagline:
+      "Site vitrine pour une association culturelle angevine qui organise des rendez-vous musicaux et familiaux. Programmation, identité et contact.",
+    cible:
+      "Public angevin et partenaires culturels intéressés par des événements musicaux accessibles et inclusifs",
+    technos: ["Next.js", "Tailwind CSS", "Vercel"],
+    duree: "2 semaines",
+    annee: "2025",
+    url: "https://www.petittonnerre.fr/",
+    highlights: [
+      "Direction artistique poétique, fidèle à l'univers de l'association",
+      "Mise en avant des événements et de la programmation à venir",
+      "Formulaire de contact et liens réseaux sociaux intégrés",
+    ],
+  },
 ];
 
 export function projectShot(url: string): string {

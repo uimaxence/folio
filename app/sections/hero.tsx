@@ -41,7 +41,7 @@ export function Hero() {
       className="relative h-[220vh]"
       aria-label="Présentation"
     >
-      <div className="sticky top-0 h-screen flex items-center px-6 md:px-32 lg:px-64 pt-24 md:pt-0">
+      <div className="sticky top-0 h-screen flex items-center justify-center px-6 md:px-32 lg:px-64 pt-24 md:pt-0">
         <h1 className="text-left text-[30px] sm:text-[36px] md:text-5xl lg:text-[58px] leading-[1.05] font-bold tracking-tight max-w-[18ch]">
           <span className="text-ink">BONJOUR, JE M&rsquo;</span>
           {WORDS.map((word, i) => {
