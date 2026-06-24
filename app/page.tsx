@@ -6,6 +6,7 @@ import { About } from "./sections/about";
 import { Services } from "./sections/services";
 import { Process } from "./sections/process";
 import { Realisations } from "./sections/realisations";
+import { Avis } from "./sections/avis";
 import { Contact } from "./sections/contact";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <Services />
         <Process />
         <Realisations />
+        <Avis />
         <Contact />
       </main>
       <footer className="px-6 md:px-32 lg:px-64 py-8 border-t border-rule text-[14px] tracking-[0.14em] text-mute flex flex-col md:flex-row items-center justify-between gap-3">
