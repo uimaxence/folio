@@ -1,6 +1,9 @@
+import type { Palette } from "./palette";
+
 export type Avis = {
   slug: string;
   nom: string;
+  color: Palette;
   projet?: { label: string; href: string };
   note: number;
   texte: string;
@@ -10,6 +13,7 @@ export const avis: Avis[] = [
   {
     slug: "elisa-chene",
     nom: "Élisa Chene",
+    color: "butter",
     projet: { label: "Fenêtres-sur-Loir", href: "#realisations" },
     note: 5,
     texte:
@@ -18,6 +22,7 @@ export const avis: Avis[] = [
   {
     slug: "matteo-robert",
     nom: "Mattéo Robert",
+    color: "sky",
     projet: { label: "Boost", href: "#realisations" },
     note: 5,
     texte:
@@ -26,6 +31,7 @@ export const avis: Avis[] = [
   {
     slug: "manon",
     nom: "Manon",
+    color: "blush",
     note: 5,
     texte:
       "Maxence a créé mon site internet, il est dans l'air du temps, et tout s'est très bien passé, très réactif. Je recommande.",

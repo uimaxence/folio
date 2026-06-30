@@ -1,27 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #ebe9df;
-  --color-canvas-soft: #e2e0d6;
-  --color-ink: #181818;
+  /* Base */
+  --color-canvas: #fefef8;
+  --color-canvas-soft: #f3f1e6;
+  --color-paper: #ffffff;
+  --color-ink: #1a1a1a;
   --color-ink-soft: #b8b6ad;
-  --color-mute: #8a887e;
-  --color-rule: #cfccc1;
+  --color-mute: #7c7a6f;
+  --color-rule: #d4d1c5;
   --color-accent: #16a34a;
-  --color-orange: #ff6a1f;
+
+  /* Card palette — used as backgrounds for projects, avis, services */
+  --color-blush: #f4d3cb;
+  --color-sage: #c6d6ad;
+  --color-butter: #f5d878;
+  --color-sky: #a8c8da;
+  --color-terracotta: #e89263;
+  --color-lavender: #cfc6e3;
+  --color-clay: #dcb892;
+
+  /* Legacy alias kept for any inline usage */
+  --color-orange: #e89263;
 
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
 html,
 body {
-  background: var(--color-canvas);
+  background-color: var(--color-canvas);
   color: var(--color-ink);
+}
+
+/* Very subtle graph-paper grid on the page background.
+   Cards / chips with their own bg cover it — the grid only shows in canvas-only areas. */
+body {
+  background-image:
+    linear-gradient(to right, rgba(26, 26, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
 }
 
 ::selection {
   background: var(--color-ink);
-  color: var(--color-canvas);
+  color: var(--color-paper);
 }
 
 html {
@@ -52,8 +75,18 @@ html {
   }
 }
 
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.animate-wiggle {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-wiggle {
     animation: none;
   }
   html {

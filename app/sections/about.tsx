@@ -1,28 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Sticker } from "../components/sticker";
+import { AnimatedCTA } from "../components/animated-cta";
 
 const philosophie = [
   {
     n: "01",
     title: "Un seul interlocuteur",
     body: "Vous parlez directement à la personne qui dessine, code et met en ligne. Pas de chef de projet, pas d'aller-retours qui durent 3 semaines.",
+    color: "bg-butter",
   },
   {
     n: "02",
     title: "Livré en 2 semaines",
     body: "Un site d'artisan ou d'indépendant, c'est 2 semaines maximum. Pas 6 mois. Le rythme de travail est posé dès le premier appel.",
+    color: "bg-sage",
   },
   {
     n: "03",
     title: "Design ET code",
     body: "Je dessine sur Figma puis je code à la main. Pas de template, pas de page builder. Le résultat : un site qui charge en moins d'une seconde.",
+    color: "bg-blush",
   },
   {
     n: "04",
     title: "SEO inclus, pas en option",
     body: "Référencement classique + GEO (Perplexity, ChatGPT, Google AI). Vos clients vous trouvent, peu importe l'outil qu'ils utilisent.",
+    color: "bg-sky",
   },
 ];
 
@@ -39,8 +44,28 @@ const skills = [
   "Analytics RGPD",
 ];
 
+const STEP_DURATION_MS = 4500;
+
 export function About() {
   const [active, setActive] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
+
+  useEffect(() => {
+    setElapsed(0);
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = (now - start) / STEP_DURATION_MS;
+      if (t >= 1) {
+        setActive((a) => (a + 1) % philosophie.length);
+      } else {
+        setElapsed(t);
+        raf = requestAnimationFrame(tick);
+      }
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active]);
 
   return (
     <section
@@ -55,15 +80,21 @@ export function About() {
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
             DESIGNER CODER, EN SOLO,
             <br />
-            <span className="text-mute">DEPUIS ANGERS.</span>
+            <span className="text-terracotta">DEPUIS ANGERS.</span>
           </h2>
         </div>
 
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-20">
-          {/* Profile card */}
+          {/* Profile card — colored frame */}
           <div className="md:col-span-5">
-            <div className="relative bg-canvas-soft border border-rule p-6 md:p-8 group">
-              <div className="relative aspect-[4/5] bg-canvas border border-rule mb-5 flex items-center justify-center overflow-hidden">
+            <div className="relative bg-butter rounded-3xl p-6 md:p-7 group">
+              <Sticker
+                name="dactylographie"
+                size={100}
+                rotate={14}
+                className="absolute z-20 -top-8 -right-6 md:-right-8 transition-transform duration-300 group-hover:rotate-0"
+              />
+              <div className="relative aspect-[4/5] bg-paper rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
                 <span
                   aria-hidden
                   className="absolute inset-0 flex items-center justify-center text-[80px] md:text-[120px] font-bold tracking-tight text-ink/15 select-none"
@@ -86,22 +117,22 @@ export function About() {
                 <h3 className="text-xl md:text-2xl font-bold tracking-tight">
                   Maxence Cailleau
                 </h3>
-                <span className="text-[14px] tracking-[0.14em] text-mute">
+                <span className="text-[13px] tracking-[0.12em] text-ink/60">
                   25 ANS
                 </span>
               </div>
-              <p className="text-[15px] text-ink/70 mb-5">
+              <p className="text-[15px] text-ink/75 mb-5">
                 Designer coder indépendant. Création de sites web sur-mesure.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 text-[14px] tracking-[0.05em] border border-rule bg-canvas px-2.5 py-1">
+                <span className="inline-flex items-center gap-1.5 text-[13px] bg-paper rounded-full px-3 py-1">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                   Angers, FR
                 </span>
-                <span className="inline-flex items-center text-[14px] tracking-[0.05em] border border-rule bg-canvas px-2.5 py-1">
+                <span className="inline-flex items-center text-[13px] bg-paper rounded-full px-3 py-1">
                   Remote partout
                 </span>
-                <span className="inline-flex items-center text-[14px] tracking-[0.05em] border border-rule bg-canvas px-2.5 py-1">
+                <span className="inline-flex items-center text-[13px] bg-paper rounded-full px-3 py-1">
                   FR / EN
                 </span>
               </div>
@@ -129,80 +160,86 @@ export function About() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Link
-                href="#contact"
-                className="inline-flex items-center bg-ink text-canvas px-5 py-3 text-[14px] tracking-[0.12em] hover:bg-ink/85 transition-colors"
-              >
+              <AnimatedCTA href="#contact" variant="primary" icon="calendar">
                 RÉSERVER UN APPEL
-              </Link>
-              <a
+              </AnimatedCTA>
+              <AnimatedCTA
                 href="https://www.linkedin.com/in/maxence-cailleau-814871197/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center border border-ink px-5 py-3 text-[14px] tracking-[0.12em] hover:bg-ink hover:text-canvas transition-colors"
+                variant="secondary"
+                icon="arrow-up-right"
+                external
               >
-                VOIR LE LINKEDIN ↗
-              </a>
+                VOIR LE LINKEDIN
+              </AnimatedCTA>
             </div>
           </div>
         </div>
 
         {/* Interactive philosophy */}
-        <div className="border-t border-rule pt-24 md:pt-32 pb-12 md:pb-20">
+        <div className="pt-16 md:pt-24 pb-12 md:pb-20">
           <p className="text-[14px] tracking-[0.18em] text-mute mb-8">
             MA PHILOSOPHIE
           </p>
           <div className="grid md:grid-cols-12 gap-6 md:gap-10 items-stretch">
-            <ul className="md:col-span-5 divide-y divide-rule border-y border-rule flex flex-col">
+            <ul className="md:col-span-5 flex flex-col gap-2">
               {philosophie.map((p, i) => {
                 const isActive = i === active;
                 return (
-                  <li key={p.n} className="flex-1">
+                  <li key={p.n}>
                     <button
                       onMouseEnter={() => setActive(i)}
                       onFocus={() => setActive(i)}
                       onClick={() => setActive(i)}
                       aria-pressed={isActive}
-                      className="w-full h-full text-left py-5 md:py-6 flex items-baseline gap-4 transition-colors group"
+                      className="relative w-full text-left rounded-2xl bg-paper overflow-hidden transition-colors hover:bg-canvas-soft"
                     >
+                      {isActive && (
+                        <span
+                          aria-hidden
+                          className={`absolute inset-y-0 left-0 ${p.color}`}
+                          style={{ width: `${elapsed * 100}%` }}
+                        />
+                      )}
                       <span
-                        className={`text-[14px] tracking-[0.16em] transition-colors ${
-                          isActive ? "text-orange" : "text-mute"
+                        className={`relative flex items-baseline gap-4 px-5 py-4 md:py-5 ${
+                          isActive ? "text-ink" : "text-ink/65"
                         }`}
                       >
-                        {p.n}
-                      </span>
-                      <span
-                        className={`text-lg md:text-xl font-medium transition-all ${
-                          isActive
-                            ? "text-ink translate-x-1"
-                            : "text-ink/55 group-hover:text-ink"
-                        }`}
-                      >
-                        {p.title}
-                      </span>
-                      <span
-                        aria-hidden
-                        className={`ml-auto transition-opacity ${
-                          isActive ? "opacity-100" : "opacity-0"
-                        }`}
-                      >
-                        →
+                        <span
+                          className={`text-[13px] tracking-[0.14em] ${
+                            isActive ? "text-ink/70" : "text-mute"
+                          }`}
+                        >
+                          {p.n}
+                        </span>
+                        <span className="text-lg md:text-xl font-medium">
+                          {p.title}
+                        </span>
+                        <span
+                          aria-hidden
+                          className={`ml-auto transition-opacity ${
+                            isActive ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          →
+                        </span>
                       </span>
                     </button>
                   </li>
                 );
               })}
             </ul>
-            <div className="md:col-span-7 md:pl-6 flex">
-              <div className="flex-1 bg-canvas-soft border border-rule p-6 md:p-10 flex flex-col">
-                <div className="text-[14px] tracking-[0.18em] text-mute mb-3">
+            <div className="md:col-span-7 md:pl-2 flex">
+              <div
+                className={`flex-1 ${philosophie[active].color} rounded-3xl p-7 md:p-10 flex flex-col`}
+              >
+                <div className="text-[13px] tracking-[0.16em] text-ink/55 mb-3">
                   POINT {philosophie[active].n}
                 </div>
                 <h4 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">
                   {philosophie[active].title}
                 </h4>
-                <p className="text-[16px] leading-relaxed text-ink/75">
+                <p className="text-[16px] leading-relaxed text-ink/80">
                   {philosophie[active].body}
                 </p>
               </div>
@@ -211,15 +248,15 @@ export function About() {
         </div>
 
         {/* Skills marquee */}
-        <div className="mt-16 md:mt-24 -mx-6 md:-mx-32 lg:-mx-64 border-y border-rule overflow-hidden">
-          <div className="flex gap-8 py-4 animate-marquee whitespace-nowrap text-[15px] tracking-[0.14em]">
+        <div className="mt-12 md:mt-16 -mx-6 md:-mx-32 lg:-mx-64 bg-paper border-y border-rule overflow-hidden">
+          <div className="flex gap-8 py-4 animate-marquee whitespace-nowrap text-[15px] tracking-[0.1em]">
             {[...skills, ...skills].map((s, i) => (
               <span
                 key={i}
                 className="inline-flex items-center gap-8 text-ink/70"
               >
                 {s}
-                <span aria-hidden className="text-mute">
+                <span aria-hidden className="text-terracotta">
                   ✦
                 </span>
               </span>

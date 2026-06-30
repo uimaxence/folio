@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { projects, projectShot } from "@/lib/projects";
+import { bgClass } from "@/lib/palette";
+import { AnimatedCTA } from "../components/animated-cta";
 
 export function Realisations() {
   return (
@@ -13,22 +15,33 @@ export function Realisations() {
             RÉALISATIONS
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto">
-            DES SITES QUI RAMÈNENT DES CLIENTS, PAS DES COMPLIMENTS.
+            DES SITES QUI RAMÈNENT <span className="text-terracotta">DES CLIENTS,</span> PAS DES COMPLIMENTS.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {projects.map((p, idx) => (
             <article
               key={p.slug}
-              className="group relative bg-canvas border border-rule flex flex-col overflow-hidden"
+              className={`group relative ${bgClass[p.color]} rounded-3xl p-5 md:p-6 flex flex-col transition-transform hover:-translate-y-1`}
             >
+              {/* Category chip */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center text-[12px] tracking-[0.12em] bg-paper rounded-full px-3 py-1 text-ink/75 uppercase">
+                  {p.category}
+                </span>
+                <span className="text-[12px] tracking-[0.12em] text-ink/55">
+                  {String(idx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Screenshot inset card */}
               <Link
                 href={p.url}
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={`Voir ${p.name} en ligne`}
-                className="relative block aspect-[16/10] bg-canvas-soft overflow-hidden border-b border-rule"
+                className="relative block aspect-[16/10] bg-paper rounded-2xl overflow-hidden mb-5"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -37,52 +50,45 @@ export function Realisations() {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <span className="absolute top-3 left-3 text-[14px] tracking-[0.18em] text-ink/70 bg-canvas/80 backdrop-blur px-2 py-1">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
               </Link>
 
-              <div className="flex flex-col flex-1 p-6 md:p-7 gap-4">
+              <div className="flex flex-col flex-1 gap-3">
                 <div className="flex items-baseline justify-between gap-3">
                   <h3 className="text-xl md:text-2xl font-bold tracking-tight">
                     {p.name}
                   </h3>
-                  <span className="text-[14px] tracking-[0.14em] text-mute shrink-0">
+                  <span className="text-[13px] tracking-[0.12em] text-ink/55 shrink-0">
                     {p.annee}
                   </span>
                 </div>
 
-                <p className="text-[15px] leading-relaxed text-ink/75">
+                <p className="text-[14.5px] leading-relaxed text-ink/80">
                   {p.tagline}
                 </p>
 
-                <div className="text-[14px] text-mute">
-                  <span className="text-ink/55">Cible :</span> {p.cible}
-                </div>
-
-                <ul className="flex flex-wrap gap-1.5">
+                <ul className="flex flex-wrap gap-1.5 mt-1">
                   {p.technos.map((t) => (
                     <li
                       key={t}
-                      className="text-[14px] border border-rule px-2.5 py-1 text-ink/75"
+                      className="text-[12.5px] bg-paper/80 rounded-full px-2.5 py-0.5 text-ink/70"
                     >
                       {t}
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-4 border-t border-rule flex items-center justify-between gap-3">
-                  <span className="text-[14px] tracking-[0.14em] text-mute">
+                <div className="mt-auto pt-4 flex items-center justify-between gap-3">
+                  <span className="text-[12.5px] tracking-[0.12em] text-ink/55">
                     LIVRÉ EN {p.duree.toUpperCase()}
                   </span>
-                  <Link
+                  <AnimatedCTA
                     href={p.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="inline-flex items-center text-[14px] tracking-[0.12em] hover:text-ink/60 transition-colors"
+                    variant="ghost"
+                    icon="arrow-up-right"
+                    external
                   >
-                    VOIR LE SITE ↗
-                  </Link>
+                    VOIR LE SITE
+                  </AnimatedCTA>
                 </div>
               </div>
             </article>
@@ -93,12 +99,9 @@ export function Realisations() {
           <p className="text-[15px] text-ink/70 mb-4">
             Un projet en tête ? Parlons-en.
           </p>
-          <Link
-            href="#contact"
-            className="inline-flex items-center bg-ink text-canvas px-5 py-3 text-[14px] tracking-[0.14em] hover:bg-ink/85 transition-colors"
-          >
+          <AnimatedCTA href="#contact" variant="primary" icon="calendar">
             RÉSERVER UN APPEL
-          </Link>
+          </AnimatedCTA>
         </div>
       </div>
     </section>

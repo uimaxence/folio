@@ -71,7 +71,7 @@ export function CalEmbed() {
 
     window.Cal!.ns![NAMESPACE]("inline", {
       elementOrSelector: "#my-cal-inline-appel-de-decouverte",
-      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: true },
       calLink: CAL_LINK,
     });
 
@@ -80,10 +80,10 @@ export function CalEmbed() {
       layout: "month_view",
       cssVarsPerTheme: {
         light: {
-          "cal-brand": "#181818",
-          "cal-bg": "#ebe9df",
-          "cal-bg-emphasis": "#e2e0d6",
-          "cal-text": "#181818",
+          "cal-brand": "#1a1a1a",
+          "cal-bg": "#ffffff",
+          "cal-bg-emphasis": "#f0ede2",
+          "cal-text": "#1a1a1a",
         },
       },
     });
@@ -92,7 +92,7 @@ export function CalEmbed() {
   return (
     <div
       id="my-cal-inline-appel-de-decouverte"
-      style={{ width: "100%", minHeight: 700 }}
+      className="w-full min-w-0 overflow-hidden min-h-[560px] md:min-h-[700px]"
     />
   );
 }
