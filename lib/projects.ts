@@ -138,14 +138,8 @@ export const projects: Project[] = [
   },
 ];
 
-export function projectShot(url: string): string {
-  const params = new URLSearchParams({
-    url,
-    screenshot: "true",
-    meta: "false",
-    embed: "screenshot.url",
-    "viewport.width": "1280",
-    "viewport.height": "800",
-  });
-  return `https://api.microlink.io/?${params.toString()}`;
+// Capture statique de la home de chaque site, servie depuis /public/shots.
+// (Remplace l'ancien aperçu à la volée via l'API microlink, lent et peu fiable.)
+export function projectShot(slug: string): string {
+  return `/shots/${slug}.jpg`;
 }

@@ -10,6 +10,7 @@ const links = [
   { id: "about", label: "QUI SUIS-JE ?" },
   { id: "services", label: "SERVICES" },
   { id: "realisations", label: "RÉALISATIONS" },
+  { id: "tarifs", label: "TARIFS" },
   { id: "contact", label: "CONTACT" },
 ];
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { projects, projectShot } from "@/lib/projects";
 import { bgClass } from "@/lib/palette";
 import { AnimatedCTA } from "../components/animated-cta";
@@ -43,12 +44,12 @@ export function Realisations() {
                 aria-label={`Voir ${p.name} en ligne`}
                 className="relative block aspect-[16/10] bg-paper rounded-2xl overflow-hidden mb-5"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={projectShot(p.url)}
-                  alt={`Aperçu de ${p.name}`}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                <Image
+                  src={projectShot(p.slug)}
+                  alt={`Aperçu de la home du site ${p.name}`}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </Link>
 
