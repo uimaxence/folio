@@ -85,7 +85,7 @@ export function About() {
         </div>
 
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-20">
-          {/* Profile card — colored frame */}
+          {/* Profile card, colored frame */}
           <div className="md:col-span-5">
             <div className="relative bg-butter rounded-3xl p-6 md:p-7 group">
               <Sticker

@@ -11,7 +11,7 @@
   --color-rule: #d4d1c5;
   --color-accent: #16a34a;
 
-  /* Card palette — used as backgrounds for projects, avis, services */
+  /* Card palette, used as backgrounds for projects, avis, services */
   --color-blush: #f4d3cb;
   --color-sage: #c6d6ad;
   --color-butter: #f5d878;
@@ -33,7 +33,7 @@ body {
 }
 
 /* Very subtle graph-paper grid on the page background.
-   Cards / chips with their own bg cover it — the grid only shows in canvas-only areas. */
+   Cards / chips with their own bg cover it, the grid only shows in canvas-only areas. */
 body {
   background-image:
     linear-gradient(to right, rgba(26, 26, 26, 0.045) 1px, transparent 1px),

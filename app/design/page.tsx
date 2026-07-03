@@ -35,13 +35,13 @@ const baseColors: Swatch[] = [
 ];
 
 const cardPalette: Swatch[] = [
-  { token: "butter", hex: "#f5d878", role: "Jaune chaud — chaleur, optimisme", textOn: "ink" },
-  { token: "sage", hex: "#c6d6ad", role: "Vert tendre — calme, naturel", textOn: "ink" },
-  { token: "blush", hex: "#f4d3cb", role: "Rose poudré — doux, accessible", textOn: "ink" },
-  { token: "sky", hex: "#a8c8da", role: "Bleu doux — confiance, clarté", textOn: "ink" },
-  { token: "terracotta", hex: "#e89263", role: "Orange chaud — accent typographique, énergie", textOn: "ink" },
-  { token: "lavender", hex: "#cfc6e3", role: "Lavande — créatif, culturel", textOn: "ink" },
-  { token: "clay", hex: "#dcb892", role: "Beige chaud — artisan, terroir", textOn: "ink" },
+  { token: "butter", hex: "#f5d878", role: "Jaune chaud, chaleur, optimisme", textOn: "ink" },
+  { token: "sage", hex: "#c6d6ad", role: "Vert tendre, calme, naturel", textOn: "ink" },
+  { token: "blush", hex: "#f4d3cb", role: "Rose poudré, doux, accessible", textOn: "ink" },
+  { token: "sky", hex: "#a8c8da", role: "Bleu doux, confiance, clarté", textOn: "ink" },
+  { token: "terracotta", hex: "#e89263", role: "Orange chaud, accent typographique, énergie", textOn: "ink" },
+  { token: "lavender", hex: "#cfc6e3", role: "Lavande, créatif, culturel", textOn: "ink" },
+  { token: "clay", hex: "#dcb892", role: "Beige chaud, artisan, terroir", textOn: "ink" },
 ];
 
 const stickerCatalog: { name: StickerName; label: string; usage: string; rotate: number }[] = [
@@ -169,7 +169,7 @@ export default function DesignPage() {
           </div>
 
           <h3 className="text-[14px] tracking-[0.16em] text-mute mb-4">
-            CARTES — 7 COULEURS DOUCES
+            CARTES, 7 COULEURS DOUCES
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {cardPalette.map((s) => (
@@ -254,7 +254,7 @@ export default function DesignPage() {
             <div className="rounded-2xl p-5 bg-paper border border-rule">
               <h4 className="font-bold mb-2">Uppercase + tracking</h4>
               <p className="text-[14.5px] leading-relaxed text-ink/75">
-                Réservé aux labels, chips et CTA — tracking entre{" "}
+                Réservé aux labels, chips et CTA, tracking entre{" "}
                 <code className="font-mono text-[13px]">0.10em</code> et{" "}
                 <code className="font-mono text-[13px]">0.16em</code>. Jamais sur
                 le corps de texte (illisible).
@@ -538,7 +538,7 @@ export default function DesignPage() {
             <h4 className="font-bold mb-3">Format checklist post social</h4>
             <ul className="space-y-2 text-[14.5px] text-ink/80">
               <li>1. Fond : une seule couleur de la palette cartes (pas de dégradé).</li>
-              <li>2. Texte : ink (#1A1A1A) — jamais blanc cassé.</li>
+              <li>2. Texte : ink (#1A1A1A), jamais blanc cassé.</li>
               <li>3. Accent : 1 mot ou 1 chiffre en <span className="text-terracotta font-medium">terracotta</span>.</li>
               <li>4. Police : Space Grotesk Bold pour le titre, Regular pour le corps.</li>
               <li>5. Signature : monogramme M*C en bas (paper sur ink ou inverse).</li>
@@ -559,7 +559,7 @@ export default function DesignPage() {
               <code className="font-mono text-[13px]">--color-canvas</code> est le fond. Les cartes utilisent UNIQUEMENT la palette cartes (butter/sage/blush/sky/terracotta/lavender/clay) ou paper blanc.
             </Rule>
             <Rule n="04" title="Une couleur par carte, jamais de mélange">
-              Une carte = une couleur de fond. Pas de dégradé, pas de stripe. Pour varier dans une grille, on alterne les couleurs entre cartes — pas dedans.
+              Une carte = une couleur de fond. Pas de dégradé, pas de stripe. Pour varier dans une grille, on alterne les couleurs entre cartes, pas dedans.
             </Rule>
             <Rule n="05" title="Cards rondes, CTA pill">
               Cards : <code className="font-mono text-[13px]">rounded-3xl</code> (24px). CTA principaux : <code className="font-mono text-[13px]">rounded-full</code>. Pas d&rsquo;angles vifs sauf chips déjà arrondies.

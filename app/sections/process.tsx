@@ -61,7 +61,10 @@ export function Process() {
               className={`${step.color} rounded-3xl p-7 md:p-10 shadow-[0_14px_40px_-10px_rgba(26,26,26,0.22)]`}
               style={{
                 position: "sticky",
-                top: `${110 + i * 48}px`,
+                /* Même top pour toutes → elles se libèrent ensemble à la sortie.
+                   L'escalier est purement visuel via translateY. */
+                top: "110px",
+                transform: `translateY(${i * 44}px)`,
                 zIndex: 10 + i,
                 marginBottom: i === steps.length - 1 ? 0 : "30vh",
               }}

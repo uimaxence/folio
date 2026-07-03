@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AnimatedCTA } from "../components/animated-cta";
 
 type Plan = {
@@ -16,7 +17,7 @@ type Plan = {
 const creation: Plan[] = [
   {
     name: "Essentiel",
-    price: "700 €",
+    price: "700 €",
     priceNote: "à partir de",
     tagline: "Pour être visible et inspirer confiance.",
     items: [
@@ -33,7 +34,7 @@ const creation: Plan[] = [
   },
   {
     name: "Pro",
-    price: "1 200 €",
+    price: "1 200 €",
     priceNote: "à partir de",
     tagline: "Pour dominer votre marché local.",
     lead: "Tout l'Essentiel, plus :",
@@ -53,7 +54,7 @@ const creation: Plan[] = [
 const recurring: Plan[] = [
   {
     name: "Hébergement & Maintenance",
-    price: "39 €",
+    price: "39 €",
     priceNote: "par mois",
     tagline:
       "Un site a besoin d'entretien pour rester rapide et sécurisé. C'est compris dans mon accompagnement.",
@@ -66,20 +67,6 @@ const recurring: Plan[] = [
     color: "bg-sky",
     badge: "INCLUS AVEC CHAQUE SITE",
   },
-  {
-    name: "Suivi & SEO",
-    price: "90 €",
-    priceNote: "par mois",
-    tagline: "Pour que votre site travaille pour vous, mois après mois.",
-    lead: "Tout Hébergement & Maintenance, plus :",
-    items: [
-      "Suivi de votre référencement local (positions Google)",
-      "2 modifications par mois incluses (textes, photos, actus…)",
-      "Rapport mensuel simple : visites, appels, demandes reçues",
-      "Conseils pour améliorer votre visibilité",
-    ],
-    color: "bg-lavender",
-  },
 ];
 
 const faq: Array<{ q: string; a: string }> = [
@@ -89,11 +76,11 @@ const faq: Array<{ q: string; a: string }> = [
   },
   {
     q: "Suis-je engagé sur la durée ?",
-    a: "La création du site est un achat unique : le site vous appartient. L'hébergement & maintenance est un abonnement mensuel sans lequel un site ne peut pas fonctionner durablement. Le Suivi & SEO est résiliable à tout moment.",
+    a: "La création du site est un achat unique : le site vous appartient. L'hébergement & maintenance est un abonnement mensuel sans lequel un site ne peut pas fonctionner durablement. Mes offres de référencement local sont à part, avec leur propre rythme, on en parle si le sujet vous intéresse.",
   },
   {
     q: "Et si je veux modifier mon site plus tard ?",
-    a: "Avec la formule Suivi & SEO, 2 modifications par mois sont incluses. Sinon, les modifications sont facturées à la demande, sur devis simple.",
+    a: "Les modifications courantes sont incluses dans mes offres de référencement local. Sinon, elles sont facturées à la demande, sur devis simple.",
   },
   {
     q: "Travaillez-vous uniquement avec des entreprises d'Angers ?",
@@ -114,6 +101,31 @@ function Check({ className = "" }: { className?: string }) {
       strokeLinejoin="round"
     >
       <path d="M3 7l3 3 5-6" />
+    </svg>
+  );
+}
+
+function Star({ className = "" }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" />
+    </svg>
+  );
+}
+
+function Arrow({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 22 14"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 7h17M14 2l5 5-5 5" />
     </svg>
   );
 }
@@ -181,6 +193,45 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
+function SeoCard() {
+  return (
+    <Link
+      href="/referencement-local"
+      className="group relative bg-lavender rounded-3xl p-7 md:p-9 flex flex-col ring-2 ring-ink/80 transition-transform hover:-translate-y-1"
+    >
+      <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 bg-ink text-paper rounded-full px-3 py-1 text-[11px] tracking-[0.12em] font-medium">
+        <Star className="w-3 h-3" />
+        RECOMMANDÉ
+      </span>
+
+      <h3 className="text-2xl md:text-[28px] font-bold tracking-tight">
+        Référencement local & SEO
+      </h3>
+
+      <div className="mt-3 flex items-baseline gap-2">
+        <span className="text-[13px] tracking-[0.1em] text-ink/55">
+          à partir de
+        </span>
+        <span className="text-3xl md:text-4xl font-bold tracking-tight">
+          190 €
+        </span>
+        <span className="text-[13px] tracking-[0.1em] text-ink/55">par mois</span>
+      </div>
+
+      <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
+        C&apos;est ici que se fait la différence : apparaître dans le top 3 de
+        Google sur votre métier, passer devant vos concurrents et transformer les
+        recherches en appels. Hébergement &amp; maintenance du site inclus.
+      </p>
+
+      <div className="mt-auto pt-6 inline-flex items-center gap-2 text-[14px] tracking-[0.1em] font-medium text-ink">
+        <span>DÉCOUVRIR MES OFFRES</span>
+        <Arrow className="w-4 h-3 transition-transform duration-300 group-hover:translate-x-1" />
+      </div>
+    </Link>
+  );
+}
+
 export function Tarifs() {
   return (
     <section
@@ -218,6 +269,7 @@ export function Tarifs() {
           {recurring.map((p) => (
             <PlanCard key={p.name} plan={p} />
           ))}
+          <SeoCard />
         </div>
 
         {/* FAQ */}

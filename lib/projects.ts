@@ -100,7 +100,7 @@ export const projects: Project[] = [
   },
   {
     slug: "adrien-renard",
-    name: "R.A.R — Adrien Renard",
+    name: "R.A.R · Adrien Renard",
     category: "Site vitrine",
     color: "clay",
     tagline:
