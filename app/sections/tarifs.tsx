@@ -295,8 +295,9 @@ export function Tarifs() {
             RECEVOIR UN AUDIT GRATUIT
           </AnimatedCTA>
           <p className="text-[13px] tracking-[0.02em] text-ink/60 max-w-md">
-            Un audit rapide de votre site actuel (ou de votre visibilité) et un
-            devis clair, sans engagement.
+            Je regarde votre site et votre visibilité sur Google, et je vous
+            montre ce qui vous fait perdre des demandes. Devis clair, sans
+            engagement.
           </p>
         </div>
       </div>

@@ -483,7 +483,7 @@ export default function ReferencementLocal() {
               </div>
               <ul className="lg:w-3/5 grid sm:grid-cols-2 gap-3">
                 {[
-                  "Audit complet : fiche Google + site, avec score et priorités",
+                  "Audit complet : où vous perdez des appels aujourd'hui (fiche figée, avis ignorés, prestations invisibles, concurrents devant vous)",
                   "Optimisation de la fiche Google : catégories, services, produits, photos",
                   "Structure du site : une page par prestation, titres et données optimisés",
                   "Inscription et cohérence sur les annuaires (Pages Jaunes, Solocal, Trustpilot…)",
@@ -657,9 +657,11 @@ export default function ReferencementLocal() {
               <span className="text-terracotta">GRATUIT&nbsp;?</span>
             </h2>
             <p className="mt-5 text-[15px] md:text-base text-ink/80 max-w-2xl mx-auto leading-relaxed">
-              Je regarde votre fiche et votre site, et je vous montre concrètement
-              ce qui vous fait perdre des appels. Sans engagement, sans discours
-              commercial. Ensuite, à vous de voir.
+              Je regarde votre fiche Google et votre site, et je vous montre noir
+              sur blanc ce qui vous fait perdre des appels : dernière publication
+              qui date, avis sans réponse, prestations invisibles sur Google,
+              concurrents passés devant vous. Sans engagement, sans discours
+              commercial.
             </p>
             <div className="mt-8 flex justify-center">
               <AnimatedCTA href="/#contact" variant="primary" icon="calendar">
