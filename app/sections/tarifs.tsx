@@ -12,6 +12,7 @@ type Plan = {
   color: string;
   badge?: string;
   featured?: boolean;
+  promo?: string;
 };
 
 const creation: Plan[] = [
@@ -20,6 +21,7 @@ const creation: Plan[] = [
     price: "700 €",
     priceNote: "à partir de",
     tagline: "Pour être visible et inspirer confiance.",
+    promo: "700 € → 490 € avec un forfait référencement (dès 190 €/mois)",
     items: [
       "Site vitrine 5 à 6 pages, design sur mesure (pas de template générique)",
       "Optimisé mobile et rapide à charger",
@@ -157,6 +159,12 @@ function PlanCard({ plan }: { plan: Plan }) {
           {plan.price}
         </span>
       </div>
+
+      {plan.promo && (
+        <p className="mt-3 self-start inline-flex items-center bg-ink text-paper rounded-full px-3 py-1.5 text-[12.5px] font-medium">
+          {plan.promo}
+        </p>
+      )}
 
       <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
         {plan.tagline}

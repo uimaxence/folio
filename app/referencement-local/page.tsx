@@ -169,7 +169,7 @@ const plans: Plan[] = [
       "2 pages « ville » rédigées / mois",
       "Référencement sur les IA (ChatGPT, Perplexity, Gemini)",
       "Accompagnement prioritaire",
-      "Fondations (490 €) offertes",
+      "Analyse de vos concurrents et ajustements chaque trimestre",
     ],
     color: "bg-lavender",
   },
@@ -197,7 +197,7 @@ const engagements = [
 const timeline = [
   {
     when: "Semaines 1–3",
-    what: "Fondations posées : fiche optimisée, site restructuré, annuaires à jour.",
+    what: "Mise en route : fiche optimisée, site optimisé pour le référencement, annuaires à jour.",
   },
   {
     when: "Mois 1–3",
@@ -215,8 +215,8 @@ const timeline = [
 
 const faq = [
   {
-    q: "Pourquoi un coût de démarrage ?",
-    a: "Parce que 80 % du résultat vient d'une fiche Google et d'un site bien construits au départ. Sans ces fondations, l'abonnement mensuel travaille dans le vide. On le fait une fois, proprement, et il sert pour toute la suite. Il est offert sur le pack Autorité.",
+    q: "Faut-il déjà avoir un site ?",
+    a: "Pas forcément. Si vous avez déjà un site, on l'optimise. Sinon, je le crée pour 490 € au lieu de 700 € dès que vous prenez un pack, construit optimisé pour le référencement dès le départ. Aucun frais de setup en plus.",
   },
   {
     q: "En combien de temps j'aurai des résultats ?",
@@ -228,7 +228,7 @@ const faq = [
   },
   {
     q: "C'est en plus de la maintenance de mon site ?",
-    a: "Oui, c'est complémentaire. La maintenance garde votre site en bonne santé ; le référencement le fait travailler pour ramener des clients. On voit ensemble comment les combiner selon votre situation.",
+    a: "Non, tout est compris. Chaque pack de référencement inclut l'hébergement, la maintenance et les modifications courantes de votre site. Un seul abonnement, pas deux.",
   },
   {
     q: "Pourquoi un engagement de 9 mois ?",
@@ -444,65 +444,32 @@ export default function ReferencementLocal() {
                 LES OFFRES
               </p>
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto">
-                ON POSE LES FONDATIONS,{" "}
-                <span className="text-terracotta">PUIS ON GRIMPE.</span>
+                LE PACK QUI CORRESPOND{" "}
+                <span className="text-terracotta">À VOTRE AMBITION.</span>
               </h2>
               <p className="mt-5 text-[15px] md:text-base text-ink/80 max-w-2xl mx-auto leading-relaxed">
-                On démarre toujours par les fondations, c&rsquo;est ce qui rend
-                tout le reste efficace. Ensuite, vous choisissez le pack mensuel
-                qui correspond à votre ambition. Engagement de 9 mois : la durée
-                réaliste pour construire une place dans le top 3 et la tenir.
+                Pas de frais de setup, pas de coût caché. Vous choisissez un pack
+                mensuel, on démarre. Engagement de 9 mois : la durée réaliste pour
+                construire une place dans le top 3 et la tenir.
               </p>
             </div>
 
-            {/* Étape 1, Fondations */}
-            <p className="text-[13px] tracking-[0.14em] text-mute mb-5">
-              ÉTAPE 1 · LES FONDATIONS
-            </p>
-            <div className="bg-clay rounded-3xl p-7 md:p-9 flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10">
-              <div className="lg:w-2/5">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[13px] tracking-[0.1em] text-ink/55">
-                    à partir de
-                  </span>
-                  <span className="text-3xl md:text-4xl font-bold tracking-tight">
-                    490 €
-                  </span>
-                  <span className="text-[13px] tracking-[0.1em] text-ink/55">
-                    paiement unique
-                  </span>
-                </div>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
-                  La mise à niveau complète de votre présence, sur un site de
-                  base. Faite une fois, elle sert pour toujours.
-                </p>
-                <p className="mt-4 inline-flex items-center gap-2 bg-paper rounded-full px-3 py-1.5 text-[12px] tracking-[0.1em] font-medium text-ink">
-                  <Star className="w-3 h-3" />
-                  OFFERTE SUR LE PACK AUTORITÉ
-                </p>
-              </div>
-              <ul className="lg:w-3/5 grid sm:grid-cols-2 gap-3">
-                {[
-                  "Audit complet : où vous perdez des appels aujourd'hui (fiche figée, avis ignorés, prestations invisibles, concurrents devant vous)",
-                  "Optimisation de la fiche Google : catégories, services, produits, photos",
-                  "Structure du site : une page par prestation, titres et données optimisés",
-                  "Inscription et cohérence sur les annuaires (Pages Jaunes, Solocal, Trustpilot…)",
-                ].map((it) => (
-                  <li key={it} className="flex items-start gap-2.5">
-                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
-                      <Check className="w-2.5 h-2.5" />
-                    </span>
-                    <span className="text-[15px] leading-snug text-ink/85">
-                      {it}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            {/* Pas encore de site */}
+            <div className="mb-10 bg-clay rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              <p className="text-lg md:text-xl font-bold tracking-tight sm:w-2/5">
+                Pas encore de site, ou un site à refaire&nbsp;?
+              </p>
+              <p className="text-[15px] leading-relaxed text-ink/80 sm:w-3/5">
+                Le prix dépend de votre formule de suivi :{" "}
+                <span className="font-bold">490 €</span> avec un pack référencement
+                (dès 190 €/mois), <span className="font-bold">700 €</span> avec le
+                suivi simple. Optimisé pour le référencement dès le départ.
+              </p>
             </div>
 
-            {/* Étape 2, Packs mensuels */}
-            <p className="text-[13px] tracking-[0.14em] text-mute mt-16 mb-5">
-              ÉTAPE 2 · VOTRE PACK MENSUEL
+            {/* Packs mensuels */}
+            <p className="text-[13px] tracking-[0.14em] text-mute mb-5">
+              VOTRE PACK MENSUEL
             </p>
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               {plans.map((p) => (
@@ -525,9 +492,9 @@ export default function ReferencementLocal() {
             </div>
 
             <p className="mt-6 text-[13px] leading-relaxed text-ink/55 max-w-3xl">
-              Prix HT. Les fondations (à partir de 490 €) sont le point de départ
-              de chaque pack. Hébergement, maintenance et modifications courantes
-              de votre site sont inclus dans chaque pack.
+              Prix HT, engagement 9 mois. Aucun frais de setup. Hébergement,
+              maintenance et modifications courantes de votre site sont inclus
+              dans chaque pack.
             </p>
           </div>
         </section>
