@@ -161,7 +161,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       </div>
 
       {plan.promo && (
-        <p className="mt-3 self-start inline-flex items-center bg-ink text-paper rounded-full px-3 py-1.5 text-[12.5px] font-medium">
+        <p className="mt-3 self-start bg-ink text-paper rounded-2xl px-3.5 py-2 text-[12.5px] font-medium leading-snug">
           {plan.promo}
         </p>
       )}

@@ -8,7 +8,7 @@ import {
   AnimatedCalendar,
 } from "./animated-icons";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "light" | "outline-light";
 type Icon = "arrow" | "arrow-up-right" | "calendar" | "none";
 
 type Props = {
@@ -28,12 +28,18 @@ const styles: Record<Variant, string> = {
     "border border-ink px-5 py-3 hover:bg-ink hover:text-paper",
   ghost:
     "text-[13px] tracking-[0.1em] font-medium hover:text-ink/60 px-0 py-0",
+  light:
+    "bg-paper text-ink px-5 py-3 hover:bg-paper/85",
+  "outline-light":
+    "border border-paper/60 text-paper px-5 py-3 hover:bg-paper hover:text-ink",
 };
 
 const iconSize: Record<Variant, string> = {
   primary: "w-4 h-4",
   secondary: "w-4 h-4",
   ghost: "w-3.5 h-3.5",
+  light: "w-4 h-4",
+  "outline-light": "w-4 h-4",
 };
 
 function IconFor({ kind, className }: { kind: Icon; className: string }) {
