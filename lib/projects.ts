@@ -99,22 +99,41 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "adrien-renard",
-    name: "R.A.R · Adrien Renard",
+    slug: "victoria-luz",
+    name: "Victoria Luz",
     category: "Site vitrine",
     color: "clay",
     tagline:
-      "Site vitrine pour une entreprise de rénovation. Présentation des prestations, mise en avant des chantiers et captation de demandes de devis.",
+      "Site vitrine pour une artiste tatoueuse angevine spécialisée en reconstruction corporelle. Tatouage sur-mesure, dermopigmentation et prise de rendez-vous.",
     cible:
-      "Particuliers et professionnels de l'immobilier cherchant un artisan rénovateur de confiance",
+      "Femmes cherchant un tatouage sur-mesure ou une reconstruction (aréoles 3D, cicatrices) dans un cadre bienveillant",
     technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
     duree: "2 semaines",
-    annee: "2025",
-    url: "https://www.adrien-renard.fr/",
+    annee: "2026",
+    url: "https://www.victoria-luz.fr/",
     highlights: [
-      "Identité claire centrée sur la confiance et le savoir-faire artisan",
-      "Présentation structurée des prestations de rénovation",
-      "Formulaire de contact orienté demande de devis",
+      "Univers doux et haut de gamme, entre art et soin du corps",
+      "Prestations structurées : tatouage, reconstruction, maquillage semi-permanent",
+      "Parcours de prise de rendez-vous clair, podcast et événements mis en avant",
+    ],
+  },
+  {
+    slug: "ciel-en-couleurs",
+    name: "Ciel en Couleurs",
+    category: "Site vitrine",
+    color: "terracotta",
+    tagline:
+      "Site vitrine pour un prestataire de fumigènes colorés événementiels en Île-de-France. Mariages, gender reveals et événements pro.",
+    cible:
+      "Couples, futurs parents et organisateurs d'événements en Île-de-France cherchant une animation visuelle marquante",
+    technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
+    duree: "2 semaines",
+    annee: "2026",
+    url: "https://cielencouleurs.fr/",
+    highlights: [
+      "Ton poétique et visuels immersifs pour valoriser les prestations",
+      "Pages prestations détaillées (mariage, gender reveal, événements pro)",
+      "Formulaire de devis et réassurance sécurité / certifications",
     ],
   },
   {
