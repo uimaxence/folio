@@ -54,14 +54,6 @@ function ArrowLeft({ className = "" }: { className?: string }) {
   );
 }
 
-function Star({ className = "" }: { className?: string }) {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" />
-    </svg>
-  );
-}
-
 /* ---------- données ---------- */
 
 const metiers = [
@@ -116,62 +108,29 @@ const leviers = [
   },
 ];
 
-type Plan = {
-  name: string;
-  price: string;
-  priceNote: string;
-  tagline: string;
-  lead?: string;
-  items: string[];
-  color: string;
-  featured?: boolean;
-  badge?: string;
-};
+const inclus = [
+  "Hébergement & maintenance de votre site",
+  "Modifications courantes incluses",
+  "Surveillance de votre position sur Google",
+  "Rapport mensuel clair, sans jargon",
+];
 
-const plans: Plan[] = [
+const variables = [
   {
-    name: "Présence",
-    price: "190 €",
-    priceNote: "/ mois",
-    tagline: "Rester visible et entretenu, sans y penser.",
-    items: [
-      "Hébergement & maintenance de votre site inclus",
-      "Publications sur la fiche Google (2×/sem)",
-      "Réponse à tous vos avis",
-      "Surveillance de votre position",
-      "Rapport mensuel clair",
-    ],
-    color: "bg-sky",
+    title: "Votre objectif",
+    body: "Rester visible et entretenu, ou grimper activement dans le top 3 du pack local et le tenir.",
   },
   {
-    name: "Croissance",
-    price: "390 €",
-    priceNote: "/ mois",
-    tagline: "Grimper activement dans le top 3 et le tenir.",
-    lead: "Tout Présence, plus :",
-    items: [
-      "Collecte d'avis (QR code, 20–30/mois)",
-      "Liens et citations locaux (CMA, CCI, presse)",
-      "1 page « ville » rédigée / mois",
-      "1 communiqué de presse local / mois",
-    ],
-    color: "bg-butter",
-    featured: true,
-    badge: "RECOMMANDÉ",
+    title: "Le rythme de travail sur votre fiche Google",
+    body: "Fréquence des publications, réponse aux avis, collecte d'avis (QR code, relances clients).",
   },
   {
-    name: "Autorité",
-    price: "590 €",
-    priceNote: "/ mois",
-    tagline: "Dominer votre zone et être cité par les IA.",
-    lead: "Tout Croissance, plus :",
-    items: [
-      "2 pages « ville » rédigées / mois",
-      "Référencement sur les IA (ChatGPT, Perplexity, Gemini)",
-      "Accompagnement prioritaire",
-      "Analyse de vos concurrents et ajustements chaque trimestre",
-    ],
-    color: "bg-lavender",
+    title: "Les contenus à produire",
+    body: "Pages « ville », pages prestations, communiqués de presse locaux, liens et citations (CMA, CCI, annuaires).",
+  },
+  {
+    title: "La concurrence de votre zone",
+    body: "Plus votre secteur est disputé, plus le travail est soutenu. Et selon l'ambition : référencement sur les IA (ChatGPT, Perplexity, Gemini).",
   },
 ];
 
@@ -216,7 +175,7 @@ const timeline = [
 const faq = [
   {
     q: "Faut-il déjà avoir un site ?",
-    a: "Pas forcément. Si vous avez déjà un site, on l'optimise. Sinon, je le crée pour 490 € au lieu de 700 € dès que vous prenez un pack, construit optimisé pour le référencement dès le départ. Aucun frais de setup en plus.",
+    a: "Pas forcément. Si vous avez déjà un site, on l'optimise. Sinon, je le crée à partir de 700 €, construit et optimisé pour le référencement dès le départ. Aucun frais de setup en plus.",
   },
   {
     q: "En combien de temps j'aurai des résultats ?",
@@ -228,64 +187,13 @@ const faq = [
   },
   {
     q: "C'est en plus de la maintenance de mon site ?",
-    a: "Non, tout est compris. Chaque pack de référencement inclut l'hébergement, la maintenance et les modifications courantes de votre site. Un seul abonnement, pas deux.",
+    a: "Non, tout est compris. L'abonnement inclut l'hébergement, la maintenance et les modifications courantes de votre site. Un seul abonnement, pas deux.",
   },
   {
     q: "Pourquoi un engagement de 9 mois ?",
-    a: "Parce que c'est la durée réaliste pour construire une place solide dans le top 3. Un engagement plus court reviendrait à s'arrêter juste avant que ça décolle. Vous pouvez monter de pack à tout moment pendant la période.",
+    a: "Parce que c'est la durée réaliste pour construire une place solide dans le top 3. Un engagement plus court reviendrait à s'arrêter juste avant que ça décolle. Vous pouvez faire évoluer votre accompagnement à tout moment pendant la période.",
   },
 ];
-
-/* ---------- composants ---------- */
-
-function PlanCard({ plan }: { plan: Plan }) {
-  return (
-    <div
-      className={`relative ${plan.color} rounded-3xl p-7 md:p-8 flex flex-col ${
-        plan.featured ? "ring-2 ring-ink/80" : ""
-      }`}
-    >
-      {plan.badge && (
-        <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 bg-ink text-paper rounded-full px-3 py-1 text-[11px] tracking-[0.12em] font-medium">
-          <Star className="w-3 h-3" />
-          {plan.badge}
-        </span>
-      )}
-
-      <h3 className="text-2xl md:text-[28px] font-bold tracking-tight">
-        {plan.name}
-      </h3>
-
-      <div className="mt-3 flex items-baseline gap-2">
-        <span className="text-3xl md:text-4xl font-bold tracking-tight">
-          {plan.price}
-        </span>
-        <span className="text-[13px] tracking-[0.1em] text-ink/55">
-          {plan.priceNote}
-        </span>
-      </div>
-
-      <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
-        {plan.tagline}
-      </p>
-
-      {plan.lead && (
-        <p className="mt-5 text-[14px] font-medium text-ink">{plan.lead}</p>
-      )}
-
-      <ul className="mt-4 flex flex-col gap-2.5">
-        {plan.items.map((it) => (
-          <li key={it} className="flex items-start gap-2.5">
-            <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
-              <Check className="w-2.5 h-2.5" />
-            </span>
-            <span className="text-[15px] leading-snug text-ink/85">{it}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 /* ---------- page ---------- */
 
@@ -448,9 +356,9 @@ export default function ReferencementLocal() {
                 <span className="text-terracotta">À VOTRE AMBITION.</span>
               </h2>
               <p className="mt-5 text-[15px] md:text-base text-ink/80 max-w-2xl mx-auto leading-relaxed">
-                Pas de frais de setup, pas de coût caché. Vous choisissez un pack
-                mensuel, on démarre. Engagement de 9 mois : la durée réaliste pour
-                construire une place dans le top 3 et la tenir.
+                Pas de frais de setup, pas de coût caché. Un abonnement mensuel
+                sur mesure, on démarre. Engagement de 9 mois : la durée réaliste
+                pour construire une place dans le top 3 et la tenir.
               </p>
             </div>
 
@@ -460,21 +368,69 @@ export default function ReferencementLocal() {
                 Pas encore de site, ou un site à refaire&nbsp;?
               </p>
               <p className="text-[15px] leading-relaxed text-ink/80 sm:w-3/5">
-                Le prix dépend de votre formule de suivi :{" "}
-                <span className="font-bold">490 €</span> avec un pack référencement
-                (dès 190 €/mois), <span className="font-bold">700 €</span> avec le
-                suivi simple. Optimisé pour le référencement dès le départ.
+                Je le crée à partir de <span className="font-bold">700 €</span>,
+                construit et optimisé pour le référencement dès le départ. Aucun
+                frais de setup en plus.
               </p>
             </div>
 
-            {/* Packs mensuels */}
-            <p className="text-[13px] tracking-[0.14em] text-mute mb-5">
-              VOTRE PACK MENSUEL
-            </p>
-            <div className="grid md:grid-cols-3 gap-5 md:gap-6">
-              {plans.map((p) => (
-                <PlanCard key={p.name} plan={p} />
-              ))}
+            {/* Abonnement mensuel */}
+            <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+              <div className="bg-sky rounded-3xl p-7 md:p-9 flex flex-col">
+                <h3 className="text-2xl md:text-[28px] font-bold tracking-tight">
+                  Abonnement mensuel
+                </h3>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="text-[13px] tracking-[0.1em] text-ink/55">
+                    à partir de
+                  </span>
+                  <span className="text-3xl md:text-4xl font-bold tracking-tight">
+                    80 €
+                  </span>
+                  <span className="text-[13px] tracking-[0.1em] text-ink/55">
+                    / mois
+                  </span>
+                </div>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
+                  Un seul abonnement, ajusté à votre ambition. Toujours inclus,
+                  quelle que soit la formule :
+                </p>
+                <ul className="mt-4 flex flex-col gap-2.5">
+                  {inclus.map((it) => (
+                    <li key={it} className="flex items-start gap-2.5">
+                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
+                        <Check className="w-2.5 h-2.5" />
+                      </span>
+                      <span className="text-[15px] leading-snug text-ink/85">
+                        {it}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-butter rounded-3xl p-7 md:p-9 flex flex-col">
+                <h3 className="text-2xl md:text-[28px] font-bold tracking-tight">
+                  Ce qui fait varier le prix
+                </h3>
+                <ul className="mt-5 flex flex-col gap-4">
+                  {variables.map((v) => (
+                    <li key={v.title} className="flex items-start gap-2.5">
+                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
+                        <Check className="w-2.5 h-2.5" />
+                      </span>
+                      <span className="text-[15px] leading-snug text-ink/85">
+                        <span className="font-bold text-ink">{v.title}.</span>{" "}
+                        {v.body}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-auto pt-6 text-[13px] tracking-[0.02em] font-medium text-ink/70">
+                  Après l&rsquo;audit gratuit, vous recevez un devis précis,
+                  poste par poste.
+                </p>
+              </div>
             </div>
 
             {/* ROI */}
@@ -486,7 +442,7 @@ export default function ReferencementLocal() {
               <p className="text-[15px] leading-relaxed text-paper/80 md:w-1/2">
                 Pour un artisan dont le panier moyen dépasse le millier
                 d&rsquo;euros, une seule demande supplémentaire suffit souvent à
-                couvrir le pack sur le mois. Tout le reste, c&rsquo;est du chiffre
+                couvrir l&rsquo;abonnement sur le mois. Tout le reste, c&rsquo;est du chiffre
                 en plus.
               </p>
             </div>
@@ -494,7 +450,7 @@ export default function ReferencementLocal() {
             <p className="mt-6 text-[13px] leading-relaxed text-ink/55 max-w-3xl">
               Prix HT, engagement 9 mois. Aucun frais de setup. Hébergement,
               maintenance et modifications courantes de votre site sont inclus
-              dans chaque pack.
+              dans chaque formule.
             </p>
           </div>
         </section>
@@ -521,9 +477,9 @@ export default function ReferencementLocal() {
                 gens posent la question à une IA plutôt qu&rsquo;à Google. Ces
                 réponses puisent dans les mêmes annuaires, avis et articles que le
                 référencement local. La fenêtre est encore ouverte : les premiers
-                à s&rsquo;y installer seront difficiles à déloger. C&rsquo;est
-                inclus dans le pack Autorité, et 99 % des agences artisan ne le
-                proposent pas encore.
+                à s&rsquo;y installer seront difficiles à déloger. Je peux
+                l&rsquo;intégrer à votre accompagnement, et 99 % des agences
+                artisan ne le proposent pas encore.
               </p>
             </div>
           </div>
