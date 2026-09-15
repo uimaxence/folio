@@ -76,12 +76,3 @@ export function avecSource(c: Chiffre): boolean {
   return c.source.trim().length > 0;
 }
 
-/**
- * Avant / après de la refonte : deux vraies captures et de vrais scores PageSpeed.
- * Tant que c'est `null`, la section montre la carte « ce que je garde, ce que je refais ».
- */
-export const refonteAvantApres: {
-  site: string;
-  avant: { src: string; score: number };
-  apres: { src: string; score: number };
-} | null = null;

@@ -4,12 +4,14 @@
 
 Contact : maxencecailleau.pro@gmail.com · https://maxencecailleau.fr
 
-## Services
+## L'offre, en trois volets
 
-- Site vitrine : sur mesure, pensé mobile d'abord, une page par prestation, un bouton d'appel toujours visible. Le code et le site appartiennent au client. On échange à chaque étape, un seul interlocuteur. À partir de 900 €.
-- Refonte : pour un site en ligne qui ne fait rien. Je garde ce qui marche et je refais ce qui bloque. À partir de 900 €.
-- Référencement local : apparaître dans les trois fiches en haut de la carte Google. Une page par prestation, des pages ville, des avis récents, des annuaires cohérents, un rapport mensuel. Compris dans l'accompagnement.
-- Optimisation de la fiche Google : catégories, services, photos, publications, réponses aux avis, réglée champ par champ puis suivie chaque mois. Compris dans l'accompagnement.
+- Création & design : création ou refonte d'un site sur mesure, pensé mobile d'abord, une page par prestation, un bouton d'appel toujours visible. Maquette validée avant le code, on échange à chaque étape. Le code et le site appartiennent au client. À partir de 900 €.
+- Visibilité : référencement local et optimisation de la fiche Google, chaque mois. Apparaître dans les trois fiches en haut de la carte Google : fiche réglée champ par champ puis vivante (catégories, services, photos, publications, réponses aux avis), pages prestation et pages ville, avis récents, annuaires cohérents, rapport mensuel d'une page.
+- Sérénité : hébergement, sauvegardes, mises à jour, certificat, modifications courantes. Un seul interlocuteur du premier appel au rapport mensuel.
+- Option identité visuelle (logo, couleurs, typographies) sur devis.
+
+Pour qui : artisans, commerçants, indépendants et petites équipes qui vivent de demandes locales, prêts à travailler leur visibilité sur 9 mois. Les 7 étapes : appel de 30 minutes, mots-clés et structure, maquette, contenus, développement, mise en ligne, accompagnement mois après mois.
 
 ## L'accompagnement
 
@@ -17,7 +19,7 @@ Contact : maxencecailleau.pro@gmail.com · https://maxencecailleau.fr
 
 ## Pages
 
-- [Accueil](https://maxencecailleau.fr/) : les quatre services, les réalisations, les avis, le déroulé, la FAQ
+- [Accueil](https://maxencecailleau.fr/) : le problème, l'approche, l'offre en trois volets, pour qui, les 7 étapes, qui je suis, les réalisations, les avis, le tarif, la FAQ
 - [L'accompagnement](https://maxencecailleau.fr/accompagnement) : la méthode, ce qui est compris, le prix, les engagements
 
 ## Sites en ligne (une page par site sous /realisations/)

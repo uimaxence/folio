@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { AvantApres } from "../../components/avant-apres";
 import { RechercheLocale } from "../../components/recherche-locale";
 import {
   Acc,
@@ -14,10 +13,9 @@ import {
   Section,
 } from "../../components/ui";
 import { projectShot } from "@/lib/projects";
-import { avecSource, chiffres, euros, site } from "@/lib/site";
 
-/** Même squelette pour les quatre services : une rangée numérotée, l'étiquette du service, un titre avec un accent, une définition, trois points, un prix, un bouton, un visuel. */
-function Service({
+/** Même squelette pour les trois volets : une rangée numérotée, l'étiquette, un titre avec un accent, une définition, trois points, un visuel. */
+function Volet({
   n,
   id,
   etiquette,
@@ -25,8 +23,6 @@ function Service({
   titre,
   definition,
   points,
-  prix,
-  bouton,
   visuel,
   inverse = false,
 }: {
@@ -35,10 +31,8 @@ function Service({
   etiquette: string;
   point: 1 | 2 | 3 | 4;
   titre: ReactNode;
-  definition: string;
+  definition: ReactNode;
   points: ReactNode[];
-  prix: ReactNode;
-  bouton: ReactNode;
   visuel: ReactNode;
   inverse?: boolean;
 }) {
@@ -50,8 +44,6 @@ function Service({
         <div className={`lg:col-span-6 ${inverse ? "lg:order-2" : ""}`}>
           <p className="t-intro max-w-[46ch]">{definition}</p>
           <ListeFleches items={points} className="mt-6 t-puce" />
-          <p className="mt-7 font-semibold text-[16px]">{prix}</p>
-          <div className="mt-5">{bouton}</div>
         </div>
         <div className={`lg:col-span-6 ${inverse ? "lg:order-1" : ""}`}>{visuel}</div>
       </div>
@@ -59,41 +51,43 @@ function Service({
   );
 }
 
+/** L'offre en trois volets : création et design, visibilité, sérénité. Une seule personne, du début à la fin. */
 export function Services() {
   return (
-    <Section id="services" pad={false} className="py-16 md:py-24">
+    <Section id="offre" pad={false} className="py-16 md:py-24">
       <Conteneur>
-        <h2 className="t-h2 max-w-[18ch]">
-          Ce que je fais pour <Acc>toi</Acc>.
-        </h2>
-        <p className="t-intro mt-5 max-w-[52ch]">
-          Un site sur mesure, une refonte, ta place sur la carte Google et une fiche Google à jour.
-          Une seule personne du début à la fin, et on échange à chaque étape.
-        </p>
+        <div className="max-w-[720px]">
+          <Etiquette point={1}>L’offre, en un seul morceau</Etiquette>
+          <h2 className="t-h2 mt-6">
+            Ton site, ta place sur Google, la technique&nbsp;: une seule <Acc>personne</Acc>.
+          </h2>
+          <p className="t-intro mt-6">
+            Créer le site n’est que la première étape. Je réunis ce qui est trop souvent traité
+            séparément&nbsp;: le design, le code, ton référencement local et la maintenance.
+          </p>
+          <p className="t-corps mt-4">
+            Le référencement est pensé dès la maquette. Le site est dessiné pour ton métier. Et je
+            reste là après la mise en ligne.
+          </p>
+        </div>
 
         <div className="mt-12 md:mt-16">
-          <Service
+          <Volet
             n={1}
-            id="site-sur-mesure"
-            etiquette="Site sur mesure"
+            id="creation"
+            etiquette="Création & design"
             point={1}
             titre={
               <>
-                Un site qui s’ouvre vite et qu’on <Acc>trouve</Acc>.
+                Un site sur mesure, qui s’ouvre vite et qu’on <Acc>trouve</Acc>.
               </>
             }
-            definition="Un site dessiné pour ton métier, pensé mobile d’abord, avec une page par prestation et un bouton d’appel toujours visible. On échange à chaque étape : maquette, contenus, mise en ligne."
+            definition="Création ou refonte : on dessine ensemble un site pour ton métier, pensé mobile d’abord, avec une page par prestation et un bouton d’appel toujours visible. On échange à chaque étape : maquette, contenus, mise en ligne."
             points={[
               "La maquette est validée avant la première ligne de code.",
-              "Nom de domaine, hébergement, e-mails pro, certificat et statistiques sont prêts le jour de la mise en ligne.",
-              "Le code et le site t’appartiennent.",
+              "Si ton site existe déjà, je garde ce qui marche et je refais ce qui bloque.",
+              "Nom de domaine, hébergement, e-mails pro et statistiques sont prêts le jour de la mise en ligne. Le code et le site t’appartiennent.",
             ]}
-            prix={<>À partir de {euros(site.tarifs.site)}</>}
-            bouton={
-              <Btn href={site.calUrl} external>
-                Réserver un appel
-              </Btn>
-            }
             visuel={
               <div className="relative lg:pl-6">
                 <FlecheCourbe className="hidden lg:block absolute -left-8 -top-10 w-[84px] h-[84px] rotate-[20deg]" />
@@ -109,96 +103,64 @@ export function Services() {
             }
           />
 
-          <Service
+          <Volet
             n={2}
-            id="refonte"
-            etiquette="Refonte"
-            point={2}
-            inverse
-            titre={
-              <>
-                Ton site existe déjà. Il peut ramener des <mark>appels</mark>.
-              </>
-            }
-            definition="Pour un site en ligne qui ne fait rien : je garde ce qui marche et je refais ce qui bloque."
-            points={[
-              "Le titre dit ce que tu fais, pour qui, où.",
-              "Un seul bouton, visible sur mobile.",
-              "Vitesse et structure reprises pour Google.",
-            ]}
-            prix={<>À partir de {euros(site.tarifs.refonte)}</>}
-            bouton={
-              <Btn href={site.calUrl} external>
-                Réserver un appel
-              </Btn>
-            }
-            visuel={<AvantApres />}
-          />
-
-          <Service
-            n={3}
-            id="referencement-local"
-            etiquette="Référencement local"
+            id="visibilite"
+            etiquette="Visibilité"
             point={3}
+            inverse
             titre={
               <>
                 Apparaître dans les <Acc>trois fiches</Acc> en haut de la carte.
               </>
             }
-            definition="Pour un métier de proximité, c’est là que les clients regardent avant d’appeler. Le travail se concentre sur ces trois places."
+            definition="Référencement local et optimisation de ta fiche Google, chaque mois. Pour un métier de proximité, c’est là que les clients regardent avant d’appeler."
             points={[
-              "Une page par prestation, des pages ville solides.",
-              "Des avis récents et des annuaires cohérents.",
-              "Chaque mois, un rapport : ta position, ce qui a été fait.",
+              "Ta fiche Google réglée champ par champ, puis vivante : catégories, services, photos, publications, réponses aux avis.",
+              "Une page par prestation, des pages ville solides, des avis récents, des annuaires cohérents.",
+              "Chaque mois, un rapport d’une page : ta position, ce qui a été fait.",
             ]}
-            prix={
-              <>
-                Compris dans l’accompagnement · à partir de {euros(site.tarifs.accompagnement)} / mois
-              </>
-            }
-            bouton={<Btn href="/accompagnement">Voir l’accompagnement</Btn>}
-            visuel={
-              <div className="grid gap-8 justify-items-center lg:justify-items-start">
-                <RechercheLocale />
-                {avecSource(chiffres.troisFiches) && (
-                  <div className="grid gap-2">
-                    <Etiquette point={1} pench={-2}>
-                      {chiffres.troisFiches.valeur} {chiffres.troisFiches.texte}
-                    </Etiquette>
-                    <span className="t-meta pl-2">{chiffres.troisFiches.source}</span>
-                  </div>
-                )}
-              </div>
-            }
+            visuel={<RechercheLocale />}
           />
 
-          <Service
-            n={4}
-            id="fiche-google"
-            etiquette="Optimisation de ta fiche Google"
-            point={4}
-            inverse
+          <Volet
+            n={3}
+            id="serenite"
+            etiquette="Sérénité"
+            point={2}
             titre={
               <>
-                Une fiche Google à jour, qui donne envie <Acc>d’appeler</Acc>.
+                Tu n’as plus à penser à la <Acc>technique</Acc>.
               </>
             }
-            definition="Catégories, services, photos, publications, réponses aux avis : je règle ta fiche champ par champ, puis je la fais vivre chaque mois."
+            definition="Hébergement, sauvegardes, mises à jour, certificat, modifications courantes : c’est compris dans l’accompagnement. Tu m’écris, je m’en occupe."
             points={[
-              "Des catégories et des services complets.",
-              "Des photos de terrain et une publication régulière.",
-              "Une réponse à chaque avis.",
+              "Un seul interlocuteur, du premier appel au rapport mensuel.",
+              "Les modifications courantes sont comprises : un texte, une photo, un horaire.",
+              "Le site reste à toi. Tu peux reprendre la main à tout moment.",
             ]}
-            prix="Compris dans l’accompagnement"
-            bouton={<Btn href="/accompagnement">Voir l’accompagnement</Btn>}
             visuel={
               <div className="grid gap-4 max-w-[420px] mx-auto lg:mx-0 lg:ml-auto lg:mr-6">
-                <Carte surtitre="Catégories" titre="Complètes et précises" pench={-3} barres={1} className="w-[82%] justify-self-start" />
-                <Carte surtitre="Photos" titre="De terrain, régulières" pench={2} barres={1} className="w-[82%] justify-self-end -mt-2" />
-                <Carte surtitre="Avis" titre="Une réponse à chacun" pilule="Google" pench={-2} barres={1} className="w-[82%] justify-self-center -mt-2" />
+                <Carte surtitre="Hébergement" titre="Sauvegardes et mises à jour" pench={-3} barres={1} className="w-[82%] justify-self-start" />
+                <Carte surtitre="Modifications" titre="Un texte, une photo, un horaire" pench={2} barres={1} className="w-[82%] justify-self-end -mt-2" />
+                <Carte surtitre="Sécurité" titre="Certificat et surveillance" pilule="Compris" pench={-2} barres={1} className="w-[82%] justify-self-center -mt-2" />
               </div>
             }
           />
+        </div>
+
+        <div className="mt-14 md:mt-20 grid gap-8 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-7 callout">
+            <p className="t-h4">Option identité visuelle</p>
+            <p className="t-corps mt-2">
+              Pas encore de logo, ou une identité à rafraîchir&nbsp;? Je crée ton univers (logo,
+              couleurs, typographies) avant de dessiner le site. Sur devis, après un premier appel.
+            </p>
+          </div>
+          <div className="lg:col-span-5 flex flex-col items-start gap-3 lg:pl-8">
+            <Btn href="#tarifs">Voir les tarifs</Btn>
+            <p className="t-meta">à partir de 900 € le site, 90 € par mois l’accompagnement</p>
+          </div>
         </div>
       </Conteneur>
     </Section>

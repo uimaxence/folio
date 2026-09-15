@@ -398,18 +398,22 @@ export function Lien({
 export function Checklist({
   items,
   fait = true,
+  croix = false,
   className = "",
 }: {
   items: ReactNode[];
+  /** Coché (compris, fait) ou case vide (reste à faire). */
   fait?: boolean;
+  /** Une croix : ce qu'on ne veut pas. */
+  croix?: boolean;
   className?: string;
 }) {
   return (
     <ul className={`grid gap-3 list-none p-0 m-0 ${className}`}>
       {items.map((t, i) => (
         <li key={i} className="flex items-start gap-3">
-          <span aria-hidden className="case" data-fait={fait}>
-            {fait ? "✓" : ""}
+          <span aria-hidden className="case" data-fait={croix ? "false" : fait}>
+            {croix ? "×" : fait ? "✓" : ""}
           </span>
           <span>{t}</span>
         </li>
