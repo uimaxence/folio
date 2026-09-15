@@ -32,6 +32,17 @@ export const site = {
   },
 } as const;
 
+/** Chiffres de réassurance, tous vérifiables sur le site. À CONFIRMER : le nombre de clients accompagnés chaque mois. */
+export const stats = {
+  clientsSuivis: 5,
+  /** Résultat sourcé, cité aussi sur la page de la réalisation. */
+  resultat: {
+    valeur: "×3,2",
+    texte: "la valeur du trafic Google de Fenêtres-sur-Loir, en cinq mois",
+    source: "Relevé DataForSEO du 5 septembre 2026",
+  },
+} as const;
+
 export const mailtoHref = `mailto:${site.email}`;
 
 /** « 900 € », « 1 500 € » : espace fine avant le symbole. */

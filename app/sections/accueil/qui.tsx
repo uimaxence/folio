@@ -1,19 +1,20 @@
 import { Acc, Conteneur, Etiquette, Section, Signature } from "../../components/ui";
 import { avis } from "@/lib/avis";
 import { projects } from "@/lib/projects";
-import { site } from "@/lib/site";
+import { site, stats } from "@/lib/site";
 
-/** Qui parle. Une seule personne, pas de portrait en grand : la signature suffit. */
+/** Qui parle. Une seule personne, pas de portrait en grand : la signature suffit. Quatre chiffres, tous vérifiables. */
 export function Qui() {
   const chiffres = [
-    { valeur: String(projects.length), texte: "sites en ligne" },
-    { valeur: `${avis.length} avis`, texte: "5 étoiles sur 5" },
-    { valeur: "1", texte: "interlocuteur, du début à la fin" },
+    { valeur: String(projects.length), texte: "sites en ligne, dessinés et codés à la main" },
+    { valeur: String(stats.clientsSuivis), texte: "clients accompagnés chaque mois" },
+    { valeur: "5,0 / 5", texte: `sur les ${avis.length} avis publiés` },
+    { valeur: stats.resultat.valeur, texte: stats.resultat.texte, source: stats.resultat.source },
   ];
   return (
     <Section id="qui" pad={false} className="py-16 md:py-24">
       <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-6">
           <Etiquette point={4}>Qui je suis</Etiquette>
           <h2 className="t-h2 mt-6">
             Une seule personne, du premier pixel au rapport <Acc>mensuel</Acc>.
@@ -31,11 +32,12 @@ export function Qui() {
             <Signature />
           </div>
         </div>
-        <ul className="lg:col-span-5 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 list-none p-0 m-0 lg:pl-8">
+        <ul className="lg:col-span-6 grid gap-5 sm:grid-cols-2 list-none p-0 m-0 lg:pl-8">
           {chiffres.map((c) => (
             <li key={c.texte} className="carte-droite flex flex-col gap-2">
               <span className="t-chiffre-carte">{c.valeur}</span>
-              <span className="t-corps text-[15px] text-[#6f6f6a]">{c.texte}</span>
+              <span className="t-corps text-[15px]">{c.texte}</span>
+              {"source" in c && c.source && <span className="t-meta mt-auto pt-2">{c.source}</span>}
             </li>
           ))}
         </ul>
