@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <Section halo pad={false} className="pt-16 pb-12 md:pt-28 md:pb-20">
       <Conteneur className="flex flex-col items-center text-center">
-        <Badge>Sites web & référencement local · {site.ville}</Badge>
+        <Badge>Sites web & référencement local · partout en France</Badge>
         <h1 className="t-hook mt-7 max-w-[900px]">
           Des sites que tes clients <Acc>trouvent</Acc>, puis appellent.
         </h1>
