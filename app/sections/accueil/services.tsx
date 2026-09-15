@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { RechercheLocale } from "../../components/recherche-locale";
 import {
   Acc,
   Btn,
   Capture,
   Carte,
+  Checklist,
   Conteneur,
   Etiquette,
   FlecheCourbe,
@@ -63,7 +63,8 @@ export function Services() {
           </h2>
           <p className="t-intro mt-6">
             Créer le site n’est que la première étape. Je réunis ce qui est trop souvent traité
-            séparément&nbsp;: le design, le code, ton référencement local et la maintenance.
+            séparément&nbsp;: le design, le code, ton référencement sur Google et dans les IA, et la
+            maintenance.
           </p>
           <p className="t-corps mt-4">
             Le référencement est pensé dès la maquette. Le site est dessiné pour ton métier. Et je
@@ -106,21 +107,47 @@ export function Services() {
           <Volet
             n={2}
             id="visibilite"
-            etiquette="Visibilité"
+            etiquette="Visibilité : SEO + GEO"
             point={3}
             inverse
             titre={
               <>
-                Apparaître dans les <Acc>trois fiches</Acc> en haut de la carte.
+                Être trouvé sur Google, dans la carte et cité par les <Acc>IA</Acc>.
               </>
             }
-            definition="Référencement local et optimisation de ta fiche Google, chaque mois. Pour un métier de proximité, c’est là que les clients regardent avant d’appeler."
+            definition="Le référencement de ton site (SEO) et ta visibilité dans les réponses des IA (GEO), travaillés chaque mois : audit, corrections techniques, contenus, pages ville, fiche Google, avis, annuaires."
             points={[
-              "Ta fiche Google réglée champ par champ, puis vivante : catégories, services, photos, publications, réponses aux avis.",
-              "Une page par prestation, des pages ville solides, des avis récents, des annuaires cohérents.",
-              "Chaque mois, un rapport d’une page : ta position, ce qui a été fait.",
+              "Un audit au départ, puis les corrections : vitesse, structure, balises, maillage, lisibilité par les IA.",
+              "Des contenus ajoutés chaque mois : pages prestation, pages ville, articles qui répondent aux questions de tes clients.",
+              "Ta fiche Google, tes avis et les annuaires pour la carte. Un rapport d’une page : ta position, ce qui a été fait.",
             ]}
-            visuel={<RechercheLocale />}
+            visuel={
+              <div className="carte-droite -rotate-2 max-w-[520px] mx-auto lg:mx-0 grid gap-8 sm:grid-cols-2 text-[15px]">
+                <div>
+                  <p className="t-surtitre mb-4">Sur ton site</p>
+                  <Checklist
+                    items={[
+                      "Audit et corrections techniques",
+                      "Structure et maillage",
+                      "Pages prestation et pages ville",
+                      "Articles et contenus",
+                      "Lisible par ChatGPT, Perplexity, Gemini",
+                    ]}
+                  />
+                </div>
+                <div>
+                  <p className="t-surtitre mb-4">Autour de ton site</p>
+                  <Checklist
+                    items={[
+                      "Fiche Google réglée et vivante",
+                      "Avis récents, réponses à chacun",
+                      "Annuaires et liens locaux",
+                      "Position suivie chaque mois",
+                    ]}
+                  />
+                </div>
+              </div>
+            }
           />
 
           <Volet

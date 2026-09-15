@@ -13,8 +13,9 @@ const leSite = [
 const lAccompagnement = [
   "Hébergement, sauvegardes, mises à jour, certificat",
   "Modifications courantes comprises",
-  "Fiche Google vivante : publications, photos, réponses aux avis",
-  "Référencement local : pages ville, avis, annuaires",
+  "Référencement (SEO) : audit, technique, contenus, pages ville",
+  "Fiche Google vivante, avis, annuaires",
+  "Visibilité dans les réponses des IA (GEO)",
   "Position sur Google suivie chaque mois",
   "Un rapport d’une page, que tu comprends",
 ];

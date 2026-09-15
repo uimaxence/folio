@@ -11,16 +11,16 @@ const etapes = [
   {
     quand: "Les premiers mois",
     point: 2 as const,
-    titre: "Ta fiche Google se met à vivre.",
+    titre: "Ton référencement avance.",
     texte:
-      "Catégories, photos, publications, réponses aux avis. Je suis ta position chaque mois et je te l’envoie sur une page.",
+      "Audit, corrections techniques, premiers contenus, fiche Google réglée. Je suis ta position chaque mois et je te l’envoie sur une page.",
   },
   {
     quand: "Mois après mois",
     point: 3 as const,
     titre: "On renforce ce qui marche.",
     texte:
-      "Pages ville, avis récents, annuaires cohérents. L’avance prise est ensuite difficile à rattraper pour tes concurrents.",
+      "Nouveaux contenus, pages ville, avis récents, annuaires, présence dans les réponses des IA. L’avance prise est ensuite difficile à rattraper.",
   },
 ];
 

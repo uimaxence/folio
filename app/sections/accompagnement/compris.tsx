@@ -1,6 +1,7 @@
 import { Acc, Checklist, Conteneur, Section } from "../../components/ui";
 
 const toujours = [
+  "Un audit de départ, puis les corrections techniques",
   "Hébergement et maintenance de ton site",
   "Modifications courantes",
   "Surveillance de ta position sur Google",
@@ -8,10 +9,10 @@ const toujours = [
 ];
 
 const ambition = [
-  "Publications sur la fiche et réponses aux avis",
+  "Contenus ajoutés chaque mois : pages prestation, pages ville, articles",
+  "Publications sur la fiche Google et réponses aux avis",
   "Collecte d’avis (QR code, relances)",
-  "Pages ville et pages prestations",
-  "Annuaires et citations (CMA, CCI)",
+  "Annuaires, citations et liens locaux (CMA, CCI)",
   "Présence dans les réponses des IA (ChatGPT, Perplexity, Gemini)",
 ];
 

@@ -4,12 +4,12 @@ const etapes = [
   {
     quand: "Semaines 1 à 3",
     titre: "Mise en route.",
-    texte: "Fiche réglée, site repris pour le référencement, annuaires à jour.",
+    texte: "Audit, corrections techniques sur le site, fiche Google réglée, annuaires à jour.",
   },
   {
     quand: "Mois 1 à 3",
     titre: "Premiers mouvements.",
-    texte: "La fiche gagne en visibilité, les premiers avis récents arrivent.",
+    texte: "Les premiers contenus sont en ligne, la fiche gagne en visibilité, les premiers avis récents arrivent.",
   },
   {
     quand: "Mois 4 à 6",

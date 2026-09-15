@@ -7,7 +7,7 @@ Contact : maxencecailleau.pro@gmail.com · https://maxencecailleau.fr
 ## L'offre, en trois volets
 
 - Création & design : création ou refonte d'un site sur mesure, pensé mobile d'abord, une page par prestation, un bouton d'appel toujours visible. Maquette validée avant le code, on échange à chaque étape. Le code et le site appartiennent au client. À partir de 900 €.
-- Visibilité : référencement local et optimisation de la fiche Google, chaque mois. Apparaître dans les trois fiches en haut de la carte Google : fiche réglée champ par champ puis vivante (catégories, services, photos, publications, réponses aux avis), pages prestation et pages ville, avis récents, annuaires cohérents, rapport mensuel d'une page.
+- Visibilité (SEO + GEO) : le référencement du site et la visibilité dans les réponses des IA, travaillés chaque mois. Un audit au départ puis les corrections techniques (vitesse, structure, balises, maillage), des contenus ajoutés chaque mois (pages prestation, pages ville, articles), la fiche Google réglée puis vivante, les avis, les annuaires et liens locaux, la lisibilité par ChatGPT, Perplexity et Gemini. Un rapport mensuel d'une page.
 - Sérénité : hébergement, sauvegardes, mises à jour, certificat, modifications courantes. Un seul interlocuteur du premier appel au rapport mensuel.
 - Option identité visuelle (logo, couleurs, typographies) sur devis.
 

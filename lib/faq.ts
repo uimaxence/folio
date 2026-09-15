@@ -49,6 +49,10 @@ export const faqAccueil: Question[] = [
 
 export const faqAccompagnement: Question[] = [
   {
+    q: "C'est seulement la fiche Google ?",
+    r: "Non. La fiche Google en fait partie, mais l'accompagnement couvre tout ce qui fait qu'on te trouve : l'audit et la technique de ton site, les contenus et les pages ville, tes avis et les annuaires, et ta présence dans les réponses de ChatGPT, Perplexity ou Gemini.",
+  },
+  {
     q: "Faut-il déjà avoir un site ?",
     r: `Si tu en as un, on l'optimise. Sinon, je le crée à partir de ${euros(site.tarifs.site)}, construit pour le référencement dès le départ.`,
   },

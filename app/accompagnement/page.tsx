@@ -18,7 +18,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Accompagnement référencement local, à partir de ${site.tarifs.accompagnement} € par mois`,
   description:
-    "Fiche Google, site et avis, gérés par une seule personne chaque mois. Hébergement et modifications compris, engagement de 9 mois, un rapport d'une page. Audit gratuit de ta fiche et de ton site.",
+    "Référencement de ton site (SEO), visibilité dans les IA (GEO), fiche Google et avis, gérés par une seule personne chaque mois. Audit, contenus, technique, hébergement compris. Engagement de 9 mois, un rapport d'une page.",
   alternates: { canonical: "/accompagnement" },
   openGraph: {
     title: "Être trouvé sur Google, puis être appelé.",

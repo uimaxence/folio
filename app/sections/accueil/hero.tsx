@@ -38,13 +38,13 @@ export function Hero() {
         <div className="mt-16 md:mt-24 w-full max-w-[960px] grid gap-5 sm:grid-cols-3 sm:items-start">
           <Carte surtitre="Site sur mesure" titre="Dessiné pour ton métier" pench={-4} className="sm:mt-6" />
           <Carte
-            surtitre="Référencement local"
-            titre="Trouvé dans ta ville"
-            pilule="Google"
+            surtitre="Référencement"
+            titre="Trouvé sur Google et la carte"
+            pilule="SEO"
             pench={2}
             className="sm:-mt-2"
           />
-          <Carte surtitre="Fiche Google" titre="Appelé direct" pench={-2} className="sm:mt-8" />
+          <Carte surtitre="Visibilité IA" titre="Cité par les IA" pilule="GEO" pench={-2} className="sm:mt-8" />
         </div>
       </Conteneur>
     </Section>

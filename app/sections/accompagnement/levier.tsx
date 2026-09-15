@@ -1,6 +1,7 @@
 import { Acc, Conteneur, Section } from "../../components/ui";
 import { avecSource, chiffres } from "@/lib/site";
 
+/** Les trois endroits où tes clients te cherchent : les résultats Google, la carte, les réponses des IA. */
 export function Levier() {
   const cartes = [chiffres.fiche, chiffres.appels, chiffres.top3].filter(avecSource);
   const troisFiches = avecSource(chiffres.troisFiches);
@@ -9,23 +10,23 @@ export function Levier() {
       <Conteneur>
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <h2 className="t-h2 lg:col-span-5">
-            Ta fiche Google <Acc>d’abord</Acc>.
+            Google, la carte, les IA&nbsp;: les trois <Acc>endroits</Acc> où on te cherche.
           </h2>
           <div className="lg:col-span-7 lg:pl-6">
             <p className="t-intro max-w-[46ch]">
-              {troisFiches ? (
+              Tes clients te cherchent dans les résultats Google, dans la carte avec ses trois
+              fiches, et de plus en plus dans les réponses de ChatGPT, Perplexity ou Gemini.
+              {troisFiches && (
                 <>
-                  Pour un métier d’intervention, {chiffres.troisFiches.valeur} te trouvent via les
-                  3 fiches en haut de la carte Google.
+                  {" "}
+                  Pour un métier d’intervention, {chiffres.troisFiches.valeur} passent par la carte.
                 </>
-              ) : (
-                <>
-                  Pour un métier d’intervention, tes clients te trouvent via les 3 fiches en haut de
-                  la carte Google.
-                </>
-              )}{" "}
-              Le référencement local, c’est d’abord gagner ces 3 places. C’est là que je concentre
-              le travail.
+              )}
+            </p>
+            <p className="t-corps mt-4 max-w-[56ch]">
+              Le référencement, c’est travailler les trois en même temps&nbsp;: ton site (audit,
+              technique, contenus), ta fiche Google, et tout ce qui fait confiance autour (avis,
+              annuaires, liens locaux). C’est là que je concentre le travail, chaque mois.
             </p>
             {troisFiches && <p className="t-meta mt-3">{chiffres.troisFiches.source}</p>}
           </div>

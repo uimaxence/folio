@@ -17,9 +17,9 @@ export function HeroAccompagnement() {
           <Etincelle taille={36} couleur="g2" className="hidden md:block absolute -right-10 -top-6" />
         </div>
         <p className="t-intro mt-6 max-w-[58ch]">
-          Fiche Google, site et avis, gérés par une seule personne, chaque mois. Pensé pour les
-          artisans et les commerçants, et tout aussi efficace pour les indépendants et les
-          prestataires.
+          Référencement de ton site, visibilité dans les IA, fiche Google et avis&nbsp;: gérés par
+          une seule personne, chaque mois. Pensé pour les artisans et les commerçants, et tout
+          aussi efficace pour les indépendants et les prestataires.
         </p>
         <div className="mt-8 flex flex-wrap justify-center items-center gap-3">
           <Btn href={site.calUrl} external>
