@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vieille copie du site, non versionnée
+    "jolly-goldwasser-82dacd/**",
   ]),
 ]);
 

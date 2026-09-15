@@ -1,62 +1,51 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Nav } from "./components/nav";
-import { FooterCorner } from "./components/footer-corner";
-import { Hero } from "./sections/hero";
-import { About } from "./sections/about";
-import { Services } from "./sections/services";
-import { Process } from "./sections/process";
-import { Realisations } from "./sections/realisations";
-import { Avis } from "./sections/avis";
-import { Tarifs } from "./sections/tarifs";
-import { Contact } from "./sections/contact";
+import type { Metadata } from "next";
+import { JsonLd } from "./components/json-ld";
+import { Acc } from "./components/ui";
+import { Avis } from "./sections/accueil/avis";
+import { Contact } from "./sections/accueil/contact";
+import { Hero } from "./sections/accueil/hero";
+import { Process } from "./sections/accueil/process";
+import { Realisations } from "./sections/accueil/realisations";
+import { Reassurance } from "./sections/accueil/reassurance";
+import { Services } from "./sections/accueil/services";
+import { FaqSection } from "./sections/faq-section";
+import { faqAccueil } from "@/lib/faq";
+import { faqPage, localBusiness } from "@/lib/schema";
+import { site } from "@/lib/site";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: { absolute: `Création de site et référencement local à ${site.ville} · ${site.name}` },
+  description:
+    "Je dessine, je code et je mets en ligne des sites pour artisans, commerçants et indépendants. Ensuite je m'occupe de ta place sur Google, chaque mois. Basé à Angers, à distance partout en France.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Des sites que tes clients trouvent, puis appellent.",
+    description:
+      "Site sur mesure, refonte, référencement local, fiche Google. Une seule personne, du premier pixel à la mise en ligne. À partir de 900 €.",
+    url: "/",
+  },
+};
+
+export default function Accueil() {
   return (
     <>
-      <Nav />
-      <FooterCorner />
-      <main className="flex-1">
-        <Hero />
-        <About />
-        <Services />
-        <Process />
-        <Realisations />
-        <Avis />
-        <Tarifs />
-        <Contact />
-      </main>
-      <footer className="px-6 md:px-32 lg:px-64 py-8 border-t border-rule text-[14px] tracking-[0.14em] text-mute flex flex-col md:flex-row items-center justify-between gap-4 md:gap-3">
-        <span>© {new Date().getFullYear()} MAXENCE CAILLEAU · ANGERS, FR</span>
-        <Link
-          href="/performance"
-          className="group inline-flex items-center gap-2 text-[13px] tracking-[0.12em] text-mute hover:text-ink transition-colors"
-        >
-          <span>STARTUP / SCALE-UP&nbsp;? · PERFORMANCE WEB</span>
-          <svg
-            aria-hidden
-            viewBox="0 0 22 14"
-            className="w-4 h-3 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M2 7h17M14 2l5 5-5 5" />
-          </svg>
-        </Link>
-        <span className="inline-flex items-center gap-2">
-          CODÉ PAR
-          <Image
-            src="/signature.png"
-            alt="Maxence Cailleau"
-            width={240}
-            height={80}
-            className="h-9 w-auto"
-          />
-        </span>
-      </footer>
+      <JsonLd data={localBusiness()} />
+      <JsonLd data={faqPage(faqAccueil)} />
+      <Hero />
+      <Reassurance />
+      <Services />
+      <Realisations />
+      <Avis />
+      <Process />
+      <FaqSection
+        titre={
+          <>
+            Les questions qu’on me pose <Acc>avant</Acc> de commencer.
+          </>
+        }
+        items={faqAccueil}
+      />
+      <Contact />
     </>
   );
 }

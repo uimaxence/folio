@@ -1,0 +1,31 @@
+# Maxence Cailleau, développement web & accompagnement SEO
+
+> Je dessine, je code et je mets en ligne des sites pour des artisans, des commerçants et des indépendants. Ensuite je m'occupe chaque mois de leur place sur Google : fiche Google, site, avis. Une seule personne, du premier pixel à la mise en ligne. Basé à Angers, je travaille à distance partout en France, en français et en anglais.
+
+Contact : maxencecailleau.pro@gmail.com · https://maxencecailleau.fr
+
+## Services
+
+- Site vitrine : sur mesure, pensé mobile d'abord, une page par prestation, un bouton d'appel toujours visible. Le code et le site appartiennent au client. On échange à chaque étape, un seul interlocuteur. À partir de 900 €.
+- Refonte : pour un site en ligne qui ne fait rien. Je garde ce qui marche et je refais ce qui bloque. À partir de 900 €.
+- Référencement local : apparaître dans les trois fiches en haut de la carte Google. Une page par prestation, des pages ville, des avis récents, des annuaires cohérents, un rapport mensuel. Compris dans l'accompagnement.
+- Optimisation de la fiche Google : catégories, services, photos, publications, réponses aux avis, réglée champ par champ puis suivie chaque mois. Compris dans l'accompagnement.
+
+## L'accompagnement
+
+À partir de 90 € HT par mois, engagement de 9 mois, aucun frais de mise en route. Toujours compris : hébergement et maintenance du site, modifications courantes, surveillance de la position sur Google, un rapport mensuel d'une page. Selon l'ambition : publications sur la fiche et réponses aux avis, collecte d'avis, pages ville et pages prestations, annuaires et citations, présence dans les réponses des IA (ChatGPT, Perplexity, Gemini). Aucune position Google n'est garantie : personne ne contrôle l'algorithme de Google.
+
+## Pages
+
+- [Accueil](https://maxencecailleau.fr/) : les quatre services, les réalisations, les avis, le déroulé, la FAQ
+- [L'accompagnement](https://maxencecailleau.fr/accompagnement) : la méthode, ce qui est compris, le prix, les engagements
+
+## Sites en ligne (une page par site sous /realisations/)
+
+- [Fenêtres-sur-Loir](https://maxencecailleau.fr/realisations/fenetres-sur-loir) : menuiserie en Anjou, site vitrine et accompagnement mensuel
+- [Victoria Luz](https://maxencecailleau.fr/realisations/victoria-luz) : tatoueuse, reconstruction corporelle
+- [Ciel en Couleurs](https://maxencecailleau.fr/realisations/ciel-en-couleurs) : fumigènes colorés pour événements
+- [Petit Tonnerre](https://maxencecailleau.fr/realisations/petit-tonnerre) : association culturelle
+- [Boost](https://maxencecailleau.fr/realisations/joinboost) : programme d'accélération, branding et maquettes
+- [Mamie SEO](https://maxencecailleau.fr/realisations/mamie-seo) : outil d'analyse de référencement
+- [Et si mamie était végé](https://maxencecailleau.fr/realisations/mamie-vege) : recettes végétariennes pour sportifs

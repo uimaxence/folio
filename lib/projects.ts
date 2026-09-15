@@ -1,164 +1,156 @@
-import type { Palette } from "./palette";
-
-export type ProjectCategory =
-  | "Site vitrine"
-  | "Outil"
-  | "App / Branding"
-  | "Association"
-  | "Éditorial";
+export type Categorie = "Site vitrine" | "Outil" | "App / Branding" | "Association" | "Éditorial";
 
 export type Project = {
   slug: string;
   name: string;
-  category: ProjectCategory;
-  color: Palette;
-  tagline: string;
-  cible: string;
-  technos: string[];
-  duree: string;
+  categorie: Categorie;
   annee: string;
   url: string;
-  highlights: string[];
+  /** Une phrase : ce que c'est. */
+  tagline: string;
+  /** Pour qui le site est fait. */
+  cible: string;
+  /** Pourquoi ce site, ce qu'il devait faire. */
+  pourquoi: string;
+  /** Ce que j'ai fait, en trois points. Un chiffre seulement avec sa source. */
+  fait: string[];
+  technos: string[];
 };
 
+/** Les sept sites en ligne, dans l'ordre d'affichage. Capture : /public/shots/<slug>.jpg */
 export const projects: Project[] = [
   {
     slug: "fenetres-sur-loir",
     name: "Fenêtres-sur-Loir",
-    category: "Site vitrine",
-    color: "butter",
-    tagline:
-      "Site vitrine pour une menuiserie installée près d'Angers depuis plus de 20 ans. Captation de leads locaux et présentation du catalogue sur-mesure.",
-    cible:
-      "Particuliers et professionnels du Maine-et-Loire cherchant fenêtres, portes et volets sur-mesure",
-    technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
-    duree: "2 semaines",
+    categorie: "Site vitrine",
     annee: "2025",
     url: "https://www.fenetres-sur-loir.fr/",
-    highlights: [
-      "SEO local Maine-et-Loire (pages villes, fiche Google Business)",
-      "Catalogue produits structuré, formulaire de devis fluide",
-      "Mise en ligne, hébergement et suivi inclus",
-    ],
-  },
-  {
-    slug: "mamie-vege",
-    name: "Et si mamie était végé ?",
-    category: "Éditorial",
-    color: "sage",
     tagline:
-      "Plateforme de recettes végétariennes riches en protéines pour sportifs. Articles, plannings repas et conseils nutritionnels.",
+      "Menuiserie familiale installée depuis plus de 20 ans en Anjou. Un site vitrine, des pages par zone d'intervention et un accompagnement mensuel de référencement local.",
     cible:
-      "Sportifs végétariens et végétaliens cherchant des repas protéinés et faciles à préparer",
-    technos: ["Next.js", "MDX", "SEO contenu", "Vercel"],
-    duree: "3 semaines",
-    annee: "2025",
-    url: "https://www.mamie-vege.fr/",
-    highlights: [
-      "Architecture éditoriale optimisée SEO et lisibilité mobile",
-      "Système d'articles MDX rapide à mettre à jour",
-      "Identité visuelle chaleureuse, ton accessible",
+      "Particuliers et professionnels du Maine-et-Loire qui cherchent des fenêtres, des portes ou des volets près de chez eux.",
+    pourquoi:
+      "Rassurer les particuliers qui comparent plusieurs menuisiers, déclencher la demande de devis, puis faire remonter l'entreprise sur les recherches locales.",
+    fait: [
+      "Une page par zone d'intervention et une fiche Google réglée champ par champ.",
+      "Un catalogue produits structuré et un formulaire de devis simple.",
+      "Chaque mois : position sur Google, avis, annuaires. Valeur du trafic Google ×3,2 en cinq mois (relevé DataForSEO du 5 septembre 2026).",
     ],
-  },
-  {
-    slug: "mamie-seo",
-    name: "Mamie SEO",
-    category: "Outil",
-    color: "blush",
-    tagline:
-      "Outil d'analyse SEO en 60 secondes pour indépendants et petites entreprises. Rapport concret, sans jargon.",
-    cible:
-      "Freelances, artisans et TPE qui veulent comprendre où ils en sont en référencement",
-    technos: ["Next.js", "API SEO", "Tailwind CSS", "Vercel"],
-    duree: "2 semaines",
-    annee: "2025",
-    url: "https://www.mamie-seo.fr/",
-    highlights: [
-      "Audit technique + copy + design en un seul rapport",
-      "Interface volontairement simple, pédagogique",
-      "Conversion en appel découverte intégrée",
-    ],
-  },
-  {
-    slug: "joinboost",
-    name: "Boost",
-    category: "App / Branding",
-    color: "sky",
-    tagline:
-      "Site de communauté pour une accélération dédiée aux jeunes entrepreneurs. Présentation du programme, du collectif et inscription en ligne.",
-    cible:
-      "Porteurs de projets et jeunes fondateurs cherchant un écosystème pour lancer et accélérer leur boîte",
-    technos: ["Next.js", "Tailwind CSS", "Vercel"],
-    duree: "2 semaines",
-    annee: "2025",
-    url: "https://www.joinboost.fr/",
-    highlights: [
-      "Page de vente claire, orientée conversion vers la candidature",
-      "Identité dynamique alignée avec un positionnement « nouvelle génération »",
-      "Architecture pensée pour évoluer avec la communauté",
-    ],
+    technos: ["Next.js", "Tailwind CSS", "Référencement local", "Vercel"],
   },
   {
     slug: "victoria-luz",
     name: "Victoria Luz",
-    category: "Site vitrine",
-    color: "clay",
-    tagline:
-      "Site vitrine pour une artiste tatoueuse angevine spécialisée en reconstruction corporelle. Tatouage sur-mesure, dermopigmentation et prise de rendez-vous.",
-    cible:
-      "Femmes cherchant un tatouage sur-mesure ou une reconstruction (aréoles 3D, cicatrices) dans un cadre bienveillant",
-    technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
-    duree: "2 semaines",
+    categorie: "Site vitrine",
     annee: "2026",
     url: "https://www.victoria-luz.fr/",
-    highlights: [
-      "Univers doux et haut de gamme, entre art et soin du corps",
-      "Prestations structurées : tatouage, reconstruction, maquillage semi-permanent",
-      "Parcours de prise de rendez-vous clair, podcast et événements mis en avant",
+    tagline:
+      "Artiste tatoueuse spécialisée en reconstruction corporelle : tatouage, dermopigmentation et prise de rendez-vous.",
+    cible:
+      "Des femmes qui cherchent un tatouage ou une reconstruction (aréoles, cicatrices) dans un cadre rassurant.",
+    pourquoi:
+      "Un sujet intime : le site devait mettre en confiance avant le premier message et montrer chaque prestation clairement.",
+    fait: [
+      "Un univers doux, entre art et soin du corps.",
+      "Des prestations structurées : tatouage, reconstruction, maquillage semi-permanent.",
+      "Un parcours de prise de rendez-vous court, le podcast et les événements mis en avant.",
     ],
+    technos: ["Next.js", "Tailwind CSS", "Référencement local", "Vercel"],
   },
   {
     slug: "ciel-en-couleurs",
     name: "Ciel en Couleurs",
-    category: "Site vitrine",
-    color: "terracotta",
-    tagline:
-      "Site vitrine pour un prestataire de fumigènes colorés événementiels en Île-de-France. Mariages, gender reveals et événements pro.",
-    cible:
-      "Couples, futurs parents et organisateurs d'événements en Île-de-France cherchant une animation visuelle marquante",
-    technos: ["Next.js", "Tailwind CSS", "SEO local", "Vercel"],
-    duree: "2 semaines",
+    categorie: "Site vitrine",
     annee: "2026",
     url: "https://cielencouleurs.fr/",
-    highlights: [
-      "Ton poétique et visuels immersifs pour valoriser les prestations",
-      "Pages prestations détaillées (mariage, gender reveal, événements pro)",
-      "Formulaire de devis et réassurance sécurité / certifications",
+    tagline:
+      "Fumigènes colorés pour les mariages, les gender reveals et les événements pro, en Île-de-France.",
+    cible: "Couples, futurs parents et organisateurs d'événements en Île-de-France.",
+    pourquoi:
+      "Un service qui se vend à l'image : le site devait montrer le résultat en grand et rassurer sur la sécurité.",
+    fait: [
+      "Un ton poétique et des visuels en grand pour montrer les prestations.",
+      "Une page par prestation : mariage, gender reveal, événements pro.",
+      "Un formulaire de devis et une section sécurité et certifications.",
     ],
+    technos: ["Next.js", "Tailwind CSS", "Référencement local", "Vercel"],
   },
   {
     slug: "petit-tonnerre",
     name: "Petit Tonnerre",
-    category: "Association",
-    color: "lavender",
-    tagline:
-      "Site vitrine pour une association culturelle angevine qui organise des rendez-vous musicaux et familiaux. Programmation, identité et contact.",
-    cible:
-      "Public angevin et partenaires culturels intéressés par des événements musicaux accessibles et inclusifs",
-    technos: ["Next.js", "Tailwind CSS", "Vercel"],
-    duree: "2 semaines",
+    categorie: "Association",
     annee: "2025",
     url: "https://www.petittonnerre.fr/",
-    highlights: [
-      "Direction artistique poétique, fidèle à l'univers de l'association",
-      "Mise en avant des événements et de la programmation à venir",
-      "Formulaire de contact et liens réseaux sociaux intégrés",
+    tagline:
+      "Association culturelle qui organise des rendez-vous musicaux et familiaux. Programmation, identité et contact.",
+    cible: "Le public local et les partenaires culturels intéressés par des événements musicaux accessibles.",
+    pourquoi: "Donner un lieu en ligne à la programmation et faciliter le contact des partenaires.",
+    fait: [
+      "Une direction artistique fidèle à l'univers de l'association.",
+      "Les événements et la programmation à venir en première page.",
+      "Un formulaire de contact et les liens vers les réseaux.",
     ],
+    technos: ["Next.js", "Tailwind CSS", "Vercel"],
+  },
+  {
+    slug: "joinboost",
+    name: "Boost",
+    categorie: "App / Branding",
+    annee: "2025",
+    url: "https://www.joinboost.fr/",
+    tagline:
+      "Programme d'accélération pour jeunes entrepreneurs : maquettes de l'application, identité complète et site de candidature.",
+    cible: "Porteurs de projets et jeunes fondateurs qui cherchent un collectif pour lancer leur entreprise.",
+    pourquoi:
+      "Un programme neuf : il fallait une identité reconnaissable et une page qui donne envie de candidater.",
+    fait: [
+      "Le branding complet et les maquettes de l'application.",
+      "Une page de présentation claire, orientée vers la candidature.",
+      "Une base pensée pour évoluer avec la communauté.",
+    ],
+    technos: ["Next.js", "Tailwind CSS", "Vercel"],
+  },
+  {
+    slug: "mamie-seo",
+    name: "Mamie SEO",
+    categorie: "Outil",
+    annee: "2025",
+    url: "https://www.mamie-seo.fr/",
+    tagline:
+      "Un outil d'analyse de référencement en 60 secondes pour les indépendants et les petites entreprises. Un rapport concret, sans jargon.",
+    cible: "Freelances, artisans et TPE qui veulent savoir où ils en sont sur Google.",
+    pourquoi: "Rendre lisible un audit technique pour quelqu'un qui ne fait pas ce métier.",
+    fait: [
+      "Audit technique, textes et design réunis dans un seul rapport.",
+      "Une interface volontairement simple, qui explique chaque point.",
+      "Un appel découverte proposé à la fin du rapport.",
+    ],
+    technos: ["Next.js", "API SEO", "Tailwind CSS", "Vercel"],
+  },
+  {
+    slug: "mamie-vege",
+    name: "Et si mamie était végé",
+    categorie: "Éditorial",
+    annee: "2025",
+    url: "https://www.mamie-vege.fr/",
+    tagline:
+      "Recettes végétariennes riches en protéines pour les sportifs. Articles, plannings de repas et conseils.",
+    cible: "Sportifs végétariens et végétaliens qui cherchent des repas protéinés faciles à préparer.",
+    pourquoi:
+      "Un site de contenu : la structure devait servir la lecture sur mobile et le référencement de chaque recette.",
+    fait: [
+      "Une architecture éditoriale pensée pour Google et la lecture sur mobile.",
+      "Des articles en MDX, rapides à publier.",
+      "Une identité chaleureuse, un ton accessible.",
+    ],
+    technos: ["Next.js", "MDX", "Vercel"],
   },
 ];
 
-// Capture statique de la home de chaque site, servie depuis /public/shots.
-// (Remplace l'ancien aperçu à la volée via l'API microlink, lent et peu fiable.)
 export function projectShot(slug: string): string {
   return `/shots/${slug}.jpg`;
+}
+
+export function project(slug: string): Project | undefined {
+  return projects.find((x) => x.slug === slug);
 }

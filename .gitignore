@@ -42,3 +42,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# le modèle de variables d'environnement est versionné
+!.env.example
+
+# vieille copie du site et captures de travail, jamais versionnées
+/jolly-goldwasser-82dacd/
+/image.png
