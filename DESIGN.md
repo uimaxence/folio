@@ -1,18 +1,23 @@
 # Direction artistique, ton et contenu du site — Maxence Cailleau
 
-Version 2, 15 septembre 2026. Ce fichier est la référence pour refaire maxence-cailleau.fr. Il décrit l'identité visuelle en production sur les carrousels Instagram / LinkedIn et les bannières LinkedIn (style « sobre », décidé le 14 septembre), la voix de Maxence, et le contenu du nouveau site en deux pages. Le site doit donner l'impression d'être fait par la même personne que les posts.
+Version 2.1, 2 octobre 2026 (version 2 : 15 septembre 2026). Ce fichier est la référence pour refaire maxence-cailleau.fr. Il décrit l'identité visuelle en production sur les carrousels Instagram / LinkedIn et les bannières LinkedIn (style « sobre », décidé le 14 septembre), la voix de Maxence, et le contenu du nouveau site en deux pages. Le site doit donner l'impression d'être fait par la même personne que les posts.
 
 Il est écrit pour être suivi à la lettre par Claude Code. Chaque règle est courte et vérifiable. Ce que Maxence doit encore confirmer est entre crochets `[à confirmer]`.
 
-> État au 15 septembre 2026 : le site est implémenté d'après ce fichier. Les champs `[à confirmer]` et `[source]` vivent dans `lib/site.ts` (`tarifs.refonte`, `chiffres.*.source`, `refonteAvantApres`, `instagram`, `siren`). Un chiffre sans source ne s'affiche pas.
+> État au 2 octobre 2026 : le site est implémenté d'après ce fichier. Les champs `[à confirmer]` et `[source]` vivent dans `lib/site.ts` (`tarifs.refonte`, `chiffres.*.source`, `refonteAvantApres`, `instagram`, `siren`). Un chiffre sans source ne s'affiche pas.
 >
-> **Version 2.1, retours de Maxence du 15 septembre (après la première mise en place) :**
+> **Retours de Maxence du 15 septembre, après la première mise en place (notes propres au site) :**
 > - **Aucun délai de livraison** sur le site : plus de « 2 semaines », ni dans le hero, ni dans les services, ni dans la FAQ.
 > - **Les services** : site sur mesure, refonte, référencement local, **optimisation de ta fiche Google**. L'angle « un seul champ, la catégorie » est une idée de post pour les réseaux, il ne sert pas sur le site. Ce qui se dit partout : on échange constamment, un seul interlocuteur.
 > - **Réalisations** : une section sur l'accueil (le premier site en grand, les six autres en grille) et **une page courte par site** (`/realisations/<slug>` : ce que c'est, pour qui, pourquoi, ce que j'ai fait). Données dans `lib/projects.ts`.
 > - **Hero** : centré, sans image de site. Trois cartes flottantes en bas. Le halo déborde sous la section suivante et s'éteint avant tout bord ; la grille est portée par la page (`main.page`), les sections claires sont transparentes : aucune coupure.
-> - **Version 2.2 : déroulé de l'accueil calqué sur l'offre « Ton site sans migraine » de seo-sans-migraine.fr** (référence donnée par Maxence : « je fais pareil en gros, mais garde notre DA »). Ordre des sections : hero (badge, h1, intro, trois repères, deux boutons) → « Tu sais ce qui est fait, quand, et pourquoi » (trois cartes, sans durée) → « Pourquoi ton site reste invisible ? » (trois cas : le modèle, l'ancienne version, la coquille vide) → « La solution : changer d'approche » (sans moi × / avec moi ✓, colonne « moi » teintée bande à 45 %) → l'offre en trois volets numérotés (Création & design, Visibilité, Sérénité) + option identité visuelle → « Est-ce que c'est fait pour toi ? » (oui / non) → les 7 étapes (frise) + « tu n'es jamais seul » → qui je suis (signature, trois chiffres vérifiables) → réalisations → avis → « Un tarif clair » (deux cartes : le site, l'accompagnement) → FAQ (dix questions) → contact sombre. Fichiers : `app/sections/accueil/*.tsx`.
+> - **Déroulé de l'accueil calqué sur l'offre « Ton site sans migraine » de seo-sans-migraine.fr** (référence donnée par Maxence : « je fais pareil en gros, mais garde notre DA »). Ordre des sections : hero (badge, h1, intro, trois repères, deux boutons) → « Tu sais ce qui est fait, quand, et pourquoi » (trois cartes, sans durée) → « Pourquoi ton site reste invisible ? » (trois cas : le modèle, l'ancienne version, la coquille vide) → « La solution : changer d'approche » (sans moi × / avec moi ✓, colonne « moi » teintée bande à 45 %) → l'offre en trois volets numérotés (Création & design, Visibilité, Sérénité) + option identité visuelle → « Est-ce que c'est fait pour toi ? » (oui / non) → les 7 étapes (frise) + « tu n'es jamais seul » → qui je suis (signature, trois chiffres vérifiables) → réalisations → avis → « Un tarif clair » (deux cartes : le site, l'accompagnement) → FAQ (dix questions) → contact sombre. Fichiers : `app/sections/accueil/*.tsx`.
 > - **Échelle typographique calée sur designme.agency** (référence donnée par Maxence) : titres en 600, h1 `clamp(40px, 5.2vw, 72px)` interligne 1,03, h2 `clamp(34px, 4.6vw, 64px)`, rangée numérotée 42 px (« 01 Site sur mesure », filet en haut), h3 32 px, h4 20 px, intro 18 px en 600, corps 16 px interligne 1,5, boutons 15 px, méta 13 px. Conteneur 1200 px, sections `clamp(64px, 8vw, 120px)`. La FAQ passe en boîtes (une question par boîte, le « + » en accent). Le tableau §5.2 ci-dessous décrit l'échelle des carrousels ; le site suit celle-ci.
+>
+> **DA version 2.1 du 2 octobre, appliquée au site :**
+> - **Le fond travaillé (§6.4) sur les deux heros d'entrée**, l'accueil et l'accompagnement : lavis, bande courbe, traits en arc, à la place de la grille et du halo. Il déborde sous la section suivante et s'y efface, la grille revient sans coupure. Les pages `/realisations/<slug>` sont des pages intérieures : elles gardent la grille et le halo.
+> - **Plus d'étincelle** dans le hero de l'accompagnement.
+> - **Le h1 de l'accueil reprend la phrase de la bannière LinkedIn** : « Je conçois des sites attractifs pour développer ta ~visibilité~. » Il remplace « Des sites que tes clients trouvent, puis appellent », que Maxence n'aime plus (« on n'appelle pas un site »). Le titre Open Graph suit.
 
 ---
 
@@ -25,19 +30,20 @@ Il est écrit pour être suivi à la lettre par Claude Code. Chaque règle est c
 - **Le wording des services** : Site vitrine · Refonte · Référencement local · Fiche Google. « Suivi mensuel » décrit une façon de travailler, pas un service : il devient **l'accompagnement**, qui a sa propre page.
 - **Le site passe à deux pages** : l'accueil et l'accompagnement. Les tarifs affichés : **à partir de 900 €** pour le site, **à partir de 90 € / mois** pour l'accompagnement.
 - Le ton ne change pas. La règle « jamais de structure X, pas Y » est devenue absolue : l'app la corrige automatiquement après génération. Le site actuel en est plein, la section 11 liste ce qu'il faut réécrire.
+- **Ajout du 2 octobre 2026 (version 2.1) : le fond travaillé.** Un lavis violet → bleu, une grande bande courbe en dégradé et des traits fins en arc remplacent la grille et le halo sur les écrans d'entrée : bannière LinkedIn, vignettes de la Sélection, cover et slide de fin, couverture de document, hero du site. Section 6.4. La palette ne change pas. Pas d'étincelle sur ce fond.
 
 ---
 
 ## 1. L'essentiel en dix lignes
 
 1. Fond `#FAFAF8`, encre `#141414`, texte secondaire `#6F6F6A`. Jamais de blanc pur en fond de page ; le blanc pur sert aux cartes.
-2. Une grille fine (traits à 7 % d'opacité) alignée sur les colonnes, et un halo radial très doux dans deux coins. C'est la texture du système.
+2. Une grille fine (traits à 7 % d'opacité) alignée sur les colonnes, et un halo radial très doux dans deux coins. C'est la texture du système. Sur les écrans d'entrée (bannière, vignette, cover, couverture, hero du site), le **fond travaillé** la remplace : lavis, bande courbe en dégradé, traits fins en arc (6.4).
 3. Un accent : le **mot en dégradé** violet → bleu (`#7C5CFF` → `#2F7BFF`). Un accent secondaire : la **bande pastel** lime `#DDF77A` derrière un mot. Rare : le **mot entouré** à la main.
 4. Une seule police, **Archivo** (variable). Espacement des lettres à −2 %, plus serré sur les titres. Majuscule initiale puis minuscules, jamais de capitales sur un titre.
 5. Un accent par phrase, jamais deux.
 6. Les objets du système : étiquette-info blanche à point coloré, badge sombre, carte blanche penchée, capture estompée annotée, jauge, étincelle. Un objet fort par écran.
 7. Une section sombre `#141414` au maximum par page, pour une phrase forte ou la fin.
-8. Pas de dégradé de fond, pas de 3D, pas d'ombre sur le texte, pas d'emoji, pas d'icône décorative, pas de photo de Maxence en grand.
+8. Pas de dégradé de fond en dehors du fond travaillé (6.4), pas de 3D, pas d'ombre sur le texte, pas d'emoji, pas d'icône décorative, pas de photo de Maxence en grand.
 9. Chaque zone est remplie par quelque chose d'utile ou son gabarit change. Le vide en bas d'un bloc est un défaut.
 10. Ton : première personne, présent, tutoiement, phrases courtes, un fait, un chiffre avec sa source, jamais « X, pas Y », pas de vocabulaire de marketeur.
 
@@ -107,7 +113,7 @@ Il est écrit pour être suivi à la lettre par Claude Code. Chaque règle est c
 
 ### 4.2 Règles d'usage
 
-- **Le dégradé ne colore que du texte** (un mot dans un titre, `background-clip: text`), **un badge** (pilule de nombre ou « VS ») et **les halos**. Jamais un fond de section, jamais un bouton.
+- **Le dégradé ne colore que du texte** (un mot dans un titre, `background-clip: text`), **un badge** (pilule de nombre ou « VS »), **les halos** et **le fond travaillé** (6.4). Jamais un aplat de fond, jamais un bouton.
 - **La bande pastel** sert derrière un mot dans un titre ou une puce, et pour la petite pilule d'une carte. Jamais en fond de section.
 - **Les boutons sont encre** `#141414` avec texte blanc. Sur une section sombre, blanc avec texte encre.
 - **Le blanc pur** est réservé aux objets posés sur la page : cartes, étiquettes-info, cadre de capture.
@@ -216,9 +222,61 @@ Deux dégradés radiaux très doux, sous le contenu, sur le hero et une ou deux 
 }
 ```
 
-C'est la seule place du dégradé en fond. Il reste presque invisible : si on le remarque au premier coup d'œil, il est trop fort.
+Avec le fond travaillé (6.4), c'est la seule place du dégradé en fond. Le halo reste presque invisible : si on le remarque au premier coup d'œil, il est trop fort.
 
-### 6.4 Rayons
+### 6.4 Le fond travaillé
+
+Ajouté le 2 octobre 2026, d'après le kit de profil LinkedIn (`references/design/bannieres-linkedin/v4-degrade/`). Un fond plus présent que le halo, pour les écrans qui servent d'entrée. Il remplace la grille et le halo sur ces écrans ; il ne s'y ajoute pas.
+
+**Où** : la bannière LinkedIn, les vignettes de la Sélection LinkedIn, la cover et la slide de fin d'un carrousel, la couverture d'un document, et sur le site le hero de l'accueil et celui de l'accompagnement. Partout ailleurs (slides de contenu, sections du site, pages réalisations, pages intérieures d'un document), la grille fine reste la règle.
+
+Trois couches, dans cet ordre, sous le contenu :
+
+1. **Le lavis.** Deux dégradés radiaux sur le papier : `--g1` à 30 % depuis un coin bas, `--g2` à 20 % depuis le coin opposé. Chacun s'éteint avant le centre : la zone du titre reste sur papier clair.
+2. **La bande courbe.** Un arc de grand cercle (rayon de deux à trois fois la hauteur du visuel), épais d'un quart à un tiers de cette hauteur. Elle part d'un coin bas, monte et s'éteint : dégradé le long du trait, `--g1` à 34 % → `--g2` à 18 % → transparent. Une seconde bande, plus courte et plus pâle, est possible dans le coin opposé.
+3. **Les traits en arc.** Trois ou quatre arcs de cercle, 1,2 px, encre à 20 %. L'un suit la bande (même centre, rayon un peu plus grand). Les autres se croisent dans le coin opposé. Aucune ligne droite.
+
+```css
+.fond-travaille {
+  background:
+    radial-gradient(58% 135% at 0% 100%, rgba(124,92,255,.30), transparent 72%),
+    radial-gradient(46% 115% at 100% 0%, rgba(47,123,255,.20), transparent 70%),
+    var(--paper);
+}
+```
+
+```html
+<!-- bannière 1584 × 396 : la bande, puis les traits -->
+<svg viewBox="0 0 1584 396" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="bande" gradientUnits="userSpaceOnUse" x1="236" y1="396" x2="700" y2="0">
+      <stop offset="0" stop-color="#7C5CFF" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#2F7BFF" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#2F7BFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="1100" cy="900" r="1000" fill="none" stroke="url(#bande)" stroke-width="130"/>
+  <circle cx="1100" cy="900" r="1092" fill="none" stroke="rgba(20,20,20,.2)" stroke-width="1.2"/>
+  <circle cx="1560" cy="640" r="400" fill="none" stroke="rgba(20,20,20,.2)" stroke-width="1.2"/>
+</svg>
+```
+
+Règles :
+
+- Les couleurs sont celles de l'accent (`--g1`, `--g2`) et l'encre. Aucune autre teinte, même quand une inspiration en propose une : d'une inspiration on reprend la construction du fond et les objets, jamais sa palette.
+- Le contenu posé dessus ne change pas : titre Archivo à l'encre, un mot en dégradé ou sur bande lime, étiquettes-info blanches à point coloré.
+- Le mot en dégradé ne se pose jamais sur la bande courbe : violet sur violet. Quand le titre croise la bande, le mot marqué passe sur bande lime.
+- Pas d'étincelle sur un fond travaillé. Pas de grille non plus.
+- Sur la bannière LinkedIn, le texte commence à 560 px du bord gauche : la photo de profil recouvre le bas gauche, là où passe la bande.
+
+Sur le site : `<Section fond>` dans `app/components/ui.tsx` (composant `FondTravaille`) et `.calque-fond` dans `app/globals.css`, lavis en `--lavis1` / `--lavis2`.
+
+- Le hero est centré : la bande part du coin bas gauche et s'éteint avant la hauteur du titre, le mot en dégradé reste sur papier clair. La seconde bande, pâle, coupe le coin haut droit. Deux traits se croisent en bas à droite.
+- Le papier du calque recouvre la grille de la page. Le calque déborde de 280 px sous la section suivante et s'y efface par un masque : la grille revient peu à peu, aucune coupure.
+- Chaque dessin est calé sur un coin, à taille fixe (1 unité = 1 px sur grand écran, 0,56 px sur mobile) : les cercles restent des cercles à toutes les largeurs.
+- Le trait qui suit la bande s'éteint en hauteur pour ne pas traverser le titre sur tablette. Sur mobile il n'est pas dessiné.
+
+### 6.5 Rayons
 
 | Élément | Rayon |
 |---|---|
@@ -230,7 +288,7 @@ C'est la seule place du dégradé en fond. Il reste presque invisible : si on le
 | Case à cocher | 8px |
 | Image insérée | 24px |
 
-### 6.5 Ombres et traits
+### 6.6 Ombres et traits
 
 - **Une seule ombre** pour tout ce qui est posé sur la page : `0 26px 52px -26px rgba(20,20,20,.35)`. Capture : `0 34px 70px -30px rgba(20,20,20,.35)`.
 - **Un seul filet** : `1.5px solid var(--card-line)` sur cartes, étiquettes, captures. Les sections n'ont pas de bord.
@@ -263,7 +321,7 @@ Le catalogue de ce qu'on a le droit de dessiner. Chaque écran en utilise **un s
 | **Liste flèches** | Points clés | `→` encre 700 dans une colonne de 40 px. Jamais de puces rondes en dehors des conseils |
 | **Tableau deux colonnes** | Comparer | En-têtes en capitales 12 px, la colonne « moi » teintée `--band` à 45 % |
 | **Frise verticale** | Un process, une durée | Trait 4 px encre, points ronds `--band` bordés d'encre, quatre étapes qui remplissent la hauteur |
-| **Étincelle** | Une respiration près d'un titre, au plus deux par page | SVG à quatre branches courbes, 30 à 44 px, couleur `--g1` ou `--g2` |
+| **Étincelle** | Une respiration près d'un titre, au plus deux par page | SVG à quatre branches courbes, 30 à 44 px, couleur `--g1` ou `--g2`. Jamais sur un fond travaillé (6.4) |
 | **Fiche Google dessinée** | Illustrer le service Fiche Google | Une carte blanche : photo, nom en 700, étoiles `#FBBC04`, catégorie avec le mot marqué, adresse, deux boutons ronds bleus `#1A73E8`. Un seul objet, pas une interface complète |
 | **Bouton** | Une action | Pilule encre `#141414`, texte blanc 700, padding 16px 28px. Secondaire : bord `--card-line`, sans fond. Sur fond sombre : blanc, texte encre. Survol : `#2a2a2a`, rien d'autre. Sans icône |
 | **Signature** | Qui parle | Avatar rond 60 px + « Maxence Cailleau » (24 px, 500) + « développement web & accompagnement SEO » (22 px, **700**). Toujours au même endroit. `[signature PNG à venir, même emplacement, 64 px de haut]` |
@@ -286,7 +344,8 @@ Ce qu'on ne dessine plus : téléphones, fenêtres de navigateur avec barre d'on
 
 Liste fermée, à vérifier avant chaque écran.
 
-- Dégradé en fond de section ou sur un bouton. Le dégradé ne vit que sur un mot, un badge de nombre et les halos.
+- Dégradé en aplat de fond ou sur un bouton. Le dégradé ne vit que sur un mot, un badge de nombre, les halos et le fond travaillé (6.4), aux endroits que la section 6.4 liste.
+- Grille ou étincelle sur un fond travaillé. Une teinte hors palette dans le lavis ou la bande.
 - Formes 3D, verre dépoli, ombre colorée.
 - Serif, police manuscrite, police condensée en titre, monospace hors capture de code.
 - Contour de texte, ombre portée sur le texte.
@@ -407,9 +466,9 @@ Structure et contenu, dans la voix de Maxence, aux nouveaux tarifs. Les marques 
 
 ### 12.2 Page 1 · Accueil `/`
 
-**1. Hero** (halo, grille, cartes flottantes à droite, pas de photo)
-- Badge sombre : « Sites web & référencement local · Angers »
-- h1 : « Des sites que tes clients ~trouvent~, puis appellent. »
+**1. Hero** (fond travaillé, cartes flottantes, pas de photo)
+- Badge sombre : « Sites web & référencement local · partout en France »
+- h1 : « Je conçois des sites attractifs pour développer ta ~visibilité~. » (la phrase de la bannière LinkedIn)
 - Intro : « Je dessine, je code, je mets en ligne et je m'occupe de ta place sur Google. Tu gardes ton temps pour ton métier. »
 - Bouton « Réserver un appel » + ligne dessous « 30 min · gratuit · sans engagement ». Secondaire : « Voir l'accompagnement ».
 - Étiquettes-info sous les boutons : Site vitrine · Refonte · Référencement local · Fiche Google (points de quatre couleurs différentes).
@@ -482,7 +541,7 @@ En dessous, une ligne en `--ink-2` : « 7 sites en ligne : Fenêtres-sur-Loir, V
 
 ### 12.3 Page 2 · L'accompagnement `/accompagnement`
 
-**1. Hero** (halo, grille)
+**1. Hero** (fond travaillé, sans étincelle)
 - Badge sombre : « Accompagnement mensuel · à partir de 90 € / mois »
 - h1 : « Être trouvé sur Google, puis être ~appelé~. » (un seul accent par phrase : la bande sur « Google » de la v1 du texte est retirée)
 - Intro : « Fiche Google, site et avis, gérés par une seule personne, chaque mois. Pensé pour les artisans et les commerçants, et tout aussi efficace pour les indépendants et les prestataires. »
@@ -543,7 +602,7 @@ En dessous, une ligne en `--ink-2` : « 7 sites en ligne : Fenêtres-sur-Loir, V
 - **Accessibilité** : `--ink` sur `--paper` et `#F4F4F2` sur `#141414` passent AAA ; encre sur `--band` passe AA ; jamais `--ink-2` sur `--band`. Le mot en dégradé est toujours dans un titre de 32 px ou plus, jamais en corps. Focus visible : anneau 2 px encre, décalé de 2 px. `prefers-reduced-motion` respecté.
 - **Performance** : polices auto-hébergées, `font-display: swap`, préchargement d'Archivo romain ; images AVIF / WebP avec largeurs multiples, `loading="lazy"` hors hero, dimensions déclarées ; la grille et les halos en CSS pur, aucune image de fond.
 - **SEO** : une h1 par page, titres en phrase, `LocalBusiness` + `FAQPage`, redirections 301 des anciennes URL, sitemap à deux entrées plus les mentions légales.
-- **Bannières LinkedIn** : elles sont dans le même style (`references/design/bannieres-linkedin/v3-sobre/export/G1-violet.png` est celle que Maxence garde). Le hero du site et la bannière doivent se ressembler.
+- **Profil LinkedIn** : la bannière et les trois vignettes de la Sélection sont sur fond travaillé (`references/design/bannieres-linkedin/v4-degrade/export/`, validées par Maxence le 2 octobre 2026). Phrase de la bannière : « Je conçois des sites attractifs pour développer ta ~visibilité~. » Le hero de l'accueil porte la même phrase sur le même fond : le site et la bannière se ressemblent. L'ancienne bannière sur grille (`v3-sobre/export/G1-violet.png`) reste la référence du style sur grille.
 
 ---
 
@@ -557,6 +616,7 @@ Chemin de base : `/Users/maxencecailleau/Documents/PROGRAMMATION/App carrousel a
 | Tokens CSS du style sobre (source de vérité) | `src/lib/templates/tokens.css`, bloc `[data-style="sobre"]` et `[data-accent="…"]` |
 | Composants de rendu : étiquette-info, carte flottante `.fc`, capture estompée, jauge, conseil, mot géant | `src/lib/templates/Slide.tsx`, `src/lib/templates/tokens.css` |
 | Bannières sobres de référence (G1 à G4, trois accents) + leur source HTML | `references/design/bannieres-linkedin/v3-sobre/` (`template.html`, `export/`) |
+| Kit profil LinkedIn sur fond travaillé (bannière, vignettes, aperçu) + source HTML | `references/design/bannieres-linkedin/v4-degrade/` (`kit.html`, `export.mjs`, `export/`) |
 | Formes SVG (étincelle, ovale, curseur, flèche courbe) | `references/design/bannieres-linkedin/v3-sobre/template.html` (symboles `#etincelle`, `#ovale`, `#curseur`), `references/design/elements/svg/formes.svg` |
 | Carrousels rendus dans le style sobre (exemples de la DA appliquée) | `data/carousels/c-mu1g6svtbc1j/`, `data/carousels/c-mu2dw3b4itdz/` |
 | Maquettes de sites fictifs (pour comprendre le cadre « capture ») | `references/design/elements/sites/` |
@@ -570,13 +630,13 @@ Chemin de base : `/Users/maxencecailleau/Documents/PROGRAMMATION/App carrousel a
 
 ## 15. Checklist avant de montrer un écran
 
-- [ ] fond `#FAFAF8`, grille fine à 7 %, halo discret sur le hero seulement
+- [ ] fond `#FAFAF8`, grille fine à 7 %, halo discret sur le hero d'une page intérieure seulement ; ou fond travaillé (6.4) sur un écran d'entrée, sans grille ni étincelle
 - [ ] Archivo partout, espacement négatif, majuscule initiale puis minuscules, aucune capitale sur un titre
 - [ ] un mot en dégradé par titre, jamais deux accents dans une phrase, un mot entouré par page au plus
 - [ ] un seul dispositif fort par écran, cartes penchées de 6° au plus, en sens alternés
 - [ ] une section sombre par page, la fin
 - [ ] vraies captures dans le cadre estompé avec annotations ; aucun portrait en grand
-- [ ] aucun dégradé de fond, contour, emoji, icône décorative, maquette d'interface décorative
+- [ ] aucun dégradé de fond hors fond travaillé, contour, emoji, icône décorative, maquette d'interface décorative
 - [ ] aucun vide sous un bloc ou en bas à droite d'une section
 - [ ] textes : première personne, présent, tutoiement, un fait, un chiffre sourcé, aucune phrase « X, pas Y », aucune métaphore, aucun mot de la liste bannie
 - [ ] un seul appel à l'action par écran, verbe précis

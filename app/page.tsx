@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Création ou refonte : je dessine, je code et je mets en ligne des sites pour artisans, commerçants et indépendants, puis je m'occupe de ta place sur Google chaque mois. Une seule personne. Basé à Angers, à distance partout en France.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Des sites que tes clients trouvent, puis appellent.",
+    title: "Je conçois des sites attractifs pour développer ta visibilité.",
     description:
       "Site sur mesure, référencement local, fiche Google, maintenance. Une seule personne, du premier pixel au rapport mensuel. À partir de 900 €.",
     url: "/",

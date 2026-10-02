@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import { useId, type CSSProperties, type ReactNode } from "react";
 import { site } from "@/lib/site";
 
 /* ------------------------------------------------------------------
@@ -16,6 +16,7 @@ export function Section({
   id,
   sombre = false,
   halo = false,
+  fond = false,
   pad = true,
   className = "",
   children,
@@ -23,6 +24,8 @@ export function Section({
   id?: string;
   sombre?: boolean;
   halo?: boolean;
+  /** Le fond travaillé, pour un hero d'entrée. Remplace la grille et le halo : ne pas le cumuler avec `halo`. */
+  fond?: boolean;
   pad?: boolean;
   className?: string;
   children: ReactNode;
@@ -34,8 +37,52 @@ export function Section({
     >
       {sombre && <div aria-hidden className="calque calque-grille" />}
       {halo && <div aria-hidden className="calque calque-halo" />}
+      {fond && <FondTravaille />}
       {children}
     </section>
+  );
+}
+
+/** Le fond travaillé (DESIGN.md §6.4) : lavis, bande courbe en dégradé, traits fins en arc.
+    Le lavis est en CSS (`.calque-fond`). Chaque dessin est calé sur un coin du hero, l'origine sur ce coin. */
+function FondTravaille() {
+  const id = useId();
+  return (
+    <div aria-hidden className="calque calque-fond">
+      {/* bas gauche : la bande part du coin, monte et s'éteint avant le titre. Un trait la suit. */}
+      <svg className="fond-bas-gauche" viewBox="0 -100 100 100">
+        <defs>
+          <linearGradient id={`${id}a`} gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="216" y2="-460">
+            <stop offset="0" stopOpacity=".34" style={{ stopColor: "var(--g1)" }} />
+            <stop offset=".55" stopOpacity=".18" style={{ stopColor: "var(--g2)" }} />
+            <stop offset="1" stopOpacity="0" style={{ stopColor: "var(--g2)" }} />
+          </linearGradient>
+          {/* le trait s'éteint en hauteur : sur tablette il traverserait le titre. Sur mobile, où le texte
+              prend toute la largeur, il n'est pas dessiné. */}
+          <linearGradient id={`${id}t`} gradientUnits="userSpaceOnUse" x1="0" y1="-800" x2="0" y2="-1000">
+            <stop offset="0" stopOpacity="1" style={{ stopColor: "var(--ink)" }} />
+            <stop offset="1" stopOpacity="0" style={{ stopColor: "var(--ink)" }} />
+          </linearGradient>
+        </defs>
+        <circle cx="2651" cy="452" r="2600" fill="none" stroke={`url(#${id}a)`} strokeWidth="190" />
+        <circle className="trait max-sm:hidden" cx="2651" cy="452" r="2723" style={{ stroke: `url(#${id}t)` }} />
+      </svg>
+      {/* haut droite : la seconde bande, plus courte et plus pâle */}
+      <svg className="fond-haut-droite" viewBox="-100 0 100 100">
+        <defs>
+          <linearGradient id={`${id}b`} gradientUnits="userSpaceOnUse" x1="-352" y1="0" x2="0" y2="160">
+            <stop offset="0" stopOpacity="0" style={{ stopColor: "var(--g2)" }} />
+            <stop offset="1" stopOpacity=".26" style={{ stopColor: "var(--g1)" }} />
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="-600" r="760" fill="none" stroke={`url(#${id}b)`} strokeWidth="110" />
+      </svg>
+      {/* bas droite : deux traits qui se croisent */}
+      <svg className="fond-bas-droite" viewBox="-100 -100 100 100">
+        <circle className="trait" cx="-38" cy="390" r="640" />
+        <circle className="trait" cx="234" cy="198" r="688" />
+      </svg>
+    </div>
   );
 }
 

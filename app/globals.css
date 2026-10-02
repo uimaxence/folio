@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   DA « sobre » (DESIGN.md, version 2.1 du 15 septembre 2026).
+   DA « sobre » (DESIGN.md, version 2.1 du 2 octobre 2026).
    Fond papier, grille fine, un mot en dégradé. Une seule police : Archivo.
+   Sur les heros d'entrée, le fond travaillé remplace la grille et le halo.
    Échelle typographique calée sur designme.agency : titres en 600,
    h1 72 px, h2 64 px, rangée numérotée 42 px, corps 16 px, grands espaces.
 ------------------------------------------------------------------- */
@@ -25,6 +26,9 @@
   --dot: #7c5cff;
   --glow1: rgba(124, 92, 255, 0.22);
   --glow2: rgba(47, 123, 255, 0.16);
+  /* lavis du fond travaillé : --g1 à 30 %, --g2 à 20 % */
+  --lavis1: rgba(124, 92, 255, 0.3);
+  --lavis2: rgba(47, 123, 255, 0.2);
 
   /* jauges avant / après */
   --jauge-avant: #e8a33d;
@@ -51,6 +55,8 @@
   --dot: #ff7a1a;
   --glow1: rgba(255, 122, 26, 0.2);
   --glow2: rgba(255, 61, 138, 0.14);
+  --lavis1: rgba(255, 122, 26, 0.3);
+  --lavis2: rgba(255, 61, 138, 0.2);
 }
 [data-accent="menthe"] {
   --g1: #1f9d6a;
@@ -59,6 +65,8 @@
   --dot: #1f9d6a;
   --glow1: rgba(31, 157, 106, 0.2);
   --glow2: rgba(47, 123, 255, 0.14);
+  --lavis1: rgba(31, 157, 106, 0.3);
+  --lavis2: rgba(47, 123, 255, 0.2);
 }
 
 /* section sombre : une par page, la fin */
@@ -212,6 +220,50 @@
     background:
       radial-gradient(760px 640px at 100% 38%, var(--glow1), transparent 70%),
       radial-gradient(640px 560px at 0% 0%, var(--glow2), transparent 70%);
+  }
+
+  /* Le fond travaillé (DESIGN.md §6.4) : sur un hero d'entrée, à la place de la grille et du halo.
+     Le lavis part du coin bas gauche (--g1 à 30 %) et du coin haut droit (--g2 à 20 %), chacun
+     s'éteint avant le centre. Le papier recouvre la grille de la page ; le calque déborde sous la
+     section suivante et s'y efface : la grille revient sans coupure. */
+  .calque-fond {
+    --deborde: 280px;
+    /* l'unité des dessins : 1 px sur grand écran, réduite sur mobile */
+    --u: clamp(56px, 7vw, 120px);
+    bottom: calc(-1 * var(--deborde));
+    overflow: hidden;
+    background:
+      radial-gradient(min(58vw, 840px) 640px at 0% calc(100% - var(--deborde)), var(--lavis1), transparent 72%),
+      radial-gradient(min(46vw, 660px) 560px at 100% 0%, var(--lavis2), transparent 70%),
+      var(--paper);
+    -webkit-mask-image: linear-gradient(#000 calc(100% - var(--deborde)), transparent);
+    mask-image: linear-gradient(#000 calc(100% - var(--deborde)), transparent);
+  }
+  /* la bande courbe et les traits en arc : un dessin par coin, calé sur ce coin */
+  .calque-fond > svg {
+    position: absolute;
+    width: var(--u);
+    height: var(--u);
+    overflow: visible;
+  }
+  .calque-fond > .fond-bas-gauche {
+    left: 0;
+    bottom: var(--deborde);
+  }
+  .calque-fond > .fond-haut-droite {
+    right: 0;
+    top: 0;
+  }
+  .calque-fond > .fond-bas-droite {
+    right: 0;
+    bottom: var(--deborde);
+  }
+  .calque-fond .trait {
+    fill: none;
+    stroke: var(--ink);
+    stroke-opacity: 0.2;
+    stroke-width: 1.2px;
+    vector-effect: non-scaling-stroke;
   }
 }
 

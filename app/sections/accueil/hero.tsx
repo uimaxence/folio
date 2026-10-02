@@ -1,14 +1,15 @@
 import { Acc, Badge, Btn, Carte, Conteneur, Etiquette, Section } from "../../components/ui";
 import { site } from "@/lib/site";
 
-/** Hero centré : badge, titre, intro, trois repères, boutons. Trois cartes flottantes en bas, aucune image de site. */
+/** Hero centré sur fond travaillé : badge, titre (la phrase de la bannière LinkedIn), intro, trois repères, boutons.
+    Trois cartes flottantes en bas, aucune image de site. */
 export function Hero() {
   return (
-    <Section halo pad={false} className="pt-16 pb-12 md:pt-28 md:pb-20">
+    <Section fond pad={false} className="pt-16 pb-12 md:pt-28 md:pb-20">
       <Conteneur className="flex flex-col items-center text-center">
         <Badge>Sites web & référencement local · partout en France</Badge>
-        <h1 className="t-hook mt-7 max-w-[900px]">
-          Des sites que tes clients <Acc>trouvent</Acc>, puis appellent.
+        <h1 className="t-hook mt-7 max-w-[1040px]">
+          Je conçois des sites attractifs pour développer ta <Acc>visibilité</Acc>.
         </h1>
         <p className="t-intro mt-6 max-w-[58ch]">
           Création ou refonte : je dessine, je code, je mets en ligne et je m’occupe de ta place sur
