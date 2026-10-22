@@ -1,29 +1,28 @@
-import Link from "next/link";
-import { Acc, Capture, Conteneur, Etiquette, Lien, Section } from "../../components/ui";
-import { projectShot, projects } from "@/lib/projects";
+import { Acc, CarteProjet, Conteneur, Lien, Repere, Section } from "../../components/ui";
+import { projects } from "@/lib/projects";
 
-/** Les sept sites en ligne : le premier en grand, les six autres en grille. Chaque site a sa page. */
+/** Les sept sites en ligne : le premier en grand avec son texte, les six autres en grille décalée.
+    Chaque carte montre sa fiche technique au survol. Chaque site a sa page. */
 export function Realisations() {
   const [premier, ...autres] = projects;
   return (
     <Section id="realisations" pad={false} className="py-16 md:py-24">
       <Conteneur>
-        <Etiquette point={2}>Réalisations</Etiquette>
+        <Repere n={8}>Réalisations</Repere>
         <h2 className="t-h2 mt-6 max-w-[18ch]">
           Sept sites en ligne, du premier <Acc>pixel</Acc> à la mise en ligne.
         </h2>
 
         <div className="mt-12 md:mt-16 grid gap-10 lg:grid-cols-12 lg:items-center">
-          <Link href={`/realisations/${premier.slug}`} className="lg:col-span-7 block group">
-            <Capture
-              src={projectShot(premier.slug)}
-              alt={`La page d’accueil du site ${premier.name}`}
-              ratio="16 / 10"
-              estompe={false}
-              sizes="(min-width: 1024px) 700px, 100vw"
-              className="transition-transform duration-200 ease-out group-hover:-translate-y-1"
-            />
-          </Link>
+          <CarteProjet
+            p={premier}
+            n={1}
+            grand
+            texte={false}
+            ratio="16 / 10"
+            sizes="(min-width: 1024px) 700px, 100vw"
+            className="lg:col-span-7"
+          />
           <div className="lg:col-span-5 lg:pl-6">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-semibold text-[16px]">{premier.name}</span>
@@ -39,24 +38,9 @@ export function Realisations() {
         </div>
 
         <ul className="mt-12 md:mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
-          {autres.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/realisations/${p.slug}`} className="block group">
-                <Capture
-                  src={projectShot(p.slug)}
-                  alt={`La page d’accueil du site ${p.name}`}
-                  ratio="4 / 3"
-                  estompe={false}
-                  petite
-                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                  className="transition-transform duration-200 ease-out group-hover:-translate-y-1"
-                />
-                <div className="mt-4 flex flex-wrap items-center gap-2">
-                  <span className="t-h4">{p.name}</span>
-                  <span className="pilule-grise">{p.categorie}</span>
-                </div>
-                <p className="t-corps text-[15px] mt-1 text-ink-2">{p.tagline}</p>
-              </Link>
+          {autres.map((p, i) => (
+            <li key={p.slug} className={i % 3 === 1 ? "lg:mt-10" : ""}>
+              <CarteProjet p={p} n={i + 2} />
             </li>
           ))}
         </ul>
