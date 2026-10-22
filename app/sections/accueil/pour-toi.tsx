@@ -1,4 +1,4 @@
-import { Acc, Checklist, Conteneur, Section } from "../../components/ui";
+import { Acc, Checklist, Conteneur, Repere, Section } from "../../components/ui";
 import { site } from "@/lib/site";
 
 const oui = [
@@ -21,7 +21,8 @@ export function PourToi() {
   return (
     <Section id="pour-toi" pad={false} className="py-16 md:py-24">
       <Conteneur>
-        <h2 className="t-h2 max-w-[18ch]">
+        <Repere n={5}>Pour qui</Repere>
+        <h2 className="t-h2 mt-6 max-w-[18ch]">
           Est-ce que c’est fait pour <Acc>toi</Acc>&nbsp;?
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2">

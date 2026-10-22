@@ -1,4 +1,4 @@
-import { Btn, Conteneur, Entoure, Etiquette, Section } from "../../components/ui";
+import { Btn, Conteneur, Entoure, Etiquette, Repere, Section } from "../../components/ui";
 import { mailtoHref, site } from "@/lib/site";
 
 /** La section sombre de la page, la seule. Le footer la prolonge. */
@@ -7,7 +7,8 @@ export function Contact() {
     <Section id="contact" sombre pad={false} className="pt-20 pb-16 md:pt-28 md:pb-24">
       <Conteneur className="grid gap-10 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
-          <h2 className="t-h2">
+          <Repere>Contact</Repere>
+          <h2 className="t-h2 mt-6">
             On fait <Entoure>connaissance</Entoure>&nbsp;?
           </h2>
           <p className="t-intro mt-6 max-w-[40ch]">

@@ -1,4 +1,4 @@
-import { Acc, Conteneur, Etiquette, Section } from "../../components/ui";
+import { Acc, Conteneur, Repere, Section } from "../../components/ui";
 
 const cas = [
   {
@@ -27,7 +27,7 @@ export function Probleme() {
     <Section id="probleme" pad={false} className="py-16 md:py-24">
       <Conteneur>
         <div className="max-w-[720px]">
-          <Etiquette point={4}>Ton site ne te ramène pas ce qu’il devrait</Etiquette>
+          <Repere n={2}>Ton site ne te ramène pas ce qu’il devrait</Repere>
           <h2 className="t-h2 mt-6">
             Pourquoi ton site reste <Acc>invisible</Acc>&nbsp;?
           </h2>
@@ -45,7 +45,7 @@ export function Probleme() {
             <li key={c.titre} className="carte-droite flex flex-col gap-4">
               <span className="pilule justify-self-start self-start">{c.pilule}</span>
               <p className="t-h4">{c.titre}</p>
-              <p className="t-corps text-[15px] text-[#6f6f6a]">{c.texte}</p>
+              <p className="t-corps text-[15px] text-ink-2">{c.texte}</p>
             </li>
           ))}
         </ul>

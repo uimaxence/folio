@@ -1,11 +1,12 @@
-import { Acc, Conteneur, Section } from "../../components/ui";
+import { Acc, Conteneur, Repere, Section } from "../../components/ui";
 
 export function Ia() {
   return (
     <Section id="ia" pad={false} className="py-16 md:py-24">
       <Conteneur className="grid gap-10 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6">
-          <h2 className="t-h2">
+          <Repere n={7}>Les IA</Repere>
+          <h2 className="t-h2 mt-6">
             Tes clients demandent aussi à <Acc>ChatGPT</Acc>, Perplexity ou Gemini.
           </h2>
         </div>

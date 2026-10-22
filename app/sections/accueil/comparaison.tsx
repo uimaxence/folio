@@ -1,4 +1,4 @@
-import { Acc, Btn, Checklist, Conteneur, Section } from "../../components/ui";
+import { Acc, Btn, Checklist, Conteneur, Repere, Section } from "../../components/ui";
 import { site } from "@/lib/site";
 
 const sansMoi = [
@@ -23,7 +23,8 @@ export function Comparaison() {
   return (
     <Section id="comparaison" pad={false} className="py-12 md:py-20">
       <Conteneur>
-        <h2 className="t-h2 max-w-[18ch]">
+        <Repere n={3}>L’approche</Repere>
+        <h2 className="t-h2 mt-6 max-w-[18ch]">
           La solution&nbsp;: changer d’<Acc>approche</Acc>.
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -31,11 +32,8 @@ export function Comparaison() {
             <p className="t-surtitre">Ton site sans moi</p>
             <Checklist croix items={sansMoi} className="mt-5 t-puce" />
           </div>
-          <div
-            className="carte-droite"
-            style={{ background: "color-mix(in srgb, var(--band) 45%, #ffffff)" }}
-          >
-            <p className="t-surtitre" style={{ color: "#141414" }}>
+          <div className="carte-droite carte-marquee">
+            <p className="t-surtitre">
               Ton site avec moi
             </p>
             <Checklist items={avecMoi} className="mt-5 t-puce" />

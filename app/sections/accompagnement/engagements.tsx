@@ -1,4 +1,4 @@
-import { Acc, Conteneur, Section } from "../../components/ui";
+import { Acc, Conteneur, Repere, Section } from "../../components/ui";
 import { site } from "@/lib/site";
 
 const engagements = [
@@ -25,14 +25,15 @@ export function Engagements() {
   return (
     <Section id="engagements" pad={false} className="py-16 md:py-24">
       <Conteneur>
-        <h2 className="t-h2">
+        <Repere n={6}>Mes engagements</Repere>
+        <h2 className="t-h2 mt-6">
           Mes <Acc>engagements</Acc>.
         </h2>
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 list-none p-0 m-0">
           {engagements.map((e) => (
             <li key={e.titre} className="carte-droite flex flex-col gap-3">
               <p className="t-carte-titre">{e.titre}</p>
-              <p className="text-[16px] md:text-[17px] leading-[1.4] text-[#6f6f6a]">
+              <p className="text-[16px] md:text-[17px] leading-[1.4] text-ink-2">
                 {e.texte.replace(/ :/g, " :")}
               </p>
             </li>

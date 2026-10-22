@@ -1,4 +1,4 @@
-import { Acc, Conteneur, Etiquette, Section } from "../../components/ui";
+import { Acc, Conteneur, Etiquette, Repere, Section } from "../../components/ui";
 
 const etapes = [
   {
@@ -29,7 +29,8 @@ export function Apres() {
   return (
     <Section pad={false} className="py-12 md:py-20">
       <Conteneur>
-        <h2 className="t-h2 max-w-[20ch]">
+        <Repere n={1}>Ce qui se passe ensuite</Repere>
+        <h2 className="t-h2 mt-6 max-w-[20ch]">
           Tu sais ce qui est fait, quand, et <Acc>pourquoi</Acc>.
         </h2>
         <ul className="mt-10 grid gap-5 md:grid-cols-3 list-none p-0 m-0">
@@ -39,7 +40,7 @@ export function Apres() {
                 <Etiquette point={e.point}>{e.quand}</Etiquette>
               </div>
               <p className="t-carte-titre">{e.titre}</p>
-              <p className="t-corps text-[15px] text-[#6f6f6a]">{e.texte}</p>
+              <p className="t-corps text-[15px] text-ink-2">{e.texte}</p>
             </li>
           ))}
         </ul>

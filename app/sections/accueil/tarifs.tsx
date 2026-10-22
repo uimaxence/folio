@@ -1,4 +1,4 @@
-import { Acc, Btn, Checklist, Conteneur, Etiquette, Section } from "../../components/ui";
+import { Acc, Btn, Checklist, Conteneur, Etiquette, Repere, Section } from "../../components/ui";
 import { euros, site } from "@/lib/site";
 
 const leSite = [
@@ -26,7 +26,8 @@ export function Tarifs() {
     <Section id="tarifs" pad={false} className="py-16 md:py-24">
       <Conteneur>
         <div className="max-w-[720px]">
-          <h2 className="t-h2">
+          <Repere n={10}>Tarifs</Repere>
+          <h2 className="t-h2 mt-6">
             Un tarif clair. Aucun coût <Acc>caché</Acc>.
           </h2>
           <p className="t-intro mt-6">
@@ -43,17 +44,14 @@ export function Tarifs() {
             </div>
             <Checklist items={leSite} className="text-[15px]" />
           </div>
-          <div
-            className="carte-droite flex flex-col gap-5"
-            style={{ background: "color-mix(in srgb, var(--band) 45%, #ffffff)" }}
-          >
+          <div className="carte-droite carte-marquee flex flex-col gap-5">
             <Etiquette point={3}>L’accompagnement</Etiquette>
             <div>
               <p className="t-rangee">
                 À partir de {euros(site.tarifs.accompagnement)}
                 <span className="text-[0.5em] font-medium"> HT / mois</span>
               </p>
-              <p className="t-meta mt-2" style={{ color: "#141414" }}>
+              <p className="t-meta mt-2">
                 engagement de {site.tarifs.engagementMois} mois · aucun frais de mise en route
               </p>
             </div>

@@ -1,4 +1,4 @@
-import { Acc, Conteneur, Etiquette, Section } from "../../components/ui";
+import { Acc, Conteneur, Etiquette, Repere, Section } from "../../components/ui";
 import { euros, site } from "@/lib/site";
 
 const varie = [
@@ -14,7 +14,8 @@ export function Prix() {
       <Conteneur>
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
-            <h2 className="t-h2">
+            <Repere n={4}>Le prix</Repere>
+            <h2 className="t-h2 mt-6">
               À partir de <Acc>{euros(site.tarifs.accompagnement)}</Acc> par mois.
             </h2>
             <p className="t-intro mt-6 max-w-[44ch]">

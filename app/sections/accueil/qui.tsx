@@ -1,4 +1,5 @@
-import { Acc, Conteneur, Etiquette, Section, Signature } from "../../components/ui";
+import { Scramble } from "../../components/scramble";
+import { Acc, Conteneur, Repere, Section, Signature } from "../../components/ui";
 import { avis } from "@/lib/avis";
 import { projects } from "@/lib/projects";
 import { site, stats } from "@/lib/site";
@@ -8,14 +9,14 @@ export function Qui() {
   const chiffres = [
     { valeur: String(projects.length), texte: "sites en ligne, dessinés et codés à la main" },
     { valeur: String(stats.clientsSuivis), texte: "clients accompagnés chaque mois" },
-    { valeur: "5,0 / 5", texte: `sur les ${avis.length} avis publiés` },
+    { valeur: "5,0 / 5", texte: `sur les ${avis.length} avis publiés` },
     { valeur: stats.resultat.valeur, texte: stats.resultat.texte, source: stats.resultat.source },
   ];
   return (
     <Section id="qui" pad={false} className="py-16 md:py-24">
       <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-6">
-          <Etiquette point={4}>Qui je suis</Etiquette>
+          <Repere n={7}>Qui je suis</Repere>
           <h2 className="t-h2 mt-6">
             Une seule personne, du premier pixel au rapport <Acc>mensuel</Acc>.
           </h2>
@@ -35,7 +36,9 @@ export function Qui() {
         <ul className="lg:col-span-6 grid gap-5 sm:grid-cols-2 list-none p-0 m-0 lg:pl-8">
           {chiffres.map((c) => (
             <li key={c.texte} className="carte-droite flex flex-col gap-2">
-              <span className="t-chiffre-carte">{c.valeur}</span>
+              <span className="t-chiffre-carte">
+                <Scramble onView>{c.valeur}</Scramble>
+              </span>
               <span className="t-corps text-[15px]">{c.texte}</span>
               {"source" in c && c.source && <span className="t-meta mt-auto pt-2">{c.source}</span>}
             </li>

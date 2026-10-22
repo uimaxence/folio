@@ -1,4 +1,4 @@
-import { Acc, Checklist, Conteneur, Section } from "../../components/ui";
+import { Acc, Checklist, Conteneur, Repere, Section } from "../../components/ui";
 
 const toujours = [
   "Un audit de départ, puis les corrections techniques",
@@ -21,7 +21,8 @@ export function Compris() {
     <Section id="compris" pad={false} className="py-16 md:py-24">
       <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-6">
-          <h2 className="t-h2">
+          <Repere n={3}>Ce qui est compris</Repere>
+          <h2 className="t-h2 mt-6">
             Ce qui est <Acc>compris</Acc>.
           </h2>
           <p className="t-intro mt-5">Toujours, quel que soit ton objectif.</p>

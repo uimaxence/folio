@@ -1,10 +1,11 @@
-import { Acc, Conseil, Conteneur, Section } from "../../components/ui";
+import { Acc, Conseil, Conteneur, Repere, Section } from "../../components/ui";
 
 export function Methode() {
   return (
     <Section id="methode" pad={false} className="py-16 md:py-24">
       <Conteneur>
-        <h2 className="t-h2 max-w-[18ch]">
+        <Repere n={2}>La méthode</Repere>
+        <h2 className="t-h2 mt-6 max-w-[18ch]">
           Trois leviers, travaillés <Acc>ensemble</Acc>.
         </h2>
         <p className="t-intro mt-5 max-w-[52ch]">
