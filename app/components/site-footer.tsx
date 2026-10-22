@@ -1,13 +1,19 @@
 import Link from "next/link";
+import { PageSuivante } from "./page-suivante";
 import { Conteneur, Signature } from "./ui";
 import { mailtoHref, site } from "@/lib/site";
 
 const lien = "underline underline-offset-4 decoration-1 transition-colors hover:text-ink-2";
 
-/** Fond sombre : c'est la fin de la section sombre de chaque page. Pas de « codé par ». */
+/** Fond sombre : c'est la fin de la section sombre de chaque page. D'abord la page suivante, puis la signature. */
 export function SiteFooter() {
   return (
     <footer className="section section-sombre">
+      <div className="border-t border-line">
+        <Conteneur className="py-14 md:py-20">
+          <PageSuivante />
+        </Conteneur>
+      </div>
       <div className="border-t border-line">
         <Conteneur className="py-12 md:py-14 grid gap-10 md:grid-cols-12 md:items-start">
           <div className="md:col-span-6">
