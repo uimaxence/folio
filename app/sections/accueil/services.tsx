@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ListeFocus } from "../../components/liste-focus";
 import {
   Acc,
   Btn,
@@ -7,14 +8,13 @@ import {
   Checklist,
   Conteneur,
   Etiquette,
-  FlecheCourbe,
   ListeFleches,
-  Rangee,
+  Repere,
   Section,
 } from "../../components/ui";
 import { projectShot } from "@/lib/projects";
 
-/** Même squelette pour les trois volets : une rangée numérotée, l'étiquette, un titre avec un accent, une définition, trois points, un visuel. */
+/** Même squelette pour les trois volets : un numéro mono, l'étiquette, un titre avec un mot marqué, une définition, trois points, un visuel. */
 function Volet({
   n,
   id,
@@ -24,7 +24,6 @@ function Volet({
   definition,
   points,
   visuel,
-  inverse = false,
 }: {
   n: number;
   id: string;
@@ -34,45 +33,50 @@ function Volet({
   definition: ReactNode;
   points: ReactNode[];
   visuel: ReactNode;
-  inverse?: boolean;
 }) {
   return (
-    <Rangee n={n} id={id} className="mt-12 first:mt-0 md:mt-16">
-      <Etiquette point={point}>{etiquette}</Etiquette>
-      <h3 className="t-rangee mt-5 max-w-[22ch]">{titre}</h3>
-      <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-center md:mt-10">
-        <div className={`lg:col-span-6 ${inverse ? "lg:order-2" : ""}`}>
-          <p className="t-intro max-w-[46ch]">{definition}</p>
-          <ListeFleches items={points} className="mt-6 t-puce" />
-        </div>
-        <div className={`lg:col-span-6 ${inverse ? "lg:order-1" : ""}`}>{visuel}</div>
+    <div id={id} data-item className="rangee grid gap-4 md:grid-cols-[72px_1fr] scroll-mt-24">
+      <span className="t-num md:pt-2" aria-hidden>
+        ({String(n).padStart(2, "0")})
+      </span>
+      <div>
+        <Etiquette point={point}>{etiquette}</Etiquette>
+        <h3 className="t-rangee mt-5 max-w-[22ch]">{titre}</h3>
+        <p className="t-intro mt-6 max-w-[46ch]">{definition}</p>
+        <ListeFleches items={points} className="mt-6 t-puce" />
+        <div className="mt-8">{visuel}</div>
       </div>
-    </Rangee>
+    </div>
   );
 }
 
-/** L'offre en trois volets : création et design, visibilité, sérénité. Une seule personne, du début à la fin. */
+/** L'offre en trois volets : création et design, visibilité, sérénité. Le titre reste collé à gauche,
+    les volets défilent à droite et passent au focus un par un. */
 export function Services() {
   return (
     <Section id="offre" pad={false} className="py-16 md:py-24">
-      <Conteneur>
-        <div className="max-w-[720px]">
-          <Etiquette point={1}>L’offre, en un seul morceau</Etiquette>
+      <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-5 lg:sticky lg:top-[104px]">
+          <Repere n={4}>L’offre, en un seul morceau</Repere>
           <h2 className="t-h2 mt-6">
             Ton site, ta place sur Google, la technique&nbsp;: une seule <Acc>personne</Acc>.
           </h2>
-          <p className="t-intro mt-6">
+          <p className="t-intro mt-6 max-w-[44ch]">
             Créer le site n’est que la première étape. Je réunis ce qui est trop souvent traité
             séparément&nbsp;: le design, le code, ton référencement sur Google et dans les IA, et la
             maintenance.
           </p>
-          <p className="t-corps mt-4">
+          <p className="t-corps mt-4 max-w-[48ch]">
             Le référencement est pensé dès la maquette. Le site est dessiné pour ton métier. Et je
             reste là après la mise en ligne.
           </p>
+          <div className="mt-8 flex flex-col items-start gap-3">
+            <Btn href="#tarifs">Voir les tarifs</Btn>
+            <p className="t-meta">à partir de 900 € le site, 90 € par mois l’accompagnement</p>
+          </div>
         </div>
 
-        <div className="mt-12 md:mt-16">
+        <ListeFocus className="lg:col-span-7 lg:pl-6 grid gap-12 md:gap-16">
           <Volet
             n={1}
             id="creation"
@@ -90,17 +94,18 @@ export function Services() {
               "Nom de domaine, hébergement, e-mails pro et statistiques sont prêts le jour de la mise en ligne. Le code et le site t’appartiennent.",
             ]}
             visuel={
-              <div className="relative lg:pl-6">
-                <FlecheCourbe className="hidden lg:block absolute -left-8 -top-10 w-[84px] h-[84px] rotate-[20deg]" />
-                <Capture src={projectShot("fenetres-sur-loir")} alt="La page d’accueil du site Fenêtres-sur-Loir">
-                  <Etiquette point={1} pench={-2} pointeur="bas" className="absolute left-[5%] top-[7%]">
-                    titre orienté client
-                  </Etiquette>
-                  <Etiquette point={2} pench={2} pointeur="bas" className="absolute right-[5%] top-[44%]">
-                    un seul bouton
-                  </Etiquette>
-                </Capture>
-              </div>
+              <Capture
+                src={projectShot("fenetres-sur-loir")}
+                alt="La page d’accueil du site Fenêtres-sur-Loir"
+                sizes="(min-width: 1024px) 640px, 100vw"
+              >
+                <Etiquette point={1} pench={-2} pointeur="bas" className="absolute left-[5%] top-[7%]">
+                  titre orienté client
+                </Etiquette>
+                <Etiquette point={2} pench={2} pointeur="bas" className="absolute right-[5%] top-[44%]">
+                  un seul bouton
+                </Etiquette>
+              </Capture>
             }
           />
 
@@ -109,7 +114,6 @@ export function Services() {
             id="visibilite"
             etiquette="Visibilité : SEO + GEO"
             point={3}
-            inverse
             titre={
               <>
                 Être trouvé sur Google, dans la carte et cité par les <Acc>IA</Acc>.
@@ -122,7 +126,7 @@ export function Services() {
               "Ta fiche Google, tes avis et les annuaires pour la carte. Un rapport d’une page : ta position, ce qui a été fait.",
             ]}
             visuel={
-              <div className="carte-droite -rotate-2 max-w-[520px] mx-auto lg:mx-0 grid gap-8 sm:grid-cols-2 text-[15px]">
+              <div className="carte-droite grid gap-8 sm:grid-cols-2 text-[15px]">
                 <div>
                   <p className="t-surtitre mb-4">Sur ton site</p>
                   <Checklist
@@ -167,28 +171,22 @@ export function Services() {
               "Le site reste à toi. Tu peux reprendre la main à tout moment.",
             ]}
             visuel={
-              <div className="grid gap-4 max-w-[420px] mx-auto lg:mx-0 lg:ml-auto lg:mr-6">
-                <Carte surtitre="Hébergement" titre="Sauvegardes et mises à jour" pench={-3} barres={1} className="w-[82%] justify-self-start" />
+              <div className="grid gap-4 max-w-[420px]">
+                <Carte surtitre="Hébergement" titre="Sauvegardes et mises à jour" pench={-2} barres={1} className="w-[82%] justify-self-start" />
                 <Carte surtitre="Modifications" titre="Un texte, une photo, un horaire" pench={2} barres={1} className="w-[82%] justify-self-end -mt-2" />
-                <Carte surtitre="Sécurité" titre="Certificat et surveillance" pilule="Compris" pench={-2} barres={1} className="w-[82%] justify-self-center -mt-2" />
+                <Carte surtitre="Sécurité" titre="Certificat et surveillance" pilule="Compris" pench={-1} barres={1} className="w-[82%] justify-self-center -mt-2" />
               </div>
             }
           />
-        </div>
 
-        <div className="mt-14 md:mt-20 grid gap-8 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-7 callout">
+          <div data-item className="callout">
             <p className="t-h4">Option identité visuelle</p>
-            <p className="t-corps mt-2">
+            <p className="t-corps mt-2 max-w-[56ch]">
               Pas encore de logo, ou une identité à rafraîchir&nbsp;? Je crée ton univers (logo,
               couleurs, typographies) avant de dessiner le site. Sur devis, après un premier appel.
             </p>
           </div>
-          <div className="lg:col-span-5 flex flex-col items-start gap-3 lg:pl-8">
-            <Btn href="#tarifs">Voir les tarifs</Btn>
-            <p className="t-meta">à partir de 900 € le site, 90 € par mois l’accompagnement</p>
-          </div>
-        </div>
+        </ListeFocus>
       </Conteneur>
     </Section>
   );

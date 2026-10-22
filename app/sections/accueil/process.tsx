@@ -1,4 +1,5 @@
-import { Acc, Checklist, Conteneur, Frise, Section } from "../../components/ui";
+import { ListeFocus } from "../../components/liste-focus";
+import { Acc, Checklist, Conteneur, Frise, Repere, Section } from "../../components/ui";
 import { site } from "@/lib/site";
 
 const etapes = [
@@ -44,12 +45,14 @@ const etapes = [
   },
 ];
 
+/** Les sept étapes : le titre reste collé à gauche, la frise défile à droite, une étape au focus à la fois. */
 export function Process() {
   return (
     <Section id="etapes" pad={false} className="py-16 md:py-24">
-      <Conteneur className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <h2 className="t-h2 lg:max-w-[12ch]">
+      <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-5 lg:sticky lg:top-[104px]">
+          <Repere n={6}>Les étapes</Repere>
+          <h2 className="t-h2 mt-6 lg:max-w-[12ch]">
             Les 7 étapes de ton <Acc>projet</Acc>.
           </h2>
           <p className="t-intro mt-5 max-w-[36ch]">
@@ -67,9 +70,9 @@ export function Process() {
             />
           </div>
         </div>
-        <div className="lg:col-span-7 lg:pl-6">
+        <ListeFocus className="lg:col-span-7 lg:pl-6">
           <Frise etapes={etapes} />
-        </div>
+        </ListeFocus>
       </Conteneur>
     </Section>
   );

@@ -1,4 +1,5 @@
-import { Acc, Conteneur, Frise, Section } from "../../components/ui";
+import { ListeFocus } from "../../components/liste-focus";
+import { Acc, Conteneur, Frise, Repere, Section } from "../../components/ui";
 
 const etapes = [
   {
@@ -26,18 +27,19 @@ const etapes = [
 export function Mois() {
   return (
     <Section id="mois" pad={false} className="py-16 md:py-24">
-      <Conteneur className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <h2 className="t-h2 lg:max-w-[12ch]">
+      <Conteneur className="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-5 lg:sticky lg:top-[104px]">
+          <Repere n={5}>Mois après mois</Repere>
+          <h2 className="t-h2 mt-6 lg:max-w-[12ch]">
             Ce qui se passe mois après <Acc>mois</Acc>.
           </h2>
           <p className="t-intro mt-6 max-w-[36ch]">
             Le référencement local se construit. Voilà à quoi ressemblent les neuf premiers mois.
           </p>
         </div>
-        <div className="lg:col-span-7 lg:pl-6">
+        <ListeFocus className="lg:col-span-7 lg:pl-6">
           <Frise etapes={etapes} />
-        </div>
+        </ListeFocus>
       </Conteneur>
     </Section>
   );
