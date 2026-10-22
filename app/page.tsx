@@ -15,7 +15,7 @@ import { Services } from "./sections/accueil/services";
 import { Tarifs } from "./sections/accueil/tarifs";
 import { FaqSection } from "./sections/faq-section";
 import { faqAccueil } from "@/lib/faq";
-import { faqPage, localBusiness } from "@/lib/schema";
+import { faqPage, graphe } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function Accueil() {
   return (
     <>
-      <JsonLd data={localBusiness()} />
+      <JsonLd data={graphe()} />
       <JsonLd data={faqPage(faqAccueil)} />
       <Hero />
       <Apres />
