@@ -23,7 +23,7 @@ export function SiteHeader() {
   return (
     <header className="entete">
       <Conteneur className="flex items-center justify-between gap-4 h-[72px]">
-        <Link href="/" aria-label="Accueil" className="shrink-0">
+        <Link href="/" className="shrink-0">
           <Signature compact />
         </Link>
 

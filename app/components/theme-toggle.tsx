@@ -16,7 +16,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     }
   }
   return (
-    <button type="button" onClick={basculer} className={`theme ${className}`} aria-label="Changer de mode, jour ou nuit">
+    <button type="button" onClick={basculer} className={`theme ${className}`} aria-label="Nuit ou jour : changer de mode">
       <span aria-hidden className="point-theme" />
       <span className="t-mono lbl-nuit">Nuit</span>
       <span className="t-mono lbl-jour">Jour</span>

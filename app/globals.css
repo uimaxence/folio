@@ -17,7 +17,7 @@
   --bg-2: #dcd9cf;
   --surface: #f3f1eb;
   --fg: #22272a;
-  --fg-2: #5b615f;
+  --fg-2: #4a504d;
   --line: rgba(34, 39, 42, 0.14);
   --line-2: rgba(34, 39, 42, 0.32);
   --sapin: #2e4a3b;
@@ -424,6 +424,52 @@
   }
   .massif .couche {
     will-change: transform;
+  }
+  /* les facettes : une couleur de couche, un niveau d'ombre (sm4 à s4), la brume vers le fond.
+     Peint par classes : le HTML reste léger, les jetons font passer le massif en nuit. */
+  .massif polygon {
+    fill: color-mix(in oklab, var(--f), var(--haze) var(--h));
+    stroke: color-mix(in oklab, var(--f), var(--haze) var(--h));
+    stroke-width: 0.7;
+  }
+  .massif .c0 {
+    --c: var(--m-far);
+    --h: 58%;
+  }
+  .massif .c1 {
+    --c: var(--m-mid);
+    --h: 30%;
+  }
+  .massif .c2 {
+    --c: var(--m-near);
+    --h: 0%;
+  }
+  .massif .s0 {
+    --f: var(--c);
+  }
+  .massif .s1 {
+    --f: color-mix(in oklab, var(--c), var(--sun) 10%);
+  }
+  .massif .s2 {
+    --f: color-mix(in oklab, var(--c), var(--sun) 19%);
+  }
+  .massif .s3 {
+    --f: color-mix(in oklab, var(--c), var(--sun) 28%);
+  }
+  .massif .s4 {
+    --f: color-mix(in oklab, var(--c), var(--sun) 38%);
+  }
+  .massif .sm1 {
+    --f: color-mix(in oklab, var(--c), var(--shade) 12%);
+  }
+  .massif .sm2 {
+    --f: color-mix(in oklab, var(--c), var(--shade) 24%);
+  }
+  .massif .sm3 {
+    --f: color-mix(in oklab, var(--c), var(--shade) 36%);
+  }
+  .massif .sm4 {
+    --f: color-mix(in oklab, var(--c), var(--shade) 48%);
   }
   .hero-massif {
     background: linear-gradient(var(--bg), var(--sky-1));
@@ -1097,13 +1143,23 @@
       border-color 0.35s ease-out;
   }
 
-  /* liste qui met en focus un seul élément à la fois, au scroll. Sans script, tout reste visible. */
+  /* liste qui met en focus un seul élément à la fois, au scroll : les autres reculent d'un rien
+     (les contrastes restent AA), le numéro et le point de l'élément net passent en orange.
+     Sans script, tout reste visible. */
   [data-liste-focus="on"] [data-item] {
-    opacity: 0.42;
+    opacity: 0.85;
     transition: opacity 0.35s ease-out;
+  }
+  [data-liste-focus="on"] [data-item] .t-num,
+  [data-liste-focus="on"] [data-item] .t-mono > .text-ink {
+    transition: color 0.35s ease-out;
   }
   [data-liste-focus="on"] [data-item][data-focus="true"] {
     opacity: 1;
+  }
+  [data-liste-focus="on"] [data-item][data-focus="true"] .t-num,
+  [data-liste-focus="on"] [data-item][data-focus="true"] .t-mono > .text-ink {
+    color: var(--accent);
   }
   [data-liste-focus="on"] [data-item][data-focus="true"] .point {
     background: var(--accent);

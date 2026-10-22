@@ -29,7 +29,8 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
 
 type Couche = {
   k: number;
-  facettes: { points: string; fill: string }[];
+  /** Chaque facette : ses trois points, et son niveau d'ombre de -4 (ombre) à 4 (soleil), peint par une classe CSS. */
+  facettes: { points: string; s: number }[];
   sentier?: { points: string; balises: [number, number][] };
 };
 
@@ -37,17 +38,17 @@ type Dessin = { etoiles: { cx: number; cy: number; r: number; o: number }[]; cou
 
 function dessiner(seed: number): Dessin {
   const R = rng(seed);
-  const etoiles = Array.from({ length: 70 }, () => ({
+  const etoiles = Array.from({ length: 36 }, () => ({
     cx: Math.round(R() * W),
     cy: Math.round(R() * H * 0.5),
     r: +(0.8 + R() * 1.6).toFixed(1),
-    o: +(0.3 + R() * 0.7).toFixed(2),
+    o: +(0.3 + R() * 0.7).toFixed(1),
   }));
 
   const def = [
-    { base: 0.5, amp: 0.15, n: 9, rows: 3, c: "--m-far", haze: 0.58, k: 0.035 },
-    { base: 0.6, amp: 0.17, n: 11, rows: 3, c: "--m-mid", haze: 0.3, k: 0.08 },
-    { base: 0.73, amp: 0.15, n: 13, rows: 3, c: "--m-near", haze: 0, k: 0.15, sentier: true },
+    { base: 0.5, amp: 0.15, n: 9, rows: 3, k: 0.035 },
+    { base: 0.6, amp: 0.17, n: 11, rows: 3, k: 0.08 },
+    { base: 0.73, amp: 0.15, n: 13, rows: 3, k: 0.15, sentier: true },
   ];
 
   const couches: Couche[] = def.map((L) => {
@@ -91,21 +92,16 @@ function dessiner(seed: number): Dessin {
           const dy = srt[1][1] - srt[0][1];
           const lit = (dx >= 0 ? 1 : -1) * clamp((Math.abs(dy) / Math.max(Math.abs(dx), 30)) * 1.5, 0, 1);
           const v = clamp(lit * 0.62 + (R() - 0.5) * 0.42 - r * 0.12, -1, 1);
-          const melange =
-            v >= 0
-              ? `color-mix(in oklab, var(${L.c}), var(--sun) ${Math.round(v * 38)}%)`
-              : `color-mix(in oklab, var(${L.c}), var(--shade) ${Math.round(-v * 48)}%)`;
-          const fill = L.haze ? `color-mix(in oklab, ${melange}, var(--haze) ${Math.round(L.haze * 100)}%)` : melange;
-          facettes.push({ points: tri.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" "), fill });
+          facettes.push({ points: tri.map((p) => `${Math.round(p[0])},${Math.round(p[1])}`).join(" "), s: Math.round(v * 4) });
         }
       }
     }
     let sentier: Couche["sentier"];
     if (L.sentier) {
-      const pts = crete.slice(1, L.n).map(([x, y]) => [x, y + 26] as [number, number]);
+      const pts = crete.slice(1, L.n).map(([x, y]) => [Math.round(x), Math.round(y + 26)] as [number, number]);
       sentier = {
-        points: pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" "),
-        balises: pts.filter((_, i) => i % 3 === 1).map((p) => [+p[0].toFixed(1), +p[1].toFixed(1)] as [number, number]),
+        points: pts.map((p) => `${p[0]},${p[1]}`).join(" "),
+        balises: pts.filter((_, i) => i % 3 === 1),
       };
     }
     return { k: L.k, facettes, sentier };
@@ -176,9 +172,9 @@ export function Massif({ seed = 7, className = "" }: { seed?: number; className?
       </g>
       <circle cx="1190" cy="430" r="300" fill={`url(#${uid}-soleil)`} />
       {dessin.couches.map((c, ci) => (
-        <g key={ci} className="couche" data-k={c.k}>
+        <g key={ci} className={`couche c${ci}`} data-k={c.k}>
           {c.facettes.map((f, i) => (
-            <polygon key={i} points={f.points} style={{ fill: f.fill, stroke: f.fill, strokeWidth: 0.7 }} />
+            <polygon key={i} points={f.points} className={`s${f.s < 0 ? "m" + -f.s : f.s}`} />
           ))}
           {c.sentier && (
             <>

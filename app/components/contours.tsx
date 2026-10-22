@@ -22,15 +22,15 @@ export function tracerContours(seed: number, cx: number, cy: number, n: number, 
   for (let k = 1; k <= n; k++) {
     const r0 = 60 + k * pas;
     let d = "";
-    for (let j = 0; j <= 120; j++) {
-      const th = (j / 120) * 6.283;
+    for (let j = 0; j <= 72; j++) {
+      const th = (j / 72) * 6.283;
       const rr =
         r0 *
         (1 +
           0.17 * Math.sin(3 * th + ph[0] + k * 0.09) +
           0.09 * Math.sin(5 * th + ph[1] - k * 0.06) +
           0.035 * Math.sin(11 * th + ph[2] + k * 0.03));
-      d += `${j ? "L" : "M"}${(cx + rr * Math.cos(th) * 1.4).toFixed(1)} ${(cy + rr * Math.sin(th) * 0.8).toFixed(1)}`;
+      d += `${j ? "L" : "M"}${Math.round(cx + rr * Math.cos(th) * 1.4)} ${Math.round(cy + rr * Math.sin(th) * 0.8)}`;
     }
     chemins.push(d + "Z");
   }
