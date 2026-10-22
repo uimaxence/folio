@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Dock } from "./components/dock";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
+import { SmoothScroll } from "./components/smooth-scroll";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-/* Une seule police, Archivo variable (graisses 100 à 900, largeur 62 % à 125 %), auto-hébergée.
+/* Archivo variable (graisses 100 à 900, largeur 62 % à 125 %) pour tout le texte, auto-hébergée.
    L'italique reste dans public/fonts pour une éventuelle citation entière : on ne la charge pas. */
 const archivo = localFont({
   src: "../public/fonts/archivo.woff2",
@@ -14,6 +16,15 @@ const archivo = localFont({
   variable: "--font-archivo",
   display: "swap",
   declarations: [{ prop: "font-stretch", value: "62% 125%" }],
+});
+
+/* JetBrains Mono variable, sous-ensemble latin, pour les petits repères : numéros, méta, chiffres. */
+const jetbrains = localFont({
+  src: "../public/fonts/jetbrains-mono.woff2",
+  weight: "100 800",
+  style: "normal",
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -31,17 +42,24 @@ export const metadata: Metadata = {
   },
 };
 
+/* Le mode choisi à la main est relu avant le premier rendu : aucun flash de l'autre mode. */
+const themeScript =
+  '(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();';
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${archivo.variable} h-full`}>
+    <html lang="fr" className={`${archivo.variable} ${jetbrains.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
+        <SmoothScroll />
+        {/* le grain : une seule couche fixe sur toute la page */}
+        <div aria-hidden className="grain" />
         <SiteHeader />
-        {/* La page porte la grille fine : aucune coupure entre les sections. */}
-        <main className="page flex-1">
-          <div aria-hidden className="calque calque-grille" />
-          {children}
-        </main>
+        <main className="page flex-1">{children}</main>
         <SiteFooter />
+        <Dock />
       </body>
     </html>
   );

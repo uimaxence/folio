@@ -1,11 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useId, type CSSProperties, type ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { Contours } from "./contours";
+import { Scramble } from "./scramble";
+import { projectShot, type Project } from "@/lib/projects";
 import { site } from "@/lib/site";
 
 /* ------------------------------------------------------------------
-   Primitives de la DA « sobre » (DESIGN.md §6 et §7).
-   Une section = un titre, un seul objet fort. La grille est portée par la page.
+   Primitives de la DA « Trail & Code ». Une section = un repère mono,
+   un titre avec un mot marqué, un seul objet fort. Les couleurs viennent
+   des jetons de globals.css : jour, nuit, section sombre.
 ------------------------------------------------------------------- */
 
 export function Conteneur({ className = "", children }: { className?: string; children: ReactNode }) {
@@ -15,17 +19,15 @@ export function Conteneur({ className = "", children }: { className?: string; ch
 export function Section({
   id,
   sombre = false,
-  halo = false,
-  fond = false,
+  decor,
   pad = true,
   className = "",
   children,
 }: {
   id?: string;
   sombre?: boolean;
-  halo?: boolean;
-  /** Le fond travaillé, pour un hero d'entrée. Remplace la grille et le halo : ne pas le cumuler avec `halo`. */
-  fond?: boolean;
+  /** Les courbes de niveau en calque, pour un hero. « doux » pour une page intérieure. */
+  decor?: "contours" | "contours-doux";
   pad?: boolean;
   className?: string;
   children: ReactNode;
@@ -35,60 +37,16 @@ export function Section({
       id={id}
       className={`section ${sombre ? "section-sombre" : ""} ${pad ? "section-pad" : ""} ${className}`}
     >
-      {sombre && <div aria-hidden className="calque calque-grille" />}
-      {halo && <div aria-hidden className="calque calque-halo" />}
-      {fond && <FondTravaille />}
+      {decor === "contours" && <Contours />}
+      {decor === "contours-doux" && <Contours doux seed={5} cx={1350} cy={260} n={11} pas={44} />}
       {children}
     </section>
   );
 }
 
-/** Le fond travaillé (DESIGN.md §6.4) : lavis, bande courbe en dégradé, traits fins en arc.
-    Le lavis est en CSS (`.calque-fond`). Chaque dessin est calé sur un coin du hero, l'origine sur ce coin. */
-function FondTravaille() {
-  const id = useId();
-  return (
-    <div aria-hidden className="calque calque-fond">
-      {/* bas gauche : la bande part du coin, monte et s'éteint avant le titre. Un trait la suit. */}
-      <svg className="fond-bas-gauche" viewBox="0 -100 100 100">
-        <defs>
-          <linearGradient id={`${id}a`} gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="216" y2="-460">
-            <stop offset="0" stopOpacity=".34" style={{ stopColor: "var(--g1)" }} />
-            <stop offset=".55" stopOpacity=".18" style={{ stopColor: "var(--g2)" }} />
-            <stop offset="1" stopOpacity="0" style={{ stopColor: "var(--g2)" }} />
-          </linearGradient>
-          {/* le trait s'éteint en hauteur : sur tablette il traverserait le titre. Sur mobile, où le texte
-              prend toute la largeur, il n'est pas dessiné. */}
-          <linearGradient id={`${id}t`} gradientUnits="userSpaceOnUse" x1="0" y1="-800" x2="0" y2="-1000">
-            <stop offset="0" stopOpacity="1" style={{ stopColor: "var(--ink)" }} />
-            <stop offset="1" stopOpacity="0" style={{ stopColor: "var(--ink)" }} />
-          </linearGradient>
-        </defs>
-        <circle cx="2651" cy="452" r="2600" fill="none" stroke={`url(#${id}a)`} strokeWidth="190" />
-        <circle className="trait max-sm:hidden" cx="2651" cy="452" r="2723" style={{ stroke: `url(#${id}t)` }} />
-      </svg>
-      {/* haut droite : la seconde bande, plus courte et plus pâle */}
-      <svg className="fond-haut-droite" viewBox="-100 0 100 100">
-        <defs>
-          <linearGradient id={`${id}b`} gradientUnits="userSpaceOnUse" x1="-352" y1="0" x2="0" y2="160">
-            <stop offset="0" stopOpacity="0" style={{ stopColor: "var(--g2)" }} />
-            <stop offset="1" stopOpacity=".26" style={{ stopColor: "var(--g1)" }} />
-          </linearGradient>
-        </defs>
-        <circle cx="200" cy="-600" r="760" fill="none" stroke={`url(#${id}b)`} strokeWidth="110" />
-      </svg>
-      {/* bas droite : deux traits qui se croisent */}
-      <svg className="fond-bas-droite" viewBox="-100 -100 100 100">
-        <circle className="trait" cx="-38" cy="390" r="640" />
-        <circle className="trait" cx="234" cy="198" r="688" />
-      </svg>
-    </div>
-  );
-}
+/* ---------- Accents et repères ---------- */
 
-/* ---------- Accents ---------- */
-
-/** Mot en dégradé : l'accent principal, un par titre. */
+/** Le mot marqué d'un titre : vert sapin. Un par titre. */
 export function Acc({ children }: { children: ReactNode }) {
   return <span className="acc">{children}</span>;
 }
@@ -112,11 +70,32 @@ export function Entoure({ children }: { children: ReactNode }) {
   );
 }
 
+/** Le fanion orange : l'objet qui revient partout, marqueur de section. */
+export function Fanion({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" className={className} aria-hidden>
+      <rect x="50" y="18" width="12" height="90" rx="6" style={{ fill: "var(--fg-2)" }} />
+      <path d="M62 18 L112 38 L62 58Z" style={{ fill: "var(--accent)" }} />
+    </svg>
+  );
+}
+
+/** Le repère d'une section : fanion, numéro mono, nom simple. */
+export function Repere({ n, children, className = "" }: { n?: number; children: ReactNode; className?: string }) {
+  return (
+    <p className={`repere ${className}`}>
+      <Fanion />
+      {n !== undefined && <span className="n">({String(n).padStart(3, "0")})</span>}
+      <span>{n !== undefined ? "· " : ""}{children}</span>
+    </p>
+  );
+}
+
 /* ---------- Objets posés sur la page ---------- */
 
 type Pointeur = "haut" | "bas" | "gauche";
 
-/** Étiquette-info : carte blanche à point coloré. Sert à nommer un service, annoter une capture, poser une preuve courte. */
+/** Étiquette-info : carte posée à point coloré. Sert à nommer un service, annoter une capture, poser une preuve courte. */
 export function Etiquette({
   point = 1,
   pench = 0,
@@ -127,7 +106,7 @@ export function Etiquette({
   style,
   children,
 }: {
-  /** Couleur du point : 1 violet, 2 bleu, 3 bande cerclée, 4 encre, 0 aucun. */
+  /** Couleur du point : 1 sapin, 2 ocre, 3 orange, 4 encre, 0 aucun. */
   point?: 0 | 1 | 2 | 3 | 4;
   /** Inclinaison en degrés, entre -6 et 6. */
   pench?: number;
@@ -145,7 +124,7 @@ export function Etiquette({
       {children}
       {curseur && (
         <svg aria-hidden className="curseur" viewBox="0 0 24 24">
-          <path d="M4 3 L20 11 L13 13 L11 20 Z" fill="#141414" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M4 3 L20 11 L13 13 L11 20 Z" style={{ fill: "var(--fg)", stroke: "var(--bg)" }} strokeWidth="1.6" strokeLinejoin="round" />
         </svg>
       )}
     </>
@@ -164,12 +143,12 @@ export function Etiquette({
   );
 }
 
-/** Badge sombre : le sujet de la page ou de la section. */
+/** Badge : le sujet de la page ou de la section, en mono. */
 export function Badge({ className = "", children }: { className?: string; children: ReactNode }) {
   return <span className={`badge ${className}`}>{children}</span>;
 }
 
-/** Carte flottante : surtitre en capitales, titre, une ou deux barres grises, une pilule. Inclinée d'un rien. */
+/** Carte flottante : surtitre mono, titre, une ou deux barres, une pilule. Inclinée d'un rien. */
 export function Carte({
   surtitre,
   titre,
@@ -205,7 +184,8 @@ export function Carte({
   );
 }
 
-/** Capture : une vraie capture de site dans un cadre. Estompée par défaut (le bas fond dans la page). Les annotations se posent en enfants. */
+/** Capture : un vrai site, traité comme un tirage (coins, grain, vignettage). Estompée si le bas doit fondre dans la page.
+    `dedans` se pose à l'intérieur du cadre (une fiche technique), `children` autour (des annotations). */
 export function Capture({
   src,
   alt,
@@ -214,7 +194,9 @@ export function Capture({
   sizes = "(min-width: 1024px) 600px, 100vw",
   estompe = true,
   petite = false,
+  stamp,
   className = "",
+  dedans,
   children,
 }: {
   src: string;
@@ -224,7 +206,10 @@ export function Capture({
   sizes?: string;
   estompe?: boolean;
   petite?: boolean;
+  /** La date orange en bas à droite, façon compact. */
+  stamp?: string;
   className?: string;
+  dedans?: ReactNode;
   children?: ReactNode;
 }) {
   return (
@@ -234,127 +219,83 @@ export function Capture({
         style={{ aspectRatio: ratio }}
       >
         <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover object-top" />
+        {stamp && (
+          <span aria-hidden className="stamp">
+            {stamp}
+          </span>
+        )}
+        {dedans}
       </div>
       {children}
     </div>
   );
 }
 
-/** Flèche courbe dessinée : relie une phrase à une preuve. */
-export function FlecheCourbe({
-  className = "",
-  style,
-  flip = false,
-}: {
-  className?: string;
-  style?: CSSProperties;
-  flip?: boolean;
-}) {
+/** La fiche technique d'une réalisation : numéro, secteur, année, et le résultat quand il est sourcé. */
+export function Fiche({ p, n }: { p: Project; n: number }) {
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 120 120"
-      className={className}
-      style={{ color: "var(--ink)", ...(flip ? { transform: "scaleX(-1)" } : {}), ...style }}
-    >
-      <path
-        d="M14 10 C 30 60, 60 90, 104 100"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={3}
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
-      />
-      <path
-        d="M78 96 L 104 100 L 92 76"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={3}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
+    <dl className="fiche">
+      <dt>Prjct</dt>
+      <dd>/{String(n).padStart(2, "0")}</dd>
+      <dt>Secteur</dt>
+      <dd>{p.secteur}</dd>
+      <dt>Année</dt>
+      <dd>{p.annee}</dd>
+      {p.resultat && (
+        <dd className="resultat">
+          ↳ {p.resultat.valeur} {p.resultat.texte}
+        </dd>
+      )}
+    </dl>
   );
 }
 
-/** Jauge avant / après. Uniquement avec de vrais scores. */
-export function Jauge({
-  valeur,
-  etat,
+/** Une réalisation en carte : la capture en tirage, la fiche technique au survol, la flèche qui se glisse devant le titre. */
+export function CarteProjet({
+  p,
+  n,
+  ratio = "4 / 3",
+  sizes = "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw",
   grand = false,
-  label,
-}: {
-  valeur: number;
-  etat: "avant" | "apres";
-  grand?: boolean;
-  label?: string;
-}) {
-  const r = 42;
-  const c = 2 * Math.PI * r;
-  const p = Math.max(0, Math.min(100, valeur));
-  const couleur = etat === "avant" ? "var(--jauge-avant)" : "var(--jauge-apres)";
-  const fond = etat === "avant" ? "var(--jauge-avant-fond)" : "var(--jauge-apres-fond)";
-  const taille = grand ? 300 : 120;
-  return (
-    <figure className="inline-flex flex-col items-center gap-3 m-0">
-      <svg width={taille} height={taille} viewBox="0 0 100 100" role="img" aria-label={`${label ?? etat} : ${Math.round(p)} sur 100`}>
-        <circle cx="50" cy="50" r={r} fill={fond} stroke="rgba(20,20,20,.08)" strokeWidth="6" />
-        <circle
-          cx="50"
-          cy="50"
-          r={r}
-          fill="none"
-          stroke={couleur}
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeDasharray={`${(c * p) / 100} ${c}`}
-          transform="rotate(-90 50 50)"
-        />
-        <text
-          x="50"
-          y="50"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fill={couleur}
-          fontFamily="var(--font-archivo), Archivo, sans-serif"
-          fontWeight="600"
-          fontSize="28"
-        >
-          {Math.round(p)}
-        </text>
-      </svg>
-      {label && <figcaption className="t-meta">{label}</figcaption>}
-    </figure>
-  );
-}
-
-/** Étincelle : une respiration près d'un titre, au plus deux par page. */
-export function Etincelle({
-  taille = 36,
-  couleur = "g1",
+  texte = true,
   className = "",
-  style,
 }: {
-  taille?: number;
-  couleur?: "g1" | "g2";
+  p: Project;
+  n: number;
+  ratio?: string;
+  sizes?: string;
+  grand?: boolean;
+  /** Le nom et la phrase sous la capture. */
+  texte?: boolean;
   className?: string;
-  style?: CSSProperties;
 }) {
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 100 100"
-      width={taille}
-      height={taille}
-      className={className}
-      style={{ color: `var(--${couleur})`, ...style }}
-    >
-      <path
-        fill="currentColor"
-        d="M50 2 C54 30 70 46 98 50 C70 54 54 70 50 98 C46 70 30 54 2 50 C30 46 46 30 50 2 Z"
-      />
-    </svg>
+    <article className={`projet ${className}`}>
+      <Link href={`/realisations/${p.slug}`} className="block no-underline" data-scr-host>
+        <Capture
+          src={projectShot(p.slug)}
+          alt={`La page d’accueil du site ${p.name}`}
+          ratio={ratio}
+          estompe={false}
+          petite={!grand}
+          sizes={sizes}
+          dedans={<Fiche p={p} n={n} />}
+        />
+        {texte && (
+          <>
+            <h3 className="projet-titre t-h4 mt-4">
+              <span aria-hidden className="fleche">
+                ↳
+              </span>
+              <span className="glisse">
+                <Scramble>{p.name}</Scramble>
+              </span>
+            </h3>
+            <p className="t-corps text-[15px] mt-1 text-ink-2 max-w-[44ch]">{p.tagline}</p>
+          </>
+        )}
+      </Link>
+    </article>
   );
 }
 
@@ -374,13 +315,14 @@ export function Etoiles({ taille = 18, className = "" }: { taille?: number; clas
   );
 }
 
-/* ---------- Bouton et lien ---------- */
+/* ---------- Bouton et liens ---------- */
 
 export function Btn({
   href,
   variant = "principal",
   external = false,
   petit = false,
+  fleche,
   className = "",
   children,
 }: {
@@ -388,20 +330,33 @@ export function Btn({
   variant?: "principal" | "secondaire";
   external?: boolean;
   petit?: boolean;
+  /** La flèche mono « ↳ » après le texte. Par défaut sur le bouton principal. */
+  fleche?: boolean;
   className?: string;
   children: ReactNode;
 }) {
   const cls = `btn ${variant === "secondaire" ? "btn-secondaire" : ""} ${petit ? "btn-petit" : ""} ${className}`;
+  const avecFleche = fleche ?? variant === "principal";
+  const inner = (
+    <>
+      <span>{children}</span>
+      {avecFleche && (
+        <span aria-hidden className="fleche">
+          ↳
+        </span>
+      )}
+    </>
+  );
   if (/^(https?:|mailto:|tel:|#)/.test(href)) {
     return (
       <a href={href} className={cls} {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}>
-        {children}
+        {inner}
       </a>
     );
   }
   return (
     <Link href={href} className={cls}>
-      {children}
+      {inner}
     </Link>
   );
 }
@@ -434,6 +389,39 @@ export function Lien({
   }
   return (
     <Link href={href} className={cls}>
+      {inner}
+    </Link>
+  );
+}
+
+/** Lien mono : « ↳ voir le site ». Le texte se brouille au survol. */
+export function LienMono({
+  href,
+  external = false,
+  className = "",
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  className?: string;
+  children: string;
+}) {
+  const cls = `lien-mono ${className}`;
+  const inner = (
+    <>
+      <span aria-hidden>↳</span>
+      <Scramble>{children}</Scramble>
+    </>
+  );
+  if (/^(https?:|mailto:|tel:|#)/.test(href)) {
+    return (
+      <a href={href} className={cls} data-scr-host {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}>
+        {inner}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={cls} data-scr-host>
       {inner}
     </Link>
   );
@@ -482,7 +470,7 @@ export function ListeFleches({ items, className = "" }: { items: ReactNode[]; cl
   );
 }
 
-/** Frise verticale : un process, une durée. Quatre étapes qui remplissent la hauteur. */
+/** Frise verticale : un process, une durée. Chaque étape porte `data-item` pour la mise en focus au scroll. */
 export function Frise({
   etapes,
   className = "",
@@ -492,11 +480,13 @@ export function Frise({
 }) {
   return (
     <ol className={`frise ${className}`}>
-      {etapes.map((e) => (
-        <li key={e.titre}>
+      {etapes.map((e, i) => (
+        <li key={e.titre} data-item>
           <span aria-hidden className="point" />
-          <p className="t-meta">{e.quand}</p>
-          <h3 className="t-h4 mt-1">{e.titre}</h3>
+          <p className="t-mono">
+            <span className="text-ink">{String(i + 1).padStart(2, "0")}</span> · {e.quand}
+          </p>
+          <h3 className="t-h4 mt-2">{e.titre}</h3>
           <p className="t-corps mt-2 max-w-[56ch]">{e.texte}</p>
         </li>
       ))}
@@ -518,14 +508,14 @@ export function Conseil({
 }) {
   return (
     <div className={className}>
-      <span className="t-num">{String(n).padStart(2, "0")}.</span>
+      <span className="t-num">({String(n).padStart(2, "0")})</span>
       <h3 className="t-h4 mt-3">{titre}</h3>
       <div className="t-corps mt-2 max-w-[52ch]">{children}</div>
     </div>
   );
 }
 
-/** Rangée numérotée : un filet, le numéro dans sa colonne, le contenu à droite. */
+/** Rangée numérotée : un filet, le numéro mono dans sa colonne, le contenu à droite. */
 export function Rangee({
   n,
   id,
@@ -539,8 +529,8 @@ export function Rangee({
 }) {
   return (
     <div id={id} className={`rangee grid gap-4 md:grid-cols-[96px_1fr] scroll-mt-24 ${className}`}>
-      <span className="t-rangee text-ink-2 md:text-ink" aria-hidden>
-        {String(n).padStart(2, "0")}
+      <span className="t-num md:pt-2" aria-hidden>
+        ({String(n).padStart(2, "0")})
       </span>
       <div>{children}</div>
     </div>
