@@ -986,10 +986,10 @@
   .projet:hover .capture img {
     transform: scale(1.02);
   }
+  /* au doigt, pas de survol : la fiche ne recouvre pas la capture, les détails sont sur la page du site */
   @media (hover: none) {
     .fiche {
-      opacity: 1;
-      transform: none;
+      display: none;
     }
   }
   /* le titre d'une réalisation : la flèche se glisse devant au survol */

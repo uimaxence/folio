@@ -65,7 +65,7 @@ export default async function Realisation({ params }: Props) {
           <Capture
             src={projectShot(p.slug)}
             alt={`La page d’accueil du site ${p.name}`}
-            ratio="16 / 9"
+            ratio="16 / 10"
             estompe={false}
             priority
             sizes="(min-width: 1280px) 1200px, 100vw"
@@ -123,7 +123,7 @@ export default async function Realisation({ params }: Props) {
                 <CarteProjet
                   p={a}
                   n={projects.findIndex((x) => x.slug === a.slug) + 1}
-                  ratio="16 / 9"
+                  ratio="16 / 10"
                   sizes="(min-width: 1024px) 580px, 100vw"
                 />
               </li>

@@ -184,15 +184,15 @@ export function Carte({
   );
 }
 
-/** Capture : un vrai site, traité comme un tirage (coins, grain, vignettage). Estompée si le bas doit fondre dans la page.
-    `dedans` se pose à l'intérieur du cadre (une fiche technique), `children` autour (des annotations). */
+/** Capture : un vrai site, traité comme un tirage (coins, grain, vignettage). Les captures font 16 / 10 :
+    au même ratio, rien n'est rogné. `dedans` se pose à l'intérieur du cadre (une fiche technique), `children` autour. */
 export function Capture({
   src,
   alt,
   priority = false,
   ratio = "16 / 10",
   sizes = "(min-width: 1024px) 600px, 100vw",
-  estompe = true,
+  estompe = false,
   petite = false,
   stamp,
   className = "",
@@ -254,7 +254,7 @@ export function Fiche({ p, n }: { p: Project; n: number }) {
 export function CarteProjet({
   p,
   n,
-  ratio = "4 / 3",
+  ratio = "16 / 10",
   sizes = "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw",
   grand = false,
   texte = true,
