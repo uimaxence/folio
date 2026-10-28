@@ -1,59 +1,60 @@
 # Direction artistique, ton et contenu du site — Maxence Cailleau
 
-> ## Version 3 · « Trail & Code », 22 octobre 2026
+> ## Version 3 · « Trail & Code », 22 octobre 2026 (palette d'avant rétablie le 28 octobre)
 >
-> Le site change d'univers visuel. Cette section remplace les parties visuelles de la version 2 (§1, §3 à §9, et l'habillage décrit en §12). Le ton (§10), le contenu et le déroulé des pages (§12 à §14) ne changent pas. Moodboard validé par Maxence le 22 octobre : https://claude.ai/artifact/7sfgdh54wYp1x5FQUVqo1N. Décisions prises le même jour : **pas de serif** (« trop fait par IA »), **peu de vocabulaire trail dans les textes et aucun parallèle avec le métier**, pas de photos, orange en accent, mot marqué en vert sapin, mode nuit automatique avec interrupteur.
+> Le site change d'univers visuel. Cette section remplace les parties visuelles de la version 2 (§3, §5 à §9, et l'habillage décrit en §12). **La palette reste celle de la version 2 (§4)** : papier, encre, mot en dégradé violet → bleu, bande lime. Maxence l'a gardée le 28 octobre parce qu'elle va avec sa photo de profil. Le ton (§10), le contenu et le déroulé des pages (§12 à §14) ne changent pas. Moodboard validé le 22 octobre : https://claude.ai/artifact/7sfgdh54wYp1x5FQUVqo1N (ses couleurs minérales ne sont plus d'actualité). Décisions : **pas de serif** (« trop fait par IA »), **peu de vocabulaire trail dans les textes et aucun parallèle avec le métier**, pas de photos, mode nuit automatique avec interrupteur.
 >
 > ### V3.1 L'idée
 >
-> L'univers est **visuel, jamais écrit** : un massif low-poly sous le hero, des courbes de niveau en calque, un grain argentique, des captures traitées comme des tirages, un fanion orange comme marqueur. Les sections gardent leurs noms simples (Services, Réalisations, Accompagnement, Contact). Les textes restent ceux de la version 2 : courts, factuels, tutoiement, chiffres sourcés, aucun délai de livraison, **aucune mention d'outil ou de technique** (le client n'a pas à le lire).
+> L'univers est **visuel, jamais écrit** : un massif low-poly sous le hero, des courbes de niveau en calque, un grain argentique, des captures traitées comme des tirages, un fanion comme marqueur. Les sections gardent leurs noms simples (Services, Réalisations, Accompagnement, Contact). Les textes restent ceux de la version 2 : courts, factuels, tutoiement, chiffres sourcés, aucun délai de livraison, **aucune mention d'outil ou de technique** (le client n'a pas à le lire).
 >
 > ### V3.2 Jetons (`app/globals.css`)
 >
-> Toute couleur passe par un jeton. Aucun composant n'écrit une couleur en dur. Deux modes : jour, et nuit en lumière chaude, suivant `prefers-color-scheme` ou `data-theme` posé sur `<html>` par l'interrupteur et retenu dans `localStorage`. La section sombre (contact + pied de page, une par page) prend les jetons de la nuit dans les deux modes.
+> Toute couleur passe par un jeton. Aucun composant n'écrit une couleur en dur. Deux modes : jour (la palette d'avant) et nuit (la section sombre d'avant, étendue à toute la page), suivant `prefers-color-scheme` ou `data-theme` posé sur `<html>` par l'interrupteur et retenu dans `localStorage`. La section sombre (contact + pied de page, une par page) prend les jetons de la nuit dans les deux modes.
 >
 > | Jeton | Jour | Nuit | Rôle |
 > |---|---|---|---|
-> | `--bg` | `#E8E6DF` brume | `#0E151D` | fond de page |
-> | `--bg-2` | `#DCD9CF` pierre | `#131C26` | fond secondaire, sous les captures |
-> | `--surface` | `#F3F1EB` papier | `#182330` | cartes, étiquettes, dock |
-> | `--fg` | `#22272A` ardoise | `#ECE6D8` crème | texte, titres |
-> | `--fg-2` | `#4A504D` | `#A7AA9F` | texte secondaire, repères mono (AA, même à 85 % d'opacité) |
-> | `--line` / `--line-2` | encre à 14 % / 32 % | crème à 14 % / 34 % | filets, bords |
-> | `--sapin` | `#2E4A3B` | `#7FA68C` | **le mot marqué d'un titre**, points d'étiquettes |
-> | `--mousse` · `--ocre` | `#7A8C66` · `#B0703A` | `#93A683` · `#D89A5F` | second point, détails |
-> | `--accent` / `--accent-fg` | `#FF5A1F` / `#1A1D1F` | `#FF6A2B` / `#15181A` | **boutons principaux, point actif, fanion**, rien d'autre |
-> | `--band` | `#D6DFD2` | `#243B30` | bande derrière un mot, colonne « avec moi » (`carte-marquee`) |
-> | `--sky-1/2`, `--sun`, `--shade`, `--haze`, `--m-far/mid/near`, `--trail`, `--stars` | voir le fichier | | le massif et son ciel |
+> | `--bg` | `#FAFAF8` papier | `#141414` encre | fond de page |
+> | `--bg-2` | `#F0F0EC` | `#1A1A1A` | fond secondaire, sous les captures |
+> | `--surface` | `#FFFFFF` | `#1F1F1F` | cartes, étiquettes, dock |
+> | `--fg` | `#141414` | `#F4F4F2` | texte, titres, boutons |
+> | `--fg-2` | `#5A5A55` | `#A9A9A4` | texte secondaire, repères mono (AA, même à 85 % d'opacité) |
+> | `--line` / `--line-2` | encre à 12 % / 30 % | blanc à 14 % / 34 % | filets, bords |
+> | `--g1` → `--g2` | `#7C5CFF` → `#2F7BFF` | `#8F74FF` → `#4D8DFF` | **le mot marqué d'un titre** (`.acc`, `background-clip: text`), points d'étiquettes, « + » de la FAQ |
+> | `--accent` | `#7C5CFF` | `#8F74FF` | fanion, point actif, anneau de focus, interrupteur |
+> | `--band` / `--on-band` | `#DDF77A` / `#141414` | idem | second mot marqué, pilule, résultat dans une fiche, balises du sentier, date du tirage |
+> | `--band-tint` | lime à 45 % sur blanc | lime à 16 % sur surface | colonne « avec moi » (`carte-marquee`) |
+> | `--btn-bg` / `--btn-fg` | encre / papier | papier / encre | boutons, comme en version 2 |
+> | `--sky-1/2`, `--sun`, `--shade`, `--haze`, `--m-far/mid/near`, `--trail`, `--marker`, `--stars` | crépuscule violet | nuit violette | le massif et son ciel |
 > | `--contour` | encre à 16 % | crème à 13 % | courbes de niveau |
-> | `--overlay` / `--overlay-fg` | ardoise à 88 % / crème | nuit à 88 % / crème | fiche technique sur une capture |
+> | `--overlay` / `--overlay-fg` | encre à 88 % / crème | noir à 90 % / crème | fiche technique sur une capture |
 > | `--grain` | 6 % | 8 % | opacité du grain |
 >
-> Les anciens noms (`--paper`, `--ink`, `--ink-2`, `--card`, `--card-line`, `--g1`, `--g2`, `--dot`) restent des alias vers ces jetons.
+> Les anciens noms (`--paper`, `--ink`, `--ink-2`, `--card`, `--card-line`, `--dot`) restent des alias. Il n'y a plus d'orange, de sapin ni d'ocre.
 >
 > ### V3.3 Typographie
 >
 > - **Archivo** pour tout le texte, comme avant (variable, graisses 100 à 900, axe de largeur figé à 100 %, 33 Ko). Titres en 600, espacement −3 %, majuscule initiale puis minuscules. Échelle : h1 `clamp(40px, 5.2vw, 72px)` interligne 1,03 ; h2 `clamp(32px, 4.2vw, 56px)` 1,06 ; rangée 28 → 42 px ; h3 22 → 30 px ; h4 20 px ; intro 17/18 px en 500 ; corps 16 px interligne 1,55 ; bouton 15 px 600.
 > - **JetBrains Mono** (variable, sous-ensemble latin, 40 Ko, auto-hébergée) pour les petits repères seulement : `t-mono` et `t-surtitre` (12 px, capitales, +8 %), `t-num` (« (01) »), les chiffres (`t-chiffre`, `t-chiffre-carte`), la fiche technique, les liens de l'en-tête, le dock, le badge. Jamais pour une phrase.
-> - **Pas de serif, pas d'italique comme accent.** Le mot marqué d'un titre est en `--sapin` (`.acc`), un par titre.
+> - **Pas de serif, pas d'italique comme accent.** Le mot marqué d'un titre est en dégradé (`.acc`), un par titre.
 >
 > ### V3.4 Dispositifs (`app/components/ui.tsx`)
 >
 > | Dispositif | Composant | Règle |
 > |---|---|---|
 > | Repère de section | `Repere` | Fanion + numéro mono « (001) » + nom simple. Un par section, numéroté dans l'ordre de la page. |
-> | Mot marqué | `Acc` | Vert sapin, graisse héritée. Un par titre. |
-> | Mot entouré | `Entoure` | Ovale orange, une fois par page (contact). |
-> | Étiquette-info | `Etiquette` | Surface, filet, point sapin / ocre / orange / encre. |
-> | Badge | `Badge` | Pilule encre, texte mono, point orange. |
-> | Carte | `.carte`, `.carte-droite`, `.callout` | Surface, filet 1 px, rayon 16, ombre douce. `carte-marquee` pour la colonne teintée. |
-> | Capture = tirage | `Capture` | Rayon 12, filet, vignettage, grain à 20 %, légère dominante chaude. `stamp` pour une date orange. `dedans` pour la fiche. |
-> | Fiche technique | `Fiche`, `CarteProjet` | Posée sur la capture au survol (visible d'office au doigt) : numéro, secteur, année, résultat **sourcé** seulement. La flèche « ↳ » se glisse devant le titre, le titre se brouille. |
-> | Bouton | `Btn` | Pilule orange, texte ardoise, flèche mono « ↳ » qui avance de 3 px au survol. Secondaire : bord `--line-2`. Focus : anneau orange. |
+> | Mot marqué | `Acc` | Dégradé violet → bleu, graisse héritée. Un par titre. |
+> | Mot entouré | `Entoure` | Ovale encre, une fois par page (contact). |
+> | Étiquette-info | `Etiquette` | Surface, filet, point violet / bleu / lime cerclé / encre. |
+> | Badge | `Badge` | Pilule encre, texte mono, point papier. |
+> | Carte | `.carte`, `.carte-droite`, `.callout` | Surface, filet 1 px, rayon 16, ombre douce. `carte-marquee` pour la colonne teintée lime. |
+> | Capture = tirage | `Capture` | Rayon 12, filet, vignettage, grain à 20 %, légère dominante chaude. `stamp` pour une date lime. `dedans` pour la fiche. |
+> | Fiche technique | `Fiche`, `CarteProjet` | Posée sur la capture au survol (visible d'office au doigt) : numéro, secteur, année, résultat **sourcé** seulement, en lime. La flèche « ↳ » se glisse devant le titre, le titre se brouille. |
+> | Bouton | `Btn` | Pilule encre, texte papier (l'inverse la nuit), flèche mono « ↳ » qui avance de 3 px au survol. Secondaire : bord `--line-2`. Focus : anneau violet. |
 > | Lien mono | `LienMono` | « ↳ voir le site », filet dessous, scramble au survol. |
-> | Frise | `Frise` | Trait 2 px, points cerclés, le point de l'étape nette en orange. |
-> | Liste au focus | `ListeFocus` | Les enfants `data-item` reculent à 85 % d'opacité, celui du milieu de l'écran est net : numéro et point en orange. Sans script, tout est visible. |
-> | Massif | `Massif` | Trois couches de facettes SVG tirées d'une graine, ombrage par classes CSS (`s4` soleil → `sm4` ombre), brume vers le fond, sentier balisé devant. Parallaxe au scroll sur `transform`. Hero de l'accueil seulement. |
+> | Frise | `Frise` | Trait 2 px, points cerclés, le point de l'étape nette en violet. |
+> | Liste au focus | `ListeFocus` | Les enfants `data-item` reculent à 85 % d'opacité, celui du milieu de l'écran est net : numéro et point en violet. Sans script, tout est visible. |
+> | Massif | `Massif` | Trois couches de facettes SVG tirées d'une graine, ombrage par classes CSS (`s4` soleil → `sm4` ombre), brume vers le fond, sentier balisé de lime devant. Parallaxe au scroll sur `transform`. Hero de l'accueil seulement. |
 > | Courbes de niveau | `Contours`, `Section decor` | Anneaux SVG en calque, révélés en 2 s, masqués vers le coin haut droit. `contours` sur un hero, `contours-doux` sur une page intérieure. |
 > | Grain | `.grain` | Une couche fixe, bruit SVG, `mix-blend-mode: overlay`, animée par pas sur `transform` sur grand écran seulement. |
 > | Voile de page | `Fuite`, `app/template.tsx` | Couleur de fond + fuite de lumière, s'efface en 400 ms, retiré du DOM ensuite. |
@@ -73,15 +74,14 @@
 > - Serif, italique comme accent, police manuscrite.
 > - Jargon trail dans un texte, parallèle entre la montagne et le métier, nom de section imagé.
 > - Mention d'outils ou de techniques dans un texte client (y compris sur les pages réalisations).
-> - Orange ailleurs que sur un bouton principal, un point actif, le fanion, un résultat dans une fiche.
+> - Une teinte hors palette : ni orange, ni vert, ni ocre. Le dégradé ne colore qu'un mot par titre, les points et le fanion ; jamais un fond, jamais un bouton (inchangé).
 > - Une couleur écrite en dur dans un composant ou une section.
 > - Photo générée ou photo d'ambiance : l'univers est en SVG et CSS.
-> - Un chiffre sans source, un délai de livraison, la structure « X, pas Y » (inchangé).
+> - Un chiffre sans source, un délai de livraison, la structure « X, pas Y » (inchangé). Le « +10 sites en ligne » est un chiffre donné par Maxence le 28 octobre 2026 (`stats.sitesEnLigne`).
 >
 > ### V3.7 Mesures (build du 22 octobre 2026, Lighthouse 12.8)
 >
-> Accueil mobile : performance 96, accessibilité 100, bonnes pratiques 100, SEO 100 ; LCP 1,6 s en throttling réel (2,8 s en simulé), CLS 0. Accueil desktop : 100 / 96 → 100 / 100 / 100. Données structurées : `ProfessionalService` et `Person` liés dans un graphe, `FAQPage`.
-
+> Accueil mobile : performance 96, accessibilité 100, bonnes pratiques 100, SEO 100 ; LCP 1,6 s en throttling réel (2,8 s en simulé), CLS 0. Accueil desktop : 100 / 100 / 100 / 100. Données structurées : `ProfessionalService` et `Person` liés dans un graphe, `FAQPage`.
 Version 2.1, 2 octobre 2026 (version 2 : 15 septembre 2026). Ce fichier est la référence pour refaire maxence-cailleau.fr. Il décrit l'identité visuelle en production sur les carrousels Instagram / LinkedIn et les bannières LinkedIn (style « sobre », décidé le 14 septembre), la voix de Maxence, et le contenu du nouveau site en deux pages. Le site doit donner l'impression d'être fait par la même personne que les posts.
 
 Il est écrit pour être suivi à la lettre par Claude Code. Chaque règle est courte et vérifiable. Ce que Maxence doit encore confirmer est entre crochets `[à confirmer]`.

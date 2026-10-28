@@ -12,40 +12,42 @@
 ------------------------------------------------------------------- */
 
 :root {
-  /* jour */
-  --bg: #e8e6df;
-  --bg-2: #dcd9cf;
-  --surface: #f3f1eb;
-  --fg: #22272a;
-  --fg-2: #4a504d;
-  --line: rgba(34, 39, 42, 0.14);
-  --line-2: rgba(34, 39, 42, 0.32);
-  --sapin: #2e4a3b;
-  --mousse: #7a8c66;
-  --ocre: #b0703a;
-  --accent: #ff5a1f;
-  --accent-fg: #1a1d1f;
-  --accent-hover: #ea4d14;
-  /* teinte sapin, pour un mot sur bande ou une colonne marquée */
-  --band: #d6dfd2;
-  /* le massif et le ciel */
-  --sky-1: #cfd5d0;
-  --sky-2: #ece8dd;
-  --sun: #ffe3b8;
-  --shade: #2a3530;
-  --haze: #e8e6df;
-  --m-far: #aeb5aa;
-  --m-mid: #6f7f70;
-  --m-near: #34443b;
-  --trail: #f3f1eb;
+  /* jour : la palette d'avant, celle des carrousels et de la bannière LinkedIn */
+  --bg: #fafaf8;
+  --bg-2: #f0f0ec;
+  --surface: #ffffff;
+  --fg: #141414;
+  --fg-2: #5a5a55;
+  --line: rgba(20, 20, 20, 0.12);
+  --line-2: rgba(20, 20, 20, 0.3);
+  /* le dégradé : un mot par titre, les points, le fanion */
+  --g1: #7c5cff;
+  --g2: #2f7bff;
+  --accent: #7c5cff;
+  --accent-fg: #ffffff;
+  /* la bande lime : un second mot marqué, une pilule, la colonne « avec moi », les balises du sentier */
+  --band: #ddf77a;
+  --on-band: #141414;
+  --band-tint: color-mix(in srgb, #ddf77a 45%, #ffffff);
+  --marker: #ddf77a;
+  /* le massif et son ciel, au crépuscule violet */
+  --sky-1: #e4e1f3;
+  --sky-2: #f7f6fc;
+  --sun: #ffefb3;
+  --shade: #1f1b3d;
+  --haze: #fafaf8;
+  --m-far: #c7c3df;
+  --m-mid: #8d86b9;
+  --m-near: #3d3769;
+  --trail: #fafaf8;
   --stars: 0;
-  --contour: rgba(34, 39, 42, 0.16);
+  --contour: rgba(20, 20, 20, 0.16);
   /* fiche technique posée sur une capture */
-  --overlay: rgba(34, 39, 42, 0.88);
-  --overlay-fg: #ece6d8;
+  --overlay: rgba(20, 20, 20, 0.88);
+  --overlay-fg: #f4f4f2;
   --grain: 0.06;
-  --shadow: 0 18px 40px -24px rgba(34, 39, 42, 0.35);
-  --shadow-capture: 0 30px 60px -30px rgba(34, 39, 42, 0.4);
+  --shadow: 0 26px 52px -26px rgba(20, 20, 20, 0.35);
+  --shadow-capture: 0 34px 70px -30px rgba(20, 20, 20, 0.35);
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* anciens noms, encore lus par les dispositifs */
@@ -54,9 +56,7 @@
   --ink-2: var(--fg-2);
   --card: var(--surface);
   --card-line: var(--line);
-  --g1: var(--sapin);
-  --g2: var(--ocre);
-  --dot: var(--sapin);
+  --dot: var(--g1);
 
   /* jauges avant / après */
   --jauge-avant: #e8a33d;
@@ -69,81 +69,83 @@
   --gouttiere: 24px;
   --conteneur: 1200px;
 
-  /* boutons */
-  --btn-bg: var(--accent);
-  --btn-fg: var(--accent-fg);
-  --btn-hover: var(--accent-hover);
+  /* boutons : encre sur papier, papier sur encre la nuit */
+  --btn-bg: var(--fg);
+  --btn-fg: var(--bg);
+  --btn-hover: color-mix(in srgb, var(--fg) 90%, var(--bg));
 }
 
-/* nuit : bleu profond, texte crème, lumière chaude. Pas une inversion. */
+/* nuit : la section sombre d'avant (encre, texte crème), le dégradé un peu plus clair. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e151d;
-    --bg-2: #131c26;
-    --surface: #182330;
-    --fg: #ece6d8;
-    --fg-2: #a7aa9f;
-    --line: rgba(236, 230, 216, 0.14);
-    --line-2: rgba(236, 230, 216, 0.34);
-    --sapin: #7fa68c;
-    --mousse: #93a683;
-    --ocre: #d89a5f;
-    --accent: #ff6a2b;
-    --accent-fg: #15181a;
-    --accent-hover: #ff7d47;
-    --band: #243b30;
-    --sky-1: #070d16;
-    --sky-2: #1a2838;
-    --sun: #ffb86b;
-    --shade: #040810;
-    --haze: #0e151d;
-    --m-far: #27394b;
-    --m-mid: #192734;
-    --m-near: #0c141c;
-    --trail: #ece6d8;
+    --bg: #141414;
+    --bg-2: #1a1a1a;
+    --surface: #1f1f1f;
+    --fg: #f4f4f2;
+    --fg-2: #a9a9a4;
+    --line: rgba(255, 255, 255, 0.14);
+    --line-2: rgba(255, 255, 255, 0.34);
+    --g1: #8f74ff;
+    --g2: #4d8dff;
+    --accent: #8f74ff;
+    --accent-fg: #141414;
+    --band: #ddf77a;
+    --on-band: #141414;
+    --band-tint: color-mix(in srgb, #ddf77a 16%, #1f1f1f);
+    --marker: #ddf77a;
+    --sky-1: #121120;
+    --sky-2: #27224a;
+    --sun: #9a82ff;
+    --shade: #0a0914;
+    --haze: #141414;
+    --m-far: #2e2a52;
+    --m-mid: #1f1c3a;
+    --m-near: #121022;
+    --trail: #f4f4f2;
     --stars: 0.9;
-    --contour: rgba(236, 230, 216, 0.13);
-    --overlay: rgba(7, 13, 22, 0.88);
-    --overlay-fg: #ece6d8;
+    --contour: rgba(244, 244, 242, 0.13);
+    --overlay: rgba(10, 10, 10, 0.9);
+    --overlay-fg: #f4f4f2;
     --grain: 0.08;
-    --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.6);
-    --shadow-capture: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+    --shadow: 0 26px 52px -26px rgba(0, 0, 0, 0.6);
+    --shadow-capture: 0 34px 70px -30px rgba(0, 0, 0, 0.7);
     --jauge-avant-fond: #3a2c14;
     --jauge-apres-fond: #163122;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e151d;
-  --bg-2: #131c26;
-  --surface: #182330;
-  --fg: #ece6d8;
-  --fg-2: #a7aa9f;
-  --line: rgba(236, 230, 216, 0.14);
-  --line-2: rgba(236, 230, 216, 0.34);
-  --sapin: #7fa68c;
-  --mousse: #93a683;
-  --ocre: #d89a5f;
-  --accent: #ff6a2b;
-  --accent-fg: #15181a;
-  --accent-hover: #ff7d47;
-  --band: #243b30;
-  --sky-1: #070d16;
-  --sky-2: #1a2838;
-  --sun: #ffb86b;
-  --shade: #040810;
-  --haze: #0e151d;
-  --m-far: #27394b;
-  --m-mid: #192734;
-  --m-near: #0c141c;
-  --trail: #ece6d8;
+--bg: #141414;
+  --bg-2: #1a1a1a;
+  --surface: #1f1f1f;
+  --fg: #f4f4f2;
+  --fg-2: #a9a9a4;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.34);
+  --g1: #8f74ff;
+  --g2: #4d8dff;
+  --accent: #8f74ff;
+  --accent-fg: #141414;
+  --band: #ddf77a;
+  --on-band: #141414;
+  --band-tint: color-mix(in srgb, #ddf77a 16%, #1f1f1f);
+  --marker: #ddf77a;
+  --sky-1: #121120;
+  --sky-2: #27224a;
+  --sun: #9a82ff;
+  --shade: #0a0914;
+  --haze: #141414;
+  --m-far: #2e2a52;
+  --m-mid: #1f1c3a;
+  --m-near: #121022;
+  --trail: #f4f4f2;
   --stars: 0.9;
-  --contour: rgba(236, 230, 216, 0.13);
-  --overlay: rgba(7, 13, 22, 0.88);
-  --overlay-fg: #ece6d8;
+  --contour: rgba(244, 244, 242, 0.13);
+  --overlay: rgba(10, 10, 10, 0.9);
+  --overlay-fg: #f4f4f2;
   --grain: 0.08;
-  --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.6);
-  --shadow-capture: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+  --shadow: 0 26px 52px -26px rgba(0, 0, 0, 0.6);
+  --shadow-capture: 0 34px 70px -30px rgba(0, 0, 0, 0.7);
   --jauge-avant-fond: #3a2c14;
   --jauge-apres-fond: #163122;
   color-scheme: dark;
@@ -151,22 +153,39 @@
 
 /* section sombre : une par page, la fin. Elle prend la nuit, de jour comme de nuit. */
 .section-sombre {
-  --bg: #0e151d;
-  --bg-2: #131c26;
-  --surface: #182330;
-  --fg: #ece6d8;
-  --fg-2: #a7aa9f;
-  --line: rgba(236, 230, 216, 0.14);
-  --line-2: rgba(236, 230, 216, 0.34);
-  --sapin: #7fa68c;
-  --mousse: #93a683;
-  --ocre: #d89a5f;
-  --accent: #ff6a2b;
-  --accent-fg: #15181a;
-  --accent-hover: #ff7d47;
-  --band: #243b30;
-  --contour: rgba(236, 230, 216, 0.13);
-  --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.6);
+  --bg: #141414;
+  --bg-2: #1a1a1a;
+  --surface: #1f1f1f;
+  --fg: #f4f4f2;
+  --fg-2: #a9a9a4;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.34);
+  --g1: #8f74ff;
+  --g2: #4d8dff;
+  --accent: #8f74ff;
+  --accent-fg: #141414;
+  --band: #ddf77a;
+  --on-band: #141414;
+  --band-tint: color-mix(in srgb, #ddf77a 16%, #1f1f1f);
+  --marker: #ddf77a;
+  --sky-1: #121120;
+  --sky-2: #27224a;
+  --sun: #9a82ff;
+  --shade: #0a0914;
+  --haze: #141414;
+  --m-far: #2e2a52;
+  --m-mid: #1f1c3a;
+  --m-near: #121022;
+  --trail: #f4f4f2;
+  --stars: 0.9;
+  --contour: rgba(244, 244, 242, 0.13);
+  --overlay: rgba(10, 10, 10, 0.9);
+  --overlay-fg: #f4f4f2;
+  --grain: 0.08;
+  --shadow: 0 26px 52px -26px rgba(0, 0, 0, 0.6);
+  --shadow-capture: 0 34px 70px -30px rgba(0, 0, 0, 0.7);
+  --jauge-avant-fond: #3a2c14;
+  --jauge-apres-fond: #163122;
   color-scheme: dark;
 }
 
@@ -179,11 +198,9 @@
   --color-card: var(--surface);
   --color-line: var(--line);
   --color-band: var(--band);
-  --color-sapin: var(--sapin);
-  --color-ocre: var(--ocre);
   --color-accent: var(--accent);
-  --color-g1: var(--sapin);
-  --color-g2: var(--ocre);
+  --color-g1: var(--g1);
+  --color-g2: var(--g2);
   --color-google: #1a73e8;
   --color-etoile: #fbbc04;
 
@@ -235,7 +252,7 @@
   /* bande : un second mot marqué */
   mark {
     background: var(--band);
-    color: var(--fg);
+    color: var(--on-band);
     padding: 0.02em 0.14em 0.04em;
     border-radius: 0.16em;
     -webkit-box-decoration-break: clone;
@@ -401,7 +418,7 @@
     z-index: 80;
     pointer-events: none;
     background:
-      radial-gradient(60% 80% at 100% 15%, rgba(255, 140, 60, 0.35), transparent 60%),
+      radial-gradient(60% 80% at 100% 15%, color-mix(in srgb, var(--g1) 28%, transparent), transparent 60%),
       var(--bg);
     animation: fuite 0.4s ease-out forwards;
   }
@@ -484,14 +501,14 @@
     pointer-events: none;
     background: linear-gradient(transparent, var(--bg));
   }
-  /* la date orange, façon compact des années 2010 */
+  /* la date en lime, façon compact des années 2010 */
   .stamp {
     font-family: var(--font-mono);
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.08em;
-    color: #ff8a2a;
-    text-shadow: 0 0 6px rgba(255, 138, 42, 0.7);
+    color: var(--band);
+    text-shadow: 0 0 6px rgba(221, 247, 122, 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -638,10 +655,16 @@
 
 /* ---------- Dispositifs ---------- */
 @layer components {
-  /* le mot marqué d'un titre : vert sapin, graisse héritée. Un par titre. */
+  /* le mot marqué d'un titre : le dégradé violet → bleu, graisse héritée. Un par titre. */
   .acc {
-    color: var(--sapin);
+    background: linear-gradient(100deg, var(--g1), var(--g2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-style: normal;
+    /* l'espacement négatif rétrécit la boîte : on rend au dernier glyphe sa place */
+    padding-inline-end: 0.06em;
+    margin-inline-end: -0.06em;
   }
 
   /* mot entouré : une fois par page */
@@ -657,7 +680,7 @@
     height: calc(100% + 0.22em);
     pointer-events: none;
     overflow: visible;
-    color: var(--accent);
+    color: var(--fg);
   }
 
   /* le surtitre d'une section : le fanion orange, un numéro mono, le nom simple de la section */
@@ -712,14 +735,15 @@
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: var(--sapin);
+    background: var(--g1);
     flex: none;
   }
   .etiquette[data-point="2"]::before {
-    background: var(--ocre);
+    background: var(--g2);
   }
   .etiquette[data-point="3"]::before {
-    background: var(--accent);
+    background: var(--band);
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, #141414 30%, transparent);
   }
   .etiquette[data-point="4"]::before {
     background: var(--fg);
@@ -829,7 +853,7 @@
     padding: 26px 28px;
   }
   .carte-marquee {
-    background: color-mix(in srgb, var(--band) 60%, var(--surface));
+    background: var(--band-tint);
   }
   .callout {
     background: var(--surface);
@@ -842,7 +866,7 @@
   .pilule {
     display: inline-block;
     background: var(--band);
-    color: var(--fg);
+    color: var(--on-band);
     border-radius: 999px;
     padding: 6px 10px;
     font-size: 12px;
@@ -951,7 +975,7 @@
   }
   .fiche .resultat {
     grid-column: 1 / -1;
-    color: var(--accent);
+    color: var(--band);
     margin-top: 4px;
   }
   .projet:hover .fiche,
@@ -999,7 +1023,7 @@
     transform: translateX(1.1em);
   }
 
-  /* bouton : pilule orange, texte ardoise. La flèche mono avance d'un rien au survol. */
+  /* bouton : pilule encre, texte papier (l'inverse la nuit). La flèche mono avance d'un rien au survol. */
   .btn {
     display: inline-flex;
     align-items: center;

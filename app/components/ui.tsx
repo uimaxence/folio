@@ -46,7 +46,7 @@ export function Section({
 
 /* ---------- Accents et repères ---------- */
 
-/** Le mot marqué d'un titre : vert sapin. Un par titre. */
+/** Le mot marqué d'un titre : le dégradé violet → bleu. Un par titre. */
 export function Acc({ children }: { children: ReactNode }) {
   return <span className="acc">{children}</span>;
 }
@@ -106,7 +106,7 @@ export function Etiquette({
   style,
   children,
 }: {
-  /** Couleur du point : 1 sapin, 2 ocre, 3 orange, 4 encre, 0 aucun. */
+  /** Couleur du point : 1 violet, 2 bleu, 3 lime cerclée, 4 encre, 0 aucun. */
   point?: 0 | 1 | 2 | 3 | 4;
   /** Inclinaison en degrés, entre -6 et 6. */
   pench?: number;

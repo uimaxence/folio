@@ -1,7 +1,7 @@
 import { Acc, CarteProjet, Conteneur, Lien, Repere, Section } from "../../components/ui";
 import { projects } from "@/lib/projects";
 
-/** Les sept sites en ligne : le premier en grand avec son texte, les six autres en grille décalée.
+/** Sept sites présentés (plus de dix en ligne) : le premier en grand avec son texte, les six autres en grille décalée.
     Chaque carte montre sa fiche technique au survol. Chaque site a sa page. */
 export function Realisations() {
   const [premier, ...autres] = projects;
@@ -10,7 +10,7 @@ export function Realisations() {
       <Conteneur>
         <Repere n={8}>Réalisations</Repere>
         <h2 className="t-h2 mt-6 max-w-[18ch]">
-          Sept sites en ligne, du premier <Acc>pixel</Acc> à la mise en ligne.
+          Plus de dix sites en ligne, du premier <Acc>pixel</Acc> à la mise en ligne.
         </h2>
 
         <div className="mt-12 md:mt-16 grid gap-10 lg:grid-cols-12 lg:items-center">

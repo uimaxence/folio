@@ -34,6 +34,8 @@ export const site = {
 
 /** Chiffres de réassurance, tous vérifiables sur le site. À CONFIRMER : le nombre de clients accompagnés chaque mois. */
 export const stats = {
+  /** Sites en ligne, tous clients confondus. Chiffre donné par Maxence le 28 octobre 2026 ; sept sont présentés sur le site. */
+  sitesEnLigne: "+10",
   clientsSuivis: 5,
   /** Résultat sourcé, cité aussi sur la page de la réalisation. */
   resultat: {

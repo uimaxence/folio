@@ -20,7 +20,7 @@ export type Project = {
   resultat?: { valeur: string; texte: string; source: string };
 };
 
-/** Les sept sites en ligne, dans l'ordre d'affichage. Capture : /public/shots/<slug>.jpg */
+/** Les sept sites présentés, dans l'ordre d'affichage. Capture : /public/shots/<slug>.jpg */
 export const projects: Project[] = [
   {
     slug: "fenetres-sur-loir",

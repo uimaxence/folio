@@ -1,13 +1,12 @@
 import { Scramble } from "../../components/scramble";
 import { Acc, Conteneur, Repere, Section, Signature } from "../../components/ui";
 import { avis } from "@/lib/avis";
-import { projects } from "@/lib/projects";
 import { site, stats } from "@/lib/site";
 
 /** Qui parle. Une seule personne, pas de portrait en grand : la signature suffit. Quatre chiffres, tous vérifiables. */
 export function Qui() {
   const chiffres = [
-    { valeur: String(projects.length), texte: "sites en ligne, dessinés et codés à la main" },
+    { valeur: stats.sitesEnLigne, texte: "sites en ligne, dessinés et codés à la main" },
     { valeur: String(stats.clientsSuivis), texte: "clients accompagnés chaque mois" },
     { valeur: "5,0 / 5", texte: `sur les ${avis.length} avis publiés` },
     { valeur: stats.resultat.valeur, texte: stats.resultat.texte, source: stats.resultat.source },

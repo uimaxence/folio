@@ -130,7 +130,7 @@ export default async function Realisation({ params }: Props) {
             ))}
           </ul>
           <div className="mt-8">
-            <Lien href="/#realisations">Voir les sept sites</Lien>
+            <Lien href="/#realisations">Voir les réalisations</Lien>
           </div>
         </Conteneur>
       </Section>

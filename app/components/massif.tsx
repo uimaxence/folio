@@ -196,7 +196,7 @@ export function Massif({ seed = 7, className = "" }: { seed?: number; className?
                   width={14}
                   height={14}
                   transform={`rotate(45 ${x} ${y})`}
-                  style={{ fill: "var(--accent)" }}
+                  style={{ fill: "var(--marker)" }}
                 />
               ))}
             </>

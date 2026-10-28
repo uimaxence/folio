@@ -3,7 +3,6 @@ import { Massif } from "../../components/massif";
 import { Scramble } from "../../components/scramble";
 import { Acc, Btn, Conteneur, Repere, Section } from "../../components/ui";
 import { avis } from "@/lib/avis";
-import { projects } from "@/lib/projects";
 import { site, stats } from "@/lib/site";
 
 /** La date de la dernière mise en ligne, façon compact des années 2010 : « 22 10 '26 ». Figée au build. */
@@ -17,7 +16,7 @@ function stamp(d: Date): string {
     Trois chiffres vérifiables en dessous, qui se décodent à l'arrivée. */
 export function Hero() {
   const chiffres = [
-    { valeur: String(projects.length).padStart(2, "0"), texte: "sites en ligne" },
+    { valeur: stats.sitesEnLigne, texte: "sites en ligne" },
     { valeur: String(stats.clientsSuivis).padStart(2, "0"), texte: "clients accompagnés chaque mois" },
     { valeur: "5,0", texte: `sur 5, sur les ${avis.length} avis publiés` },
   ];
