@@ -432,10 +432,16 @@
   }
 
   /* le massif du hero : trois couches de facettes, parallaxe au scroll */
+  /* le massif suit la largeur de l'écran à son format (1600 × 560) : rien n'est rogné entre 220 et 760 px de haut.
+     Sur mobile il prend 220 px et se recadre sur les côtés ; sur un écran très large, seul le haut du ciel,
+     transparent, sort du cadre. */
   .massif {
     display: block;
     width: 100%;
-    height: clamp(220px, 40vw, 620px);
+    height: auto;
+    aspect-ratio: 1600 / 560;
+    min-height: 220px;
+    max-height: 760px;
     max-width: 100%;
     margin-top: calc(-1 * clamp(8px, 2vw, 24px));
   }

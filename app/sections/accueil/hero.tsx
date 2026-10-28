@@ -44,7 +44,7 @@ export function Hero() {
           <p className="t-mono mt-4">appel de 30 min · gratuit · sans engagement</p>
         </Conteneur>
         <Massif />
-        <span aria-hidden className="stamp absolute right-[var(--marge)] bottom-[150px] z-[2]">
+        <span aria-hidden className="stamp absolute right-[var(--marge)] bottom-[150px] z-[2] max-sm:hidden">
           {stamp(new Date())}
         </span>
         <div aria-hidden className="hero-fondu" />

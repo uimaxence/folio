@@ -11,8 +11,9 @@ import { useEffect, useMemo, useRef } from "react";
    massif passe en nuit avec le reste de la page.
 ------------------------------------------------------------------- */
 
+/* un format large : le massif suit la largeur de l'écran sans être rogné en haut */
 const W = 1600;
-const H = 900;
+const H = 560;
 
 function rng(seed: number) {
   let a = seed >>> 0;
@@ -40,15 +41,15 @@ function dessiner(seed: number): Dessin {
   const R = rng(seed);
   const etoiles = Array.from({ length: 36 }, () => ({
     cx: Math.round(R() * W),
-    cy: Math.round(R() * H * 0.5),
+    cy: Math.round(R() * H * 0.45),
     r: +(0.8 + R() * 1.6).toFixed(1),
     o: +(0.3 + R() * 0.7).toFixed(1),
   }));
 
   const def = [
-    { base: 0.5, amp: 0.15, n: 9, rows: 3, k: 0.035 },
-    { base: 0.6, amp: 0.17, n: 11, rows: 3, k: 0.08 },
-    { base: 0.73, amp: 0.15, n: 13, rows: 3, k: 0.15, sentier: true },
+    { base: 0.5, amp: 0.22, n: 9, rows: 3, k: 0.035 },
+    { base: 0.62, amp: 0.22, n: 11, rows: 3, k: 0.08 },
+    { base: 0.76, amp: 0.17, n: 13, rows: 3, k: 0.15, sentier: true },
   ];
 
   const couches: Couche[] = def.map((L) => {
@@ -72,7 +73,7 @@ function dessiner(seed: number): Dessin {
       rangs.push(
         crete.map(([x, y], i) => {
           const bord = i === 0 || i === L.n;
-          const yy = y + (H + 160 - y) * f + (r < L.rows ? ((R() - 0.5) * (H - y) * 0.35) / L.rows : 0);
+          const yy = y + (H + 120 - y) * f + (r < L.rows ? ((R() - 0.5) * (H - y) * 0.35) / L.rows : 0);
           return [bord ? x : x + (R() - 0.5) * seg * 0.3, yy];
         }),
       );
@@ -98,7 +99,7 @@ function dessiner(seed: number): Dessin {
     }
     let sentier: Couche["sentier"];
     if (L.sentier) {
-      const pts = crete.slice(1, L.n).map(([x, y]) => [Math.round(x), Math.round(y + 26)] as [number, number]);
+      const pts = crete.slice(1, L.n).map(([x, y]) => [Math.round(x), Math.round(y + 18)] as [number, number]);
       sentier = {
         points: pts.map((p) => `${p[0]},${p[1]}`).join(" "),
         balises: pts.filter((_, i) => i % 3 === 1),
@@ -153,9 +154,11 @@ export function Massif({ seed = 7, className = "" }: { seed?: number; className?
       aria-hidden
     >
       <defs>
+        {/* le haut du ciel est transparent : la page passe dessous, aucune ligne même si le dessin est recadré */}
         <linearGradient id={`${uid}-ciel`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" style={{ stopColor: "var(--sky-1)", stopOpacity: 0 }} />
-          <stop offset="0.5" style={{ stopColor: "var(--sky-1)", stopOpacity: 0.85 }} />
+          <stop offset="0.4" style={{ stopColor: "var(--sky-1)", stopOpacity: 0 }} />
+          <stop offset="0.72" style={{ stopColor: "var(--sky-1)", stopOpacity: 0.8 }} />
           <stop offset="1" style={{ stopColor: "var(--sky-2)" }} />
         </linearGradient>
         <radialGradient id={`${uid}-soleil`}>
@@ -170,7 +173,7 @@ export function Massif({ seed = 7, className = "" }: { seed?: number; className?
           <circle key={i} cx={e.cx} cy={e.cy} r={e.r} opacity={e.o} style={{ fill: "var(--fg)" }} />
         ))}
       </g>
-      <circle cx="1190" cy="430" r="300" fill={`url(#${uid}-soleil)`} />
+      <circle cx="1190" cy="330" r="210" fill={`url(#${uid}-soleil)`} />
       {dessin.couches.map((c, ci) => (
         <g key={ci} className={`couche c${ci}`} data-k={c.k}>
           {c.facettes.map((f, i) => (
@@ -191,10 +194,10 @@ export function Massif({ seed = 7, className = "" }: { seed?: number; className?
               {c.sentier.balises.map(([x, y], i) => (
                 <rect
                   key={i}
-                  x={x - 7}
-                  y={y - 7}
-                  width={14}
-                  height={14}
+                  x={x - 6}
+                  y={y - 6}
+                  width={12}
+                  height={12}
                   transform={`rotate(45 ${x} ${y})`}
                   style={{ fill: "var(--marker)" }}
                 />
